@@ -16,7 +16,6 @@
     "react": "16.9.0",
     "react-native": "0.61.1",
     "react-native-gesture-handler": "^1.4.1",
-    "react-native-screens": "^2.0.0-alpha.3",
     "react-navigation": "^2.6.2",
     "react-navigation-stack": "^1.9.1",
     "react-swipeable-drawer": "^3.1.0"
