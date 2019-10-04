@@ -33,10 +33,10 @@ const RootStack = createStackNavigator({
     navigationOptions: { header: null }
 
   },
-//   EpisodeScreen: {
-//     screen:Episode,
-//     navigationOptions: { header: null }
-//   },
+  EpisodeScreen: {
+    screen:Episode,
+    navigationOptions: { header: null }
+  },
 //   PlayScreen: {
 //     screen: Play,
 //     navigationOptions: { header: null }
@@ -53,7 +53,7 @@ const RootStack = createStackNavigator({
 },
 
   {
-    initialRouteName: 'ChannelScreen'
+    initialRouteName: 'EpisodeScreen'
   },
   {
     headerMode: 'screen'
