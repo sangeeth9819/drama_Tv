@@ -45,10 +45,10 @@ const RootStack = createStackNavigator({
 //     screen: SideMenu,
 //     navigationOptions: { header: null }
 //   },
-//   TeledramaScreen: {
-//     screen: Teledrama,
-//     navigationOptions: { header: null }
-//   },
+  TeledramaScreen: {
+    screen: Teledrama,
+    navigationOptions: { header: null }
+  },
 
 },
 
