@@ -122,17 +122,6 @@ export default class Basic extends Component {
                     })}>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                 
-
-
-                {/* <Button
-
-
-                        onPress={() => this.openDrawer()}
-                        style={{ top: 30 }}
-                    ></Button> */}
-
-
-
                 <View>
                     <View>
                         {/* Head Content */}

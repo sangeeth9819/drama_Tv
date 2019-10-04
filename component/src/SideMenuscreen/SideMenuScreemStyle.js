@@ -1,5 +1,6 @@
 import React, { StyleSheet } from 'react-native'
 export default StyleSheet.create({
+    
     AllView: {
         width: 270,
         height: 220,
