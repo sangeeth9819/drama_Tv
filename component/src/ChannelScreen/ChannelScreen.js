@@ -177,7 +177,7 @@ export default class Basic extends Component {
 
                         </Header>
 
-
+</View>
                         {/* Body Content */}
                         <View>
                             <ScrollView>
@@ -199,7 +199,7 @@ export default class Basic extends Component {
                                 </View>
                             </ScrollView>
                         </View>
-                    </View>
+                    
                     {/* footer Content */}
 
                     <Footer style={{ top: 580, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
