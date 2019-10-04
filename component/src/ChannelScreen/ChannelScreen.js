@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, ImageBackground, StatusBar, View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet, Text, Alert, FlatList, Dimensions, TextInput } from 'react-native';
+import {
+    Image, TouchableOpacity, ImageBackground, StatusBar,
+    View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet,
+    Text, Alert, FlatList, Dimensions, TextInput
+} from 'react-native';
 import {
 
 
@@ -87,11 +91,11 @@ export default class Channel extends Component {
         };
 
     }
-//     navigatechannel(value){
-//    this.state({
-       
-//    })
-//     }
+    //     navigatechannel(value){
+    //    this.state({
+
+    //    })
+    //     }
 
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
@@ -120,7 +124,7 @@ export default class Channel extends Component {
         const items = [
             { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
             { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siysthaTv.png') },
-            { name: 'Tv Derean', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
+            { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
             { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
             { name: ' Eye Chanenne', code: '#ecf0f1', image: require('../../assest/eyechannelTv.png') },
             { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasa-logo.jpg') },
@@ -167,7 +171,7 @@ export default class Channel extends Component {
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/menu.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -194,7 +198,7 @@ export default class Channel extends Component {
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 30, height: 50, borderRadius: 30 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/search.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -229,26 +233,26 @@ export default class Channel extends Component {
                              */}
                                     <View style={{ top: 22 }}>
                                         <ScrollView>
-                                        <FlatGrid
+                                            <FlatGrid
 
-                                            itemDimension={130}
-                                            items={items}
-                                            style={styles.gridView}
-                                            // staticDimension={300}
-                                            // fixed
-                                            // spacing={20}
-                                            renderItem={({ item, index }) => (
-                                                <TouchableOpacity onPress={()=>this.navigatechannel()}>
-                                                <View style={{ borderRadius: 30 }}>
-                                                    <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                        <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
-                                                        <Text style={styles.itemName}>{item.name}</Text>
-                                                        {/* <Text style={styles.itemCode}>{item.code}</Text> */}
-                                                    </View>
-                                                </View>
-                                                </TouchableOpacity>
-                                            )}
-                                        />
+                                                itemDimension={130}
+                                                items={items}
+                                                style={styles.gridView}
+                                                // staticDimension={300}
+                                                // fixed
+                                                // spacing={20}
+                                                renderItem={({ item, index }) => (
+                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
+                                                        <View style={{ borderRadius: 30 }}>
+                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                                                <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
+                                                                <Text style={styles.itemName}>{item.name}</Text>
+                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+                                                            </View>
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                )}
+                                            />
                                         </ScrollView>
                                     </View>
                                 </View>

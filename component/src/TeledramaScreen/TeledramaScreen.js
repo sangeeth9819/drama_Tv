@@ -40,7 +40,7 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/menu.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -67,7 +67,7 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 30, height: 50, borderRadius: 30 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/search.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -100,7 +100,7 @@ export default class TeledramaScreen extends Component {
                 </View>
                 {/* footer Content */}
 
-                <Footer style={{ top: 585, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
+                <Footer style={{ top: 588, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
 
                     <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>

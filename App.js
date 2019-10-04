@@ -53,7 +53,7 @@ const RootStack = createStackNavigator({
 },
 
   {
-    initialRouteName: 'EpisodeScreen'
+    initialRouteName: 'ChannelScreen'
   },
   {
     headerMode: 'screen'
