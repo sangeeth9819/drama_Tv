@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, ImageBackground, StatusBar, View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet, Text,   Alert, FlatList, Dimensions, TextInput } from 'react-native';
+import { Image, TouchableOpacity, ImageBackground, StatusBar, View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet, Text, Alert, FlatList, Dimensions, TextInput } from 'react-native';
 import {
-    
-   
-  Header,
+
+
+    Header,
     Drawer,
     Fab,
     Button,
     Picker,
-    Icon, Item, Input, Footer,
+    Icon, Item, Input, Footer, value
 } from 'native-base';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -106,158 +106,147 @@ export default class Basic extends Component {
 
 
         return (
+            <View>
+                <Drawer
+                    side="left" ref={(ref) => { this.drawer = ref; }}
+                    acceptPan={true}
+                    panOpenMask={1}
 
-            <Drawer
-                side="left" ref={(ref) => { this.drawer = ref; }}
-                acceptPan={true}
-                panOpenMask={1}
-
-                content={<SideBar navigation={this.props.navigation} />}
-                onClose={() => this.closeDrawer()}
+                    content={<SideBar navigation={this.props.navigation} />}
+                    onClose={() => this.closeDrawer()}
 
 
 
-                tweenHandler={(ratio) => ({
-                    main: { opacity: (1 - ratio) / 1 }
-                })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                    tweenHandler={(ratio) => ({
+                        main: { opacity: (1 - ratio) / 1 }
+                    })}>
+                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                </Drawer>
 
-                <View>
 
-                    <Button
+                {/* <Button
 
 
                         onPress={() => this.openDrawer()}
                         style={{ top: 30 }}
-                    ></Button>
+                    ></Button> */}
 
 
 
+                <View>
                     <View>
-                        <View>
-                            {/* Head Content */}
-                            <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 5, height: 44 }}>
-                                <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 15 }}>
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <View style={{ width: 50, height: 60, borderRadius: 20 }}>
-                                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                                <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
-                                            </View>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
+                        {/* Head Content */}
 
-
-                                <View style={{ width: '75%', backgroundColor: '#f5f5f0', borderRadius: 20, height: 40 }}>
-                                    <TextInput
-                                        style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' }}
-                                        placeholder='Search here'
-                                    // onChangeText={text => onChangeText(text)} ව
-                                    // value={value}
-                                    />
-                                </View>
-
-                                {/* 
-                    <TouchableOpacity>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
-                            <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
+                        <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                            <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    {/* <Item>
-                                        <Input style={{ textDecorationStyle: null, width: 100, height: 38 }} placeholder='search here'></Input>
-                                    </Item> */}
-                                {/* <TextInput */}
-                                {/* style={{ borderRadius: 20, width: '100%', height: 30, borderColor: '#FAFAFA', borderWidth: 1 }} */}
-                                {/* // onChangeText={text => onChangeText(text)} */}
-                                {/* // value={value} */}
-                                {/* /> */}
-                                {/* </View> */}
-                                {/* </View> */}
-                                {/* // </View> */}
-                                {/* // </TouchableOpacity> */}
-
-
-                                <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <View style={{ width: 30, height: 50, borderRadius: 30 }}>
-                                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                                <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
-                                            </View>
+                                    <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
                                         </View>
                                     </View>
-                                </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
 
-                            </Header>
 
 
-                            {/* Body Content */}
-                            <View>
-                                <ScrollView>
+
+
+                            <TouchableOpacity>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
+                                    <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
+
+                                        <TextInput
+                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' }}
+                                            placeholder='Search here' />
+
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                    <View style={{ width: 30, height: 50, borderRadius: 30 }}>
+                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
+                                        </View>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+                        </Header>
+
+
+                        {/* Body Content */}
+                        <View>
+                            <ScrollView>
+                                <View>
+
                                     <View>
 
-                                        <View>
 
-
-                                            <FlatList
-                                                data={formatData(data, numColumns)}
-                                                style={styles.container}
-                                                renderItem={this.renderItem}
-                                                numColumns={numColumns}
-                                            />
-
-                                        </View>
-
+                                        <FlatList
+                                            data={formatData(data, numColumns)}
+                                            style={styles.container}
+                                            renderItem={this.renderItem}
+                                            numColumns={numColumns}
+                                        />
 
                                     </View>
-                                </ScrollView>
-                            </View>
+
+
+                                </View>
+                            </ScrollView>
                         </View>
-                        {/* footer Content */}
-
-                        <Footer style={{ top: 540, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
-
-                            <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                        </View>
-                                        <Text style={{ color: 'gray' }}>Home</Text>
-                                    </View>
-                                </View>
-
-                            </TouchableOpacity>
-
-                            <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{}}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                        </View>
-                                        <Text style={{ color: 'gray' }}>Home</Text>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-
-
-
-                            <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ left: 100 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                        </View>
-                                        <Text style={{ color: 'gray' }}>Home</Text>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        </Footer>
                     </View>
-                </View>
+                    {/* footer Content */}
 
-            </Drawer>
+                    <Footer style={{ top: 580, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
+
+                        <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 50, height: 50, borderRadius: 30 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
+
+                                    </View>
+                                    <Text style={{ color: 'gray' }}>Home</Text>
+                                </View>
+                            </View>
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{}}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 50, height: 50, borderRadius: 30 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
+
+                                    </View>
+                                    <Text style={{ color: 'gray' }}>Home</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+
+
+
+                        <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ left: 100 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 50, height: 50, borderRadius: 30 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
+
+                                    </View>
+                                    <Text style={{ color: 'gray' }}>Home</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    </Footer>
+                </View>
+            </View>
+
+
 
         );
     }
