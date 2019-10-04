@@ -61,17 +61,15 @@ const RootStack = createStackNavigator({
 );
 
 const AppContainer = createAppContainer(RootStack);
-
 export default class App extends Component {
   render() {
     return (
-      < View style={{ flex: 1 }}>
-
-        <AppContainer />
+      <View style={{ flex: 1 }}>
+    
         
-
+        <AppContainer />
+        {/* <FlashMessage position="top" /> */}
       </View>
-    )
+    );
   }
 }
- 

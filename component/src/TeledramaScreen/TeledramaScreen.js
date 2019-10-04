@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
     Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight,
-    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar
+    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar,ScrollView,TextInput
 } from 'react-native';
 import { Header, Item, Input, Footer, } from 'native-base';
-import { ScrollView } from 'react-native-gesture-handler';
+
+
 
 const rows = [
     { id: 0, text: 'View' },
@@ -17,7 +18,7 @@ const rows = [
 
 const extractKey = ({ id }) => id
 
-export default class EpisodeScreen extends Component {
+export default class TeledramaScreen extends Component {
 
 
     renderItem = ({ item }) => {
@@ -33,49 +34,51 @@ export default class EpisodeScreen extends Component {
         return (
             <View>
 
-
                 {/* Head Content */}
-                {/* <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 5, height: 44 }}> */}
-
-                    {/* <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 15 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                            <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                    <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                        </View>
+                                    </View>
                                 </View>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
+                            </TouchableOpacity>
 
 
-                    <TouchableOpacity>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
-                            <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
+
+
+
+                            <TouchableOpacity>
+                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
+                                    <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
+
+                                        <TextInput
+                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' }}
+                                            placeholder='Search here' />
+
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+
+                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Item>
-                                        <Input style={{ textDecorationStyle: null, width: 100, height: 38 }} placeholder='search here'
-                                        ></Input>
-                                    </Item>
+                                    <View style={{ width: 30, height: 50, borderRadius: 30 }}>
+                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
+                                        </View>
+                                    </View>
                                 </View>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
+                            </TouchableOpacity>
 
+                        </Header>
 
-                    <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 30, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
-                                </View>
-                            </View>
-                        </View>
-                    </TouchableOpacity> */}
-
-                {/* </Header> */}
+              
 
                 {/* Body Content */}
-                <View style={{ top: 20, borderRadius: 20 }}>
+                <View style={{ top: 35, borderRadius: 20 }}>
                     <ScrollView>
                         <FlatList
                             style={styles.container}
@@ -97,7 +100,7 @@ export default class EpisodeScreen extends Component {
                 </View>
                 {/* footer Content */}
 
-                <Footer style={{ top: 560, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
+                <Footer style={{ top: 585, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
 
                     <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
