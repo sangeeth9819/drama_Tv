@@ -13,7 +13,7 @@ import {
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import Animated from 'react-native-reanimated';
-import SideBar from '../SideMenuscreen/SideMenuScreen';
+import SideBar from '../SideMenuscreen/SideMenuScreen'
 import episode from '../EpisodeScreen/EpisodeScreen';
 import play from '../PlayScreen/PlayScreen';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -106,7 +106,7 @@ export default class Basic extends Component {
 
 
         return (
-            <View>
+           
                 <Drawer
                     side="left" ref={(ref) => { this.drawer = ref; }}
                     acceptPan={true}
@@ -121,7 +121,7 @@ export default class Basic extends Component {
                         main: { opacity: (1 - ratio) / 1 }
                     })}>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                </Drawer>
+                
 
 
                 {/* <Button
@@ -138,7 +138,7 @@ export default class Basic extends Component {
                         {/* Head Content */}
 
                         <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
-                            <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
+                            <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -244,7 +244,8 @@ export default class Basic extends Component {
                         </TouchableOpacity>
                     </Footer>
                 </View>
-            </View>
+                </Drawer>
+
 
 
 
