@@ -35,9 +35,9 @@ export default class EpisodeScreen extends Component {
 
 
                 {/* Head Content */}
-                <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 5, height: 44 }}>
+                {/* <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 5, height: 44 }}> */}
 
-                    <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 15 }}>
+                    {/* <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 15 }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                             <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -70,9 +70,9 @@ export default class EpisodeScreen extends Component {
                                 </View>
                             </View>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
-                </Header>
+                {/* </Header> */}
 
                 {/* Body Content */}
                 <View style={{ top: 20, borderRadius: 20 }}>
