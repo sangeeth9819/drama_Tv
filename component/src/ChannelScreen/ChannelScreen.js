@@ -122,7 +122,7 @@ export default class Channel extends Component {
         ];
  
         return (
-            <View>
+           
                 <Drawer
                     side="left" ref={(ref) => { this.drawer = ref; }}
                     acceptPan={true}
@@ -137,7 +137,7 @@ export default class Channel extends Component {
                         main: { opacity: (1 - ratio) / 1 }
                     })}>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                </Drawer>
+                
  
                 {/* <Button
  
@@ -152,7 +152,7 @@ export default class Channel extends Component {
                         {/* Head Content */}
  
                         <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
-                            <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
+                            <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -243,50 +243,8 @@ export default class Channel extends Component {
                         </ScrollView>
                     </View>
                 </View>
-                {/* footer Content */}
- 
-                <Footer style={{ top: 585, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
- 
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
- 
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
- 
-                    </TouchableOpacity>
- 
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{}}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
- 
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-
-
- 
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ left: 100 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
- 
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </Footer>
-            </View >
+                </Drawer>
+            
 
 
 
