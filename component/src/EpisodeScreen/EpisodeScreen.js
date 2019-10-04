@@ -51,6 +51,7 @@ export default class Example extends Component {
         };
     }
 
+    
 
     navigateToTeledrama(value) {
         this.setState({
@@ -77,15 +78,15 @@ export default class Example extends Component {
 
         var title;
         const items = [
+            { videoID: '1aJR_sOx70A' },
+            { videoID: '3DsgHY6mtRo' },
             { videoID: '5ODFPY7Ft1E' },
-            { videoID: 'ugdPN0yNkVI' },
-            { videoID: 'UISfC1rgu_8' },
-            { videoID: 'ugdPN0yNkVI' },
-            { videoID: 'dYlHaT4ceis' },
-            { videoID: 'ugdPN0yNkVI' },
-            { videoID: 'kgX5YjcxfS0' },
+            { videoID: 'ddx8d3LZU54' },
+            { videoID: '4EcqUSwYb5I' },
+            { videoID: 'EJHi0msJQvU' },
+            { videoID: 'UAd967OgTpc' },
             { videoID: 'PC0eYDACeEU' },
-            { videoID: 'kgX5YjcxfS0' },
+            { videoID: 'U5y_K9rZrmA' },
         ];
 
 
@@ -111,7 +112,7 @@ export default class Example extends Component {
 
                         apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
 
-                        videoId='5ODFPY7Ft1E'
+                        videoId={this.state.videoId}
 
                         play={this.state.isPlaying}
                         loop={this.state.isLooping}
