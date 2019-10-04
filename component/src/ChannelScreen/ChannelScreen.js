@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Image, TouchableOpacity, ImageBackground, StatusBar, View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet, Text, Alert, FlatList, Dimensions, TextInput } from 'react-native';
 import {
-
-
     Header,
     Drawer,
     Fab,
@@ -87,11 +85,11 @@ export default class Channel extends Component {
         };
 
     }
-//     navigatechannel(value){
-//    this.state({
-       
-//    })
-//     }
+    //     navigatechannel(value){
+    //    this.state({
+
+    //    })
+    //     }
 
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
@@ -229,26 +227,26 @@ export default class Channel extends Component {
                              */}
                                     <View style={{ top: 22 }}>
                                         <ScrollView>
-                                        <FlatGrid
+                                            <FlatGrid
 
-                                            itemDimension={130}
-                                            items={items}
-                                            style={styles.gridView}
-                                            // staticDimension={300}
-                                            // fixed
-                                            // spacing={20}
-                                            renderItem={({ item, index }) => (
-                                                <TouchableOpacity onPress={()=>this.navigatechannel()}>
-                                                <View style={{ borderRadius: 30 }}>
-                                                    <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                        <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
-                                                        <Text style={styles.itemName}>{item.name}</Text>
-                                                        {/* <Text style={styles.itemCode}>{item.code}</Text> */}
-                                                    </View>
-                                                </View>
-                                                </TouchableOpacity>
-                                            )}
-                                        />
+                                                itemDimension={130}
+                                                items={items}
+                                                style={styles.gridView}
+                                                // staticDimension={300}
+                                                // fixed
+                                                // spacing={20}
+                                                renderItem={({ item, index }) => (
+                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
+                                                        <View style={{ borderRadius: 30 }}>
+                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                                                <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
+                                                                <Text style={styles.itemName}>{item.name}</Text>
+                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+                                                            </View>
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                )}
+                                            />
                                         </ScrollView>
                                     </View>
                                 </View>
