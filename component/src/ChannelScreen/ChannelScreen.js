@@ -244,11 +244,6 @@ export default class Channel extends Component {
                     </View>
                 </View>
                 </Drawer>
-            
-
-
-
- 
         );
     }
 }
