@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
     Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight,
-    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput,StatusBar
+    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput, StatusBar
 } from 'react-native';
-import { Header, Item, Input, Footer,Drawer } from 'native-base';
+import { Header, Item, Input, Footer, Drawer } from 'native-base';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
@@ -51,22 +51,23 @@ export default class TeledramaScreen extends Component {
 
     render() {
         return (
-            
-                <Drawer
-                    side="left" ref={(ref) => { this.drawer = ref; }}
-                    acceptPan={true}
-                    panOpenMask={1}
 
-                    content={<SideBar navigation={this.props.navigation} />}
-                    onClose={() => this.closeDrawer()}
+            <Drawer
+                side="left" ref={(ref) => { this.drawer = ref; }}
+                acceptPan={true}
+                panOpenMask={1}
+
+                content={<SideBar navigation={this.props.navigation} />}
+                onClose={() => this.closeDrawer()}
 
 
 
-                    tweenHandler={(ratio) => ({
-                        main: { opacity: (1 - ratio) / 1 }
-                    })}>
-                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                
+                tweenHandler={(ratio) => ({
+                    main: { opacity: (1 - ratio) / 1 }
+                })}>
+
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+
                 {/* Head Content */}
                 <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
                     <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
@@ -78,10 +79,6 @@ export default class TeledramaScreen extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-
-
-
-
 
                     <TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
@@ -109,7 +106,6 @@ export default class TeledramaScreen extends Component {
                 </Header>
 
 
-
                 {/* Body Content */}
                 <View style={{ top: 35, borderRadius: 20 }}>
                     <ScrollView>
@@ -119,25 +115,25 @@ export default class TeledramaScreen extends Component {
                             renderItem={this.renderItem}
                             keyExtractor={extractKey}
                             // spacing={20}
-                            
+
                             renderItem={({ row }) => (
                                 <TouchableOpacity onPress={() => this.navigateEpisode()}>
-                                <View style={{ ackgroundColor: 'white', margin: 2, borderRadius: 20, borderColor: 'gray', borderWidth: 0.5 }}>
-                                    <Image style={{ height: 100, width: 100, backgroundColor: 'white', borderRadius: 20 }} source={{ uri: 'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg' }} >
+                                    <View style={{ ackgroundColor: 'white', margin: 2, borderRadius: 20, borderColor: 'gray', borderWidth: 0.5 }}>
+                                        <Image style={{ height: 100, width: 100, backgroundColor: 'white', borderRadius: 20 }} source={{ uri: 'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg' }} >
 
 
-                                    </Image>
+                                        </Image>
 
-                                </View>
+                                    </View>
                                 </TouchableOpacity>
-                            
+
                             )}
                         />
                     </ScrollView>
                 </View>
                 {/* footer Content */}
-                </Drawer>
-            
+            </Drawer>
+
         );
     }
 }
