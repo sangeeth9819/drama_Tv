@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, ImageBackground, StatusBar, View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet, Text, Alert, FlatList, Dimensions, TextInput } from 'react-native';
+import {
+    Image, TouchableOpacity, ImageBackground, StatusBar,
+    View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet,
+    Text, Alert, FlatList, Dimensions, TextInput
+} from 'react-native';
 import {
 
     Header,
@@ -23,8 +27,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { createStackNavigator } from 'react-navigation-stack';
 
+<<<<<<< HEAD
+ 
+=======
 
 
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
 
@@ -63,7 +71,16 @@ export default class Channel extends Component {
         };
 
     }
+<<<<<<< HEAD
+    //     navigatechannel(value){
+    //    this.state({
+
+    //    })
+    //     }
+
+=======
    
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -90,7 +107,7 @@ export default class Channel extends Component {
         const items = [
             { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
             { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siysthaTv.png') },
-            { name: 'Tv Derean', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
+            { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
             { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
             { name: ' Eye Chanenne', code: '#ecf0f1', image: require('../../assest/eyechannelTv.png') },
             { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasa-logo.jpg') },
@@ -121,13 +138,18 @@ export default class Channel extends Component {
                 <View>
                     <View>
                         {/* Head Content */}
+<<<<<<< HEAD
+ 
+                   <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
+=======
 
                         <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                             <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/menu.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -142,7 +164,7 @@ export default class Channel extends Component {
                                     <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
 
                                         <TextInput
-                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' }}
+                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA',left:55 }}
                                             placeholder='Search here' />
 
                                     </View>
@@ -153,7 +175,7 @@ export default class Channel extends Component {
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 30, height: 50, borderRadius: 30 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/search.png')} />
+                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/search.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -168,10 +190,23 @@ export default class Channel extends Component {
                             <View>
 
                                 <View>
+<<<<<<< HEAD
+ 
+                                   
+                                    <View style={{ top: 50 }}>
+                                        <ScrollView>
+                                            <FlatGrid
+
+
+
+ 
+
+=======
                                     <View style={{ top: 22 }}>
                                         <ScrollView>
                                             <FlatGrid
 
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                                                 itemDimension={130}
                                                 items={items}
                                                 style={styles.gridView}
@@ -180,7 +215,7 @@ export default class Channel extends Component {
                                                     <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                         <View style={{ borderRadius: 30 }}>
                                                             <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                                <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
+                                                                <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
                                                                 <Text style={styles.itemName}>{item.name}</Text>
                                                                 {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                                                             </View>
@@ -202,7 +237,6 @@ export default class Channel extends Component {
 
 const styles = StyleSheet.create({
     gridView: {
-        marginTop: 20,
         flex: 1,
     },
     itemContainer: {
