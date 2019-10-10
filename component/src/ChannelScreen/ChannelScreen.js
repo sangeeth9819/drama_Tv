@@ -1,33 +1,11 @@
 import React, { Component } from 'react';
 import {
-    Image, TouchableOpacity, ImageBackground, StatusBar,
-    View, AsyncStorage, Vibration, PixelRatio, Navigator, StyleSheet,
-    Text, Alert, FlatList, Dimensions, TextInput
+    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
+    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
 } from 'react-native';
-import {
-
-    Header,
-    Drawer,
-    Fab,
-    Button,
-    Picker,
-    Icon, Item, Input, Footer, value
-} from 'native-base';
-import { createAppContainer } from "react-navigation";
-// import { createDrawerNavigator } from 'react-navigation-drawer';
-import Animated from 'react-native-reanimated';
-import SideBar from '../SideMenuscreen/SideMenuScreen';
-import episode from '../EpisodeScreen/EpisodeScreen';
-import play from '../PlayScreen/PlayScreen';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { Header, Item, Input, Footer, Drawer } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
-
-import SortableGridView from 'react-native-sortable-gridview'
-import { ScrollView } from 'react-native-gesture-handler';
-
-import { createStackNavigator } from 'react-navigation-stack';
-
-
+import SideBar from '../SideMenuscreen/SideMenuScreen';
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
 
@@ -128,13 +106,9 @@ export default class Channel extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
-
-                <View>
-                    <View>
-                        {/* Head Content */}
-
-                        {/* <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}> */}
-                        <TouchableOpacity onPress={() => this.Test()} style={{ right: 10 }}>
+                <View style={{ top: 10 }}  >
+                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                        <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -166,47 +140,48 @@ export default class Channel extends Component {
                             </View>
                         </TouchableOpacity>
 
-                    {/* </Header> */}
-                    </View>
-                    {/* Body Content */}
-                    <View>
-                        <ScrollView>
+                    </Header>
+
+                </View>
+                {/* Body Content */}
+                <View>
+                    <ScrollView>
+                        <View>
+
                             <View>
 
-                                <View>
 
-
-                                    <View style={{ top: 50 }}>
-                                        <ScrollView>
-                                            <FlatGrid
+                                <View style={{ top: 50 }}>
+                                    <ScrollView>
+                                        <FlatGrid
 
 
 
 
 
-                                                itemDimension={130}
-                                                items={items}
-                                                style={styles.gridView}
+                                            itemDimension={130}
+                                            items={items}
+                                            style={styles.gridView}
 
-                                                renderItem={({ item, index }) => (
-                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
-                                                        <View style={{ borderRadius: 30 }}>
-                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                                <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
-                                                                <Text style={styles.itemName}>{item.name}</Text>
-                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
-                                                            </View>
+                                            renderItem={({ item, index }) => (
+                                                <TouchableOpacity onPress={() => this.navigatechannel()}>
+                                                    <View style={{ borderRadius: 30 }}>
+                                                        <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                                            <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
+                                                            <Text style={styles.itemName}>{item.name}</Text>
+                                                            {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                                                         </View>
-                                                    </TouchableOpacity>
-                                                )}
-                                            />
-                                        </ScrollView>
-                                    </View>
+                                                    </View>
+                                                </TouchableOpacity>
+                                            )}
+                                        />
+                                    </ScrollView>
                                 </View>
                             </View>
-                        </ScrollView>
-                    </View>
+                        </View>
+                    </ScrollView>
                 </View>
+
             </Drawer>
         );
     }
