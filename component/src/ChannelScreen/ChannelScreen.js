@@ -27,12 +27,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { createStackNavigator } from 'react-navigation-stack';
 
-<<<<<<< HEAD
  
-=======
-
-
->>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
 
@@ -71,16 +66,12 @@ export default class Channel extends Component {
         };
 
     }
-<<<<<<< HEAD
     //     navigatechannel(value){
     //    this.state({
 
     //    })
     //     }
 
-=======
-   
->>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -106,13 +97,13 @@ export default class Channel extends Component {
     render() {
         const items = [
             { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
-            { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siysthaTv.png') },
+            { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siyathaTv.png') },
             { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
             { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
             { name: ' Eye Chanenne', code: '#ecf0f1', image: require('../../assest/eyechannelTv.png') },
-            { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasa-logo.jpg') },
+            { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasaTv.jpg') },
             { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
-            { name: 'aa', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
+            { name: 'aa', code: '#ecf0f1', image: require('../../assest/itnTv.jpg') },
 
         ];
 
@@ -138,13 +129,8 @@ export default class Channel extends Component {
                 <View>
                     <View>
                         {/* Head Content */}
-<<<<<<< HEAD
  
                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
-=======
-
-                        <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
->>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                             <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
@@ -190,7 +176,6 @@ export default class Channel extends Component {
                             <View>
 
                                 <View>
-<<<<<<< HEAD
  
                                    
                                     <View style={{ top: 50 }}>
@@ -201,12 +186,6 @@ export default class Channel extends Component {
 
  
 
-=======
-                                    <View style={{ top: 22 }}>
-                                        <ScrollView>
-                                            <FlatGrid
-
->>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                                                 itemDimension={130}
                                                 items={items}
                                                 style={styles.gridView}
