@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight,
+    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
     TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
 } from 'react-native';
-import { Header, Item, Input, Footer, } from 'native-base';
+import { Header, Item, Input, Footer, Drawer } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
+import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
 const rows = [
@@ -39,49 +40,80 @@ export default class TeledramaScreen extends Component {
             </Text>
         )
     }
+    navigateTo_Episode() {
+        this.props.navigation.navigate('EpisodeScreen')
+    };
+    closeDrawer = () => {
+        this.drawer._root.close()
+    };
 
+    openDrawer = () => {
+
+        this.drawer._root.open()
+    };
+
+    onClose = () => {
+        this.setState({
+            showTheThing: true
+        })
+    }
 
     render() {
         return (
-            <View>
+           
+                <Drawer
+                side="left" ref={(ref) => { this.drawer = ref; }}
+                acceptPan={true}
+                panOpenMask={1}
 
-                {/* Head Content */}
-                <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
-                    <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 60, borderRadius: 20 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 30, height: 35, top: 10 }} source={require('../../assest/menu.png')} />
+                content={<SideBar navigation={this.props.navigation} />}
+                onClose={() => this.closeDrawer()}
+
+
+
+                tweenHandler={(ratio) => ({
+                    main: { opacity: (1 - ratio) / 1 }
+                })}>
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+
+
+                <View style={{top:10}}  >
+                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                        <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
-                            <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
+                        <TouchableOpacity>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
+                                <View style={{ width: 250, height: 30, borderRadius: 15, backgroundColor: '#f5f5f0' }}>
 
-                                <TextInput
-                                    style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA', }}
-                                    placeholder='Search here' />
+                                    <TextInput
+                                        style={{ left: 10, height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
+                                        placeholder='Search here' />
 
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 30, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/search.png')} />
                                 </View>
                             </View>
-                        </View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                </Header>
+                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 30, height: 50, borderRadius: 30 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/search.png')} />
+                                    </View>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
 
+                    </Header>
+
+                </View>
 
                 {/* Body Content */}
                 <View style={{ top: 50, borderRadius: 20 }}>
@@ -99,7 +131,7 @@ export default class TeledramaScreen extends Component {
                             // fixed
                             // spacing={20}
                             renderItem={({ item, index }) => (
-                                <TouchableOpacity onPress={() => this.navigatechannel()}>
+                                <TouchableOpacity onPress={() => this.navigateTo_Episode()}>
                                     <View style={{ borderRadius: 30 }}>
                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
 
@@ -113,6 +145,7 @@ export default class TeledramaScreen extends Component {
                             )}
                         />
                     </ScrollView>
+                
                 </View>
                 {/* footer Content */}
 
@@ -157,7 +190,9 @@ export default class TeledramaScreen extends Component {
                         </View>
                     </TouchableOpacity>
                 </Footer> */}
-            </View>
+                
+                 </Drawer>
+            
         );
     }
 }
