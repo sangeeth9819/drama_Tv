@@ -53,7 +53,12 @@ const RootStack = createStackNavigator({
 },
 
   {
+<<<<<<< HEAD
     initialRouteName: 'ChannelScreen'
+=======
+    initialRouteName: 'AuthScreen'
+>>>>>>> 4c8
+ab6bc4954980e8cd9e2faf3b79edbeee73078
   },
   {
     headerMode: 'screen'

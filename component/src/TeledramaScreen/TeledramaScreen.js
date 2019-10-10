@@ -4,7 +4,7 @@ import {
     TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar,ScrollView,TextInput
 } from 'react-native';
 import { Header, Item, Input, Footer, } from 'native-base';
-
+import { FlatGrid } from 'react-native-super-grid';
 
 
 const rows = [
@@ -15,6 +15,18 @@ const rows = [
     { id: 4, text: 'ListView' },
     { id: 5, text: 'ListView' },
 ]
+
+const items = [
+    { name: "pawela", code: "#ecf0f1", image: require('../../assest/pawela.jpg') },
+    { name: ' Dewani Inima', code: '#ecf0f1', image: require('../../assest/dewaniinima.jpg') },
+    { name: 'Sidu', code: '#ecf0f1', image: require('../../assest/sidu.jpg') },
+    { name: 'Adarei mn', code: '#ecf0f1', image: require('../../assest/ada.jpg') },
+    { name: ' Eye Chanenne', code: '#ecf0f1', image: require('../../assest/san.jpeg') },
+    // { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/') },
+    // { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/') },
+    // { name: 'aa', code: '#ecf0f1', image: require('../../assest/') },
+
+];
 
 const extractKey = ({ id }) => id
 
@@ -35,12 +47,12 @@ export default class TeledramaScreen extends Component {
             <View>
 
                 {/* Head Content */}
-                <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 40, height: 44 }}>
                             <TouchableOpacity onPress={() => Alert.alert("menu working")} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/menu.png')} />
+                                            <Image style={{ width: 30, height: 35, top: 10 }} source={require('../../assest/menu.png')} />
                                         </View>
                                     </View>
                                 </View>
@@ -55,7 +67,7 @@ export default class TeledramaScreen extends Component {
                                     <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
 
                                         <TextInput
-                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' }}
+                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA' ,left:55}}
                                             placeholder='Search here' />
 
                                     </View>
@@ -80,27 +92,35 @@ export default class TeledramaScreen extends Component {
                 {/* Body Content */}
                 <View style={{ top: 35, borderRadius: 20 }}>
                     <ScrollView>
-                        <FlatList
-                            style={styles.container}
-                            data={rows}
-                            renderItem={this.renderItem}
-                            keyExtractor={extractKey}
-                            // spacing={20}
-                            renderItem={({ row }) => (
-                                <View style={{ ackgroundColor: 'white', margin: 2, borderRadius: 20, borderColor: 'gray', borderWidth: 0.5 }}>
-                                    <Image style={{ height: 100, width: 100, backgroundColor: 'white', borderRadius: 20 }} source={{ uri: 'https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg' }} >
+                    <FlatGrid
 
 
-                                    </Image>
 
-                                </View>
-                            )}
-                        />
+ 
+
+itemDimension={130}
+items={items}
+style={styles.gridView}
+// staticDimension={300}
+// fixed
+// spacing={20}
+renderItem={({ item, index }) => (
+    <TouchableOpacity onPress={() => this.navigatechannel()}>
+        <View style={{ borderRadius: 30 }}>
+            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                <Image style={{ width: 150, height: 130, top: 10, borderRadius:20,left:10 }} source={item.image} />
+                <Text style={styles.itemName}>{item.name}</Text>
+                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+            </View>
+        </View>
+    </TouchableOpacity>
+)}
+/>
                     </ScrollView>
                 </View>
                 {/* footer Content */}
 
-                <Footer style={{ top: 588, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
+                {/* <Footer style={{ top: 588, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
 
                     <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -140,7 +160,7 @@ export default class TeledramaScreen extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-                </Footer>
+                </Footer> */}
             </View>
         );
     }
@@ -150,11 +170,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     row: {
-        left: 15,
+        left: 20,
         padding: 15,
         marginBottom: 5,
         backgroundColor: 'white',
-        width: 340,
+        width: 500,
         height: 80,
         borderRadius: 20,
 
