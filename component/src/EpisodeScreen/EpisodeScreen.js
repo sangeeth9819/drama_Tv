@@ -15,7 +15,7 @@ import {
     ImageBackground,
     StatusBar
 } from 'react-native';
-
+import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 import Modal from 'react-native-modalbox';
 
@@ -31,6 +31,7 @@ import {
     Input,
     Footer,
     Card,
+    Drawer,
 }
     from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
@@ -81,6 +82,20 @@ export default class Example extends Component {
     }
     _youTubeRef = React.createRef();
 
+    closeDrawer = () => {
+        this.drawer._root.close()
+    };
+
+    openDrawer = () => {
+
+        this.drawer._root.open()
+    };
+
+    onClose = () => {
+        this.setState({
+            showTheThing: true
+        })
+    }
 
     render() {
 
@@ -99,6 +114,21 @@ export default class Example extends Component {
 
 
         return (
+            <Drawer
+            side="left" ref={(ref) => { this.drawer = ref; }}
+            acceptPan={true}
+            panOpenMask={1}
+
+            content={<SideBar navigation={this.props.navigation} />}
+            onClose={() => this.closeDrawer()}
+
+
+
+            tweenHandler={(ratio) => ({
+                main: { opacity: (1 - ratio) / 1 }
+            })}>
+            <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+
 
             <View style={styles.wrapper}>
 
@@ -226,6 +256,7 @@ export default class Example extends Component {
                     )}
                 />
             </View>
+            </Drawer>
 
         );
 
