@@ -27,7 +27,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { createStackNavigator } from 'react-navigation-stack';
 
- 
+
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
 
@@ -92,6 +92,9 @@ export default class Channel extends Component {
     }
 
 
+    Test() {
+        Alert.alert("Alert Is Working...")
+    }
 
 
     render() {
@@ -100,7 +103,7 @@ export default class Channel extends Component {
             { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siyathaTv.png') },
             { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
             { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
-            { name: ' Eye Chanenne', code: '#ecf0f1', image: require('../../assest/eyechannelTv.png') },
+            { name: 'Tv 1', code: '#ecf0f1', image: require('../../assest/tv1Tv.png') },
             { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasaTv.jpg') },
             { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
             { name: 'aa', code: '#ecf0f1', image: require('../../assest/itnTv.jpg') },
@@ -129,46 +132,41 @@ export default class Channel extends Component {
                 <View>
                     <View>
                         {/* Head Content */}
- 
-                   <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
-                            <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <View style={{ width: 50, height: 60, borderRadius: 20 }}>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/menu.png')} />
-                                        </View>
+
+                        {/* <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}> */}
+                        <TouchableOpacity onPress={() => this.Test()} style={{ right: 10 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
                                     </View>
                                 </View>
-                            </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
+                                <View style={{ width: 250, height: 30, borderRadius: 15, backgroundColor: '#f5f5f0' }}>
 
+                                    <TextInput
+                                        style={{ left: 10, height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
+                                        placeholder='Search here' />
 
+                                </View>
+                            </View>
+                        </TouchableOpacity>
 
-
-                            <TouchableOpacity>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
-                                    <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
-
-                                        <TextInput
-                                            style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA',left:55 }}
-                                            placeholder='Search here' />
-
+                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                <View style={{ width: 30, height: 50, borderRadius: 30 }}>
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/search.png')} />
                                     </View>
                                 </View>
-                            </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <View style={{ width: 30, height: 50, borderRadius: 30 }}>
-                                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                            <Image style={{ width: 30, height: 30, top: 10 }} source={require('../../assest/search.png')} />
-                                        </View>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-
-                        </Header>
-
+                    {/* </Header> */}
                     </View>
                     {/* Body Content */}
                     <View>
@@ -176,20 +174,20 @@ export default class Channel extends Component {
                             <View>
 
                                 <View>
- 
-                                   
+
+
                                     <View style={{ top: 50 }}>
                                         <ScrollView>
                                             <FlatGrid
 
 
 
- 
+
 
                                                 itemDimension={130}
                                                 items={items}
                                                 style={styles.gridView}
-                                            
+
                                                 renderItem={({ item, index }) => (
                                                     <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                         <View style={{ borderRadius: 30 }}>
@@ -209,7 +207,7 @@ export default class Channel extends Component {
                         </ScrollView>
                     </View>
                 </View>
-                </Drawer>
+            </Drawer>
         );
     }
 }
