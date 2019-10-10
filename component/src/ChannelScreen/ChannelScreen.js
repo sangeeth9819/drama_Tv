@@ -5,7 +5,7 @@ import {
     Text, Alert, FlatList, Dimensions, TextInput
 } from 'react-native';
 import {
- 
+
     Header,
     Drawer,
     Fab,
@@ -21,31 +21,36 @@ import episode from '../EpisodeScreen/EpisodeScreen';
 import play from '../PlayScreen/PlayScreen';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { FlatGrid } from 'react-native-super-grid';
- 
+
 import SortableGridView from 'react-native-sortable-gridview'
 import { ScrollView } from 'react-native-gesture-handler';
- 
+
 import { createStackNavigator } from 'react-navigation-stack';
 
+<<<<<<< HEAD
  
+=======
+
+
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
- 
+
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
         numberOfElementsLastRow++;
     }
- 
+
     return data;
 };
 const numColumns = 3;
 
 
 
- 
+
 export default class Channel extends Component {
- 
+
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -58,33 +63,37 @@ export default class Channel extends Component {
             </View>
         );
     };
- 
+
     constructor(props) {
         super(props);
         this.state = {
- 
+
         };
- 
+
     }
+<<<<<<< HEAD
     //     navigatechannel(value){
     //    this.state({
 
     //    })
     //     }
 
+=======
+   
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
- 
+
     closeDrawer = () => {
         this.drawer._root.close()
     };
- 
+
     openDrawer = () => {
- 
+
         this.drawer._root.open()
     };
- 
+
     onClose = () => {
         this.setState({
             showTheThing: true
@@ -93,7 +102,7 @@ export default class Channel extends Component {
 
 
 
- 
+
     render() {
         const items = [
             { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
@@ -104,40 +113,38 @@ export default class Channel extends Component {
             { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasa-logo.jpg') },
             { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
             { name: 'aa', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
- 
+
         ];
- 
+
         return (
-           
-                <Drawer
-                    side="left" ref={(ref) => { this.drawer = ref; }}
-                    acceptPan={true}
-                    panOpenMask={1}
- 
-                    content={<SideBar navigation={this.props.navigation} />}
-                    onClose={() => this.closeDrawer()}
+
+            <Drawer
+                side="left" ref={(ref) => { this.drawer = ref; }}
+                acceptPan={true}
+                panOpenMask={1}
+
+                content={<SideBar navigation={this.props.navigation} />}
+                onClose={() => this.closeDrawer()}
 
 
- 
-                    tweenHandler={(ratio) => ({
-                        main: { opacity: (1 - ratio) / 1 }
-                    })}>
-                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                
- 
-                {/* <Button
- 
-                        onPress={() => this.openDrawer()}
-                        style={{ top: 30 }}
-                    ></Button> */}
+
+                tweenHandler={(ratio) => ({
+                    main: { opacity: (1 - ratio) / 1 }
+                })}>
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
- 
+
                 <View>
                     <View>
                         {/* Head Content */}
+<<<<<<< HEAD
  
                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
+=======
+
+                        <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                             <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
@@ -151,19 +158,19 @@ export default class Channel extends Component {
 
 
 
- 
+
                             <TouchableOpacity>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
                                     <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
- 
+
                                         <TextInput
                                             style={{ left: 10, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 20, borderColor: '#FAFAFA',left:55 }}
                                             placeholder='Search here' />
- 
+
                                     </View>
                                 </View>
                             </TouchableOpacity>
- 
+
                             <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 30, height: 50, borderRadius: 30 }}>
@@ -173,16 +180,17 @@ export default class Channel extends Component {
                                     </View>
                                 </View>
                             </TouchableOpacity>
- 
+
                         </Header>
- 
+
                     </View>
                     {/* Body Content */}
                     <View>
                         <ScrollView>
                             <View>
- 
+
                                 <View>
+<<<<<<< HEAD
  
                                    
                                     <View style={{ top: 50 }}>
@@ -193,12 +201,16 @@ export default class Channel extends Component {
 
  
 
+=======
+                                    <View style={{ top: 22 }}>
+                                        <ScrollView>
+                                            <FlatGrid
+
+>>>>>>> 64f38251a8ded07a0321853cd92f1d3101f74898
                                                 itemDimension={130}
                                                 items={items}
                                                 style={styles.gridView}
-                                                // staticDimension={300}
-                                                // fixed
-                                                // spacing={20}
+                                            
                                                 renderItem={({ item, index }) => (
                                                     <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                         <View style={{ borderRadius: 30 }}>
@@ -219,15 +231,10 @@ export default class Channel extends Component {
                     </View>
                 </View>
                 </Drawer>
-            
-
-
-
- 
         );
     }
 }
- 
+
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,

@@ -57,10 +57,6 @@ export default class TeledramaScreen extends Component {
                         </View>
                     </TouchableOpacity>
 
-
-
-
-
                     <TouchableOpacity>
                         <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
                             <View style={{ width: 250, height: 30, borderRadius: 20, backgroundColor: '#f5f5f0' }}>
@@ -85,7 +81,6 @@ export default class TeledramaScreen extends Component {
                     </TouchableOpacity>
 
                 </Header>
-
 
 
                 {/* Body Content */}

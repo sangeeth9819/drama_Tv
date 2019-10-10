@@ -5,6 +5,23 @@ import {NavigationAction,StackActions, NavigationActions} from 'react-navigation
 import styles from '../AuthScreen/AuthScreenStyle'
 import BackgroundTimer from 'react-native-background-timer';
 export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+          animating: false,
+          align: 'center',
+          alignsecond: false,
+        };
+        setTimeout(
+          () =>
+            this.setState({ align: 'flex-start' }, function() {
+              this.setState({
+                alignsecond: true,
+              });
+            }),
+          2000
+        );
+      }
     componentDidMount(){
         this.test()
     }
@@ -22,28 +39,36 @@ export default class App extends Component {
 this.props.navigation.dispatch(resetAction);
 
 
-        },3000);
+        },5000);
     }
     render() {
         return (
 
-            <View>
-             <View>
-                <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "white" translucent = {true}/>
-                    <Image
-                        style={  styles.backgroundImage}
-                        source={require
+            <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          flexDirection: 'row',
+          justifyContent: this.state.align,
+          marginHorizontal: 40,
+        }}>
+        <Image
+          source={require
                             (
-                                '../../assest/original.png'
+                                 '../../assest/original.png'
                             )}
-                    >
-
-                    </Image>
-                  
-                    
-                </View>
-               
-            </View>
+          style={{  height: 100,
+            width: 150,}}
+        />
+        {!this.state.alignsecond ? null : (
+          <View style={{ margin: 10 }}>
+            <Text
+              style={{ color: 'black', fontSize: 30, fontWeight: 'bold' }}>
+              Drama TV
+            </Text>
+          </View>
+        )}
+      </View>
 
 
 
