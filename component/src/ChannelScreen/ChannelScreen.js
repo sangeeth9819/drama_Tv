@@ -26,25 +26,7 @@ import SortableGridView from 'react-native-sortable-gridview'
 import { ScrollView } from 'react-native-gesture-handler';
  
 import { createStackNavigator } from 'react-navigation-stack';
- 
-// const data = [
-//     { key: '' },
-//     { key: 'B' },
-//     { key: 'C' },
-//     { key: 'D' },
-//     { key: 'E' },
-//     { key: 'F' },
-//     { key: 'G' },
-//     { key: 'H' },
-//     { key: 'I' },
-//     { key: 'J' },
-//     { key: 'K' },
-//     { key: 'L' },
-//     { key: 'K' },
-//     { key: 'L' },
-//     { key: 'K' },
-//     { key: 'L' },
-// ];
+
  
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -155,7 +137,7 @@ export default class Channel extends Component {
                     <View>
                         {/* Head Content */}
  
-                   <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 50, height: 44 }}>
+                   <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 45, height: 44 }}>
                             <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 50, height: 60, borderRadius: 20 }}>
@@ -203,7 +185,7 @@ export default class Channel extends Component {
                                 <View>
  
                                    
-                                    <View style={{ top: 35 }}>
+                                    <View style={{ top: 50 }}>
                                         <ScrollView>
                                             <FlatGrid
 
@@ -221,7 +203,7 @@ export default class Channel extends Component {
                                                     <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                         <View style={{ borderRadius: 30 }}>
                                                             <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                                <Image style={{ width: 150, height: 130, top: 15, borderRadius: 10 }} source={item.image} />
+                                                                <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
                                                                 <Text style={styles.itemName}>{item.name}</Text>
                                                                 {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                                                             </View>
@@ -248,7 +230,6 @@ export default class Channel extends Component {
  
 const styles = StyleSheet.create({
     gridView: {
-        marginTop: 20,
         flex: 1,
     },
     itemContainer: {
