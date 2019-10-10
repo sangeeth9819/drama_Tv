@@ -141,73 +141,74 @@ export default class Example extends Component {
                     </Header>
 
                 </View>
+               
+                    <Modal
+                        style={[styles.modal]}
+                        ref={"modal1"}
+                        swipeToClose={this.state.swipeToClose}
+                        onClosed={this.onClose}
+                        onOpened={this.onOpen}
+                        onClosingState={this.onClosingState}>
 
-                <Modal
-                    style={[styles.modal]}
-                    ref={"modal1"}
-                    swipeToClose={this.state.swipeToClose}
-                    onClosed={this.onClose}
-                    onOpened={this.onOpen}
-                    onClosingState={this.onClosingState}>
-
-                    <View style={[styles.modalContainer]}>
-
-
-                        <YouTube
-
-                            ref={this._youTubeRef}
-                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                            videoId={this.state.videoId}
-
-                            play={this.state.isPlaying}
-                            loop={this.state.isLooping}
-                            fullscreen={this.state.fullscreen}
-                            controls={1}
-                            style={[
-                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                styles.player,
-                            ]}
-                            onError={e => {
-                                this.setState({ error: e.error });
-                            }}
-                            onReady={e => {
-                                this.setState({ isReady: true });
-                            }}
-                            onChangeState={e => {
-                                this.setState({ status: e.state });
-                            }}
-                            onChangeQuality={e => {
-                                this.setState({ quality: e.quality });
-                            }}
-                            onChangeFullscreen={e => {
-                                this.setState({ fullscreen: e.isFullscreen });
-                            }}
-                            onProgress={e => {
-                                this.setState({ currentTime: e.currentTime });
-                            }}
-                        />
+                        <View style={[styles.modalContainer]}>
 
 
+                            <YouTube
 
-                        <FlatList
-                            itemDimension={130}
-                            data={items}
-                            style={styles.gridView}
-                            renderItem={({ item, index }) => (
-                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                                    <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+                                ref={this._youTubeRef}
+                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                                videoId={this.state.videoId}
 
-                                        <Text style={styles.itemName} >{item.videoID}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                        />
+                                play={this.state.isPlaying}
+                                loop={this.state.isLooping}
+                                fullscreen={this.state.fullscreen}
+                                controls={1}
+                                style={[
+                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                    styles.player,
+                                ]}
+                                onError={e => {
+                                    this.setState({ error: e.error });
+                                }}
+                                onReady={e => {
+                                    this.setState({ isReady: true });
+                                }}
+                                onChangeState={e => {
+                                    this.setState({ status: e.state });
+                                }}
+                                onChangeQuality={e => {
+                                    this.setState({ quality: e.quality });
+                                }}
+                                onChangeFullscreen={e => {
+                                    this.setState({ fullscreen: e.isFullscreen });
+                                }}
+                                onProgress={e => {
+                                    this.setState({ currentTime: e.currentTime });
+                                }}
+                            />
 
 
-                    </View>
 
-                </Modal>
+                            <FlatList
+                                itemDimension={130}
+                                data={items}
+                                style={styles.gridView}
+                                renderItem={({ item, index }) => (
+                                    <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                                        <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                            <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+
+                                            <Text style={styles.itemName} >{item.videoID}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                )}
+                            />
+
+
+                        </View>
+
+                    </Modal>
+             
 
 
                 <FlatList
@@ -268,7 +269,7 @@ const styles = StyleSheet.create({
     itemContainer: {
         elevation: 5,
         width: 150,
-        margin: 12,
+        margin: 10,
         borderRadius: 20,
         padding: 20,
         height: 125,
