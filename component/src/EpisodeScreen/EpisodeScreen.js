@@ -37,7 +37,7 @@ export default class Example extends Component {
             isLooping: true,
             duration: 0,
             currentTime: 0,
-            fullscreen: false,
+            fullscreen: true,
             playerWidth: Dimensions.get('window').width,
         };
     }
@@ -230,7 +230,7 @@ export default class Example extends Component {
                     renderItem={({ item, index }) => (
                         <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
                             <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
 
                                 <Text style={styles.itemName} >{item.videoID}</Text>
                             </View>
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         elevation: 5,
-        width: 150,
+        width: 360,
         margin: 10,
         borderRadius: 20,
         padding: 20,
