@@ -1,19 +1,6 @@
 import React, { Component } from 'react';
 
-import {
-    StyleSheet,
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Alert,
-    FlatList,
-    Image,
-    PixelRatio,
-    Button,
-    Dimensions,
-    ImageBackground,
-    StatusBar
+import {StyleSheet,View,Text,TextInput,TouchableOpacity,Alert,FlatList,Image,PixelRatio,Button,Dimensions,ImageBackground,StatusBar
 } from 'react-native';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 
@@ -25,12 +12,7 @@ import YouTube, {
 } from 'react-native-youtube';
 
 // import { Header } from 'react-navigation-stack';
-import {
-    Header,
-    Item,
-    Input,
-    Footer,
-    Card,
+import {Header,Item,Input,Footer,Card,
     Drawer,
 }
     from 'native-base';
@@ -64,7 +46,7 @@ export default class Example extends Component {
 
     navigateToTeledrama(value) {
         this.setState({
-            videoId: value
+            videoId: 'GuPIZFHFcWQ'
         })
         this.refs.modal1.open()
     }

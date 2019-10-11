@@ -16,6 +16,9 @@ import styles from './SideMenuScreemStyle'
 // const routes = ["Home", "Category", "Latest", "Favourite", "Request Drama", "Aboutus", "Rate App", "Help"];
 
 export default class SideBar extends React.Component {
+    navigatechannel() {
+        this.props.navigation.navigate('ChannelScreen')
+    };
     render() {
         return (
 
@@ -117,11 +120,11 @@ export default class SideBar extends React.Component {
                             </View>
 
                         </TouchableOpacity >
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.navigatechannel()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtRequestdrama}>
-                                        Request Drama
+                                        Live TV
                                 </Text>
                                     <Image
                                         style={styles.imagectegory}
@@ -214,5 +217,7 @@ export default class SideBar extends React.Component {
             </Container>
 
         );
+       
     }
+   
 }

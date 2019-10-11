@@ -11,13 +11,14 @@ import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
 const items = [
-    { name: "pawela", code: "#ecf0f1", image: require('../../assest/pawela.jpg') },
-    { name: ' Dewani Inima', code: '#ecf0f1', image: require('../../assest/dewaniinima.jpg') },
-    { name: 'Sidu', code: '#ecf0f1', image: require('../../assest/sidu.jpg') },
-    { name: 'Ad', code: '#ecf0f1', image: require('../../assest/ada.jpg') },
-    { name: ' sangeethee', code: '#ecf0f1', image: require('../../assest/san.jpeg') },
-    { name: 'Thodu', code: '#ecf0f1', image: require('../../assest/thodu.jpg') },
-
+    { name: "pawela", code: "#fafafa", image: require('../../assest/pawela.jpg') },
+    { name: ' Muthu Ahura', code: '#ffff', image: require('../../assest/maxresdefault.jpg') },
+    { name: 'Sidu', code: '#ffff', image: require('../../assest/sidu.jpg') },
+    { name: 'Hamuwemu Aye', code: '#ffff', image: require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg') },
+    { name: ' sangeethee', code: '#ffff', image: require('../../assest/san.jpg') },
+    { name: 'Husmak Tharamata', code: '#ffff', image: require('../../assest/husmak-tharamata-450x300.jpg') }
+    
+    
 
 ];
 
@@ -70,8 +71,8 @@ export default class TeledramaScreen extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
-                <View style={{ top: 10 }}  >
-                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
+                <View style={{top:20}}  >
+                    <Header style={{ backgroundColor: 'white', borderRadius: 15, top: 20, height: 44 }}>
                         <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 <View style={{ width: 50, height: 60, borderRadius: 20 }}>
@@ -112,21 +113,24 @@ export default class TeledramaScreen extends Component {
                 <View style={{ top: 50, borderRadius: 20 }}>
                     <ScrollView>
                         <FlatGrid
-                            itemDimension={230}
+
+
+
+
+
+                            itemDimension={270}
                             items={items}
                             style={styles.gridView}
-                            // staticDimension={300}
-                            // fixed
-                            // spacing={20}
                             renderItem={({ item, index }) => (
-                                <TouchableOpacity onPress={() => this.navigateTo_Episode()}>
-                                    <View style={{ borderRadius: 30 }}>
+                                <TouchableOpacity onPress={() => this.navigateTo_Episode()}
+                              >
+                                    <View style={{ borderRadius: 50 }}>
                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
 
-                                            <Image style={{ width: 150, height: 130, top: 10, borderRadius: 20, left: 10 }} source={item.image} >
+                                            <Image style={{ width: 170, height: 110 }} source={item.image} >
 
                                             </Image>
-                                            <Text style={styles.itemName} style={{ left: 180, bottom: 80, fontSize: 24 }}>{item.name}</Text>
+                                            <Text style={styles.itemName} style={{ left: 180 ,bottom:80,fontSize:18,color:'#9e9e9e'}}>{item.name}</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
@@ -135,58 +139,16 @@ export default class TeledramaScreen extends Component {
                     </ScrollView>
 
                 </View>
-                {/* footer Content */}
-
-                {/* <Footer style={{ top: 588, backgroundColor: 'white', borderRadius: 10, borderColor: 'red', position: "absolute" }}>
-
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ right: 85 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{}}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-
-
-
-                    <TouchableOpacity onPress={() => Alert.alert("Home workinng")} style={{ left: 100 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderRadius: 30 }}>
-                                <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                    <Image style={{ width: 35, height: 35, top: 5, right: 10 }} source={require('../../assest/home.png')} />
-
-                                </View>
-                                <Text style={{ color: 'gray' }}>Home</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </Footer> */}
-
-            </Drawer>
-
+                
+                
+                 </Drawer>
+            
         );
     }
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 2,
     },
     row: {
         left: 20,
@@ -199,4 +161,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
 
     },
+    itemContainer:{
+        height:110,
+        elevation:5,
+        borderRadius:20
+
+    }
 })

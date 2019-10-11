@@ -83,25 +83,25 @@ export default class Channel extends Component {
             { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
             { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
             { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },
-            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
-
+            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') }, 
             { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
-
+ 
         ];
 
         return (
 
+           
             <Drawer
-
+ 
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
-
+ 
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
 
 
-
+ 
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
@@ -119,19 +119,19 @@ export default class Channel extends Component {
                                     </View>
                                 </View>
                             </TouchableOpacity>
-
+ 
                             <TouchableOpacity>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
                                     <View style={{ width: 250, height: 30, borderRadius: 15, backgroundColor: '#f5f5f0' }}>
-
+ 
                                         <TextInput
                                             style={{ left: 10, height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
                                             placeholder='Search here' />
-
+ 
                                     </View>
                                 </View>
                             </TouchableOpacity>
-
+ 
                             <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                     <View style={{ width: 30, height: 50, borderRadius: 30 }}>
@@ -141,25 +141,24 @@ export default class Channel extends Component {
                                     </View>
                                 </View>
                             </TouchableOpacity>
-
+ 
                         </Header>
-
+ 
                     </View>
                     {/* Body Content */}
-
+ 
                     <ScrollView>
-
+ 
                         <View>
                             <View>
-
-
+ 
                                 <View style={{ top: 50 }}>
                                     <ScrollView>
                                         <FlatGrid
                                             itemDimension={130}
                                             items={items}
                                             style={styles.gridView}
-
+ 
                                             renderItem={({ item, index }) => (
                                                 <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                     <View style={{}}>
@@ -178,8 +177,9 @@ export default class Channel extends Component {
                         </View>
                     </ScrollView>
                 </View>
-
+ 
             </Drawer>
+ 
 
         );
     }
@@ -202,9 +202,9 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 10.65,
-
+ 
         elevation: 6,
-
+ 
     },
     itemName: {
         top: 10,
@@ -217,6 +217,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 12,
         color: '#000000',
+ 
 
 
     },
