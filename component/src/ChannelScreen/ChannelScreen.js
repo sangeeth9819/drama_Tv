@@ -106,7 +106,7 @@ export default class Channel extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                <View style={{ backgroundColor: '#f5f5f0' }}>
+                <View style={{ backgroundColor: '##ffffff' }}>
 
                     <View style={{ top: 10 }}  >
                         <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
