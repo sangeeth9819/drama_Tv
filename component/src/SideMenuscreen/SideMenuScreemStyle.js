@@ -71,7 +71,8 @@ export default StyleSheet.create({
         alignContent: "center",
         textAlign: "center",
         top: 27,
-        left: 24
+        right:6
+        
     },
 
     SecondView: {

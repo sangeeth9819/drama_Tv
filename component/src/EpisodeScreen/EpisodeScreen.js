@@ -64,7 +64,7 @@ export default class Example extends Component {
 
     navigateToTeledrama(value) {
         this.setState({
-            videoId: value
+            videoId: 'GuPIZFHFcWQ'
         })
         this.refs.modal1.open()
     }
