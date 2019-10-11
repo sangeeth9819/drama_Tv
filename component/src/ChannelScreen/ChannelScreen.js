@@ -77,14 +77,14 @@ export default class Channel extends Component {
 
     render() {
         const items = [
-            { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
-            { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siyathaTv.png') },
-            { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
-            { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
-            { name: 'Tv 1', code: '#ecf0f1', image: require('../../assest/tv1Tv.png') },
-            { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasaTv.jpg') },
-            { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
-            { name: 'aa', code: '#ecf0f1', image: require('../../assest/itnTv.jpg') },
+            { name: "Swarna wahini", code: "#ffff", image: require('../../assest/Swarnavahini_logo.png') },
+            { name: 'siyath Tv', code: '#ffff', image: require('../../assest/siyathaTv.png') },
+            { name: 'Tv Deran', code: '#ffff', image: require('../../assest/deranaTv.png') },
+            { name: 'Jathika', code: '#ffff', image: require('../../assest/nationalTv.png') },
+            { name: 'Tv 1', code: '#ffff', image: require('../../assest/tv1Tv.png') },
+            { name: 'Sirasa Tv', code: '#ffff', image: require('../../assest/sirasaTv.jpg') },
+            { name: 'Hiru Tv', code: '#ffff', image: require('../../assest/hiruTv.jpg') },
+            { name: 'aa', code: '#ffff', image: require('../../assest/itnTv.jpg') },
 
         ];
 
@@ -106,9 +106,9 @@ export default class Channel extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
-                <View style={{ top: 10 }}  >
-                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
-                        <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
+                <View style={{ top: 20 }}  >
+                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 10, height: 44 }}>
+                        <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 <View style={{ width: 50, height: 60, borderRadius: 20 }}>
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -167,7 +167,7 @@ export default class Channel extends Component {
                                                 <TouchableOpacity onPress={() => this.navigatechannel()}>
                                                     <View style={{ borderRadius: 30 }}>
                                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                            <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
+                                                            <Image style={{ width: 100, height: 100, top: 16, borderRadius: 10 }} source={item.image} />
                                                             <Text style={styles.itemName}>{item.name}</Text>
                                                             {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                                                         </View>
@@ -190,6 +190,7 @@ export default class Channel extends Component {
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
+        left:30
     },
     itemContainer: {
         justifyContent: 'flex-end',
@@ -198,10 +199,10 @@ const styles = StyleSheet.create({
         height: 150,
     },
     itemName: {
-        top: 10,
-        left: 10,
+        top: 20,
+        left: 20,
         fontSize: 16,
-        color: '#000000',
+        color: '#9e9e9e',
         fontWeight: '600',
     },
     itemCode: {
