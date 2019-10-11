@@ -8,14 +8,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
-const rows = [
-    { id: 0, text: 'View' },
-    { id: 1, text: 'Text' },
-    { id: 2, text: 'Image' },
-    { id: 3, text: 'ScrollView' },
-    { id: 4, text: 'ListView' },
-    { id: 5, text: 'ListView' },
-]
+
 
 const items = [
     { name: "pawela", code: "#fafafa", image: require('../../assest/pawela.jpg') },
@@ -61,8 +54,8 @@ export default class TeledramaScreen extends Component {
 
     render() {
         return (
-           
-                <Drawer
+
+            <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
@@ -144,7 +137,7 @@ export default class TeledramaScreen extends Component {
                             )}
                         />
                     </ScrollView>
-                
+
                 </View>
                 
                 
