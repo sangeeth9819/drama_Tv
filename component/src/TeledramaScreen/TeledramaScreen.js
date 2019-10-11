@@ -8,14 +8,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
-const rows = [
-    { id: 0, text: 'View' },
-    { id: 1, text: 'Text' },
-    { id: 2, text: 'Image' },
-    { id: 3, text: 'ScrollView' },
-    { id: 4, text: 'ListView' },
-    { id: 5, text: 'ListView' },
-]
+
 
 const items = [
     { name: "pawela", code: "#ecf0f1", image: require('../../assest/pawela.jpg') },
@@ -24,7 +17,7 @@ const items = [
     { name: 'Ad', code: '#ecf0f1', image: require('../../assest/ada.jpg') },
     { name: ' sangeethee', code: '#ecf0f1', image: require('../../assest/san.jpeg') },
     { name: 'Thodu', code: '#ecf0f1', image: require('../../assest/thodu.jpg') },
-    
+
 
 ];
 
@@ -60,8 +53,8 @@ export default class TeledramaScreen extends Component {
 
     render() {
         return (
-           
-                <Drawer
+
+            <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
@@ -77,7 +70,7 @@ export default class TeledramaScreen extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
-                <View style={{top:10}}  >
+                <View style={{ top: 10 }}  >
                     <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
                         <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -119,11 +112,6 @@ export default class TeledramaScreen extends Component {
                 <View style={{ top: 50, borderRadius: 20 }}>
                     <ScrollView>
                         <FlatGrid
-
-
-
-
-
                             itemDimension={230}
                             items={items}
                             style={styles.gridView}
@@ -138,14 +126,14 @@ export default class TeledramaScreen extends Component {
                                             <Image style={{ width: 150, height: 130, top: 10, borderRadius: 20, left: 10 }} source={item.image} >
 
                                             </Image>
-                                            <Text style={styles.itemName} style={{ left: 180 ,bottom:80,fontSize:24}}>{item.name}</Text>
+                                            <Text style={styles.itemName} style={{ left: 180, bottom: 80, fontSize: 24 }}>{item.name}</Text>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
                             )}
                         />
                     </ScrollView>
-                
+
                 </View>
                 {/* footer Content */}
 
@@ -190,9 +178,9 @@ export default class TeledramaScreen extends Component {
                         </View>
                     </TouchableOpacity>
                 </Footer> */}
-                
-                 </Drawer>
-            
+
+            </Drawer>
+
         );
     }
 }

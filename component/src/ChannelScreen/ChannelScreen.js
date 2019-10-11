@@ -77,20 +77,22 @@ export default class Channel extends Component {
 
     render() {
         const items = [
-            { name: "Swarna wahini", code: "#ecf0f1", image: require('../../assest/Swarnavahini_logo.png') },
-            { name: 'siyath Tv', code: '#ecf0f1', image: require('../../assest/siyathaTv.png') },
-            { name: 'Tv Deran', code: '#ecf0f1', image: require('../../assest/deranaTv.png') },
-            { name: 'Jathika Rupawahini', code: '#ecf0f1', image: require('../../assest/nationalTv.png') },
-            { name: 'Tv 1', code: '#ecf0f1', image: require('../../assest/tv1Tv.png') },
-            { name: 'Sirasa Tv', code: '#ecf0f1', image: require('../../assest/sirasaTv.jpg') },
-            { name: 'Hiru Tv', code: '#ecf0f1', image: require('../../assest/hiruTv.jpg') },
-            { name: 'aa', code: '#ecf0f1', image: require('../../assest/itnTv.jpg') },
+            { name: 'Jathika Rupawahini', code: '#ffffff', image: require('../../assest/nationalTv.png') },
+            { name: 'ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg') },
+            { name: "Swarna wahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png') },
+            { name: 'siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
+            { name: 'Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
+            { name: 'Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },
+            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
+        
+            { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
 
         ];
 
         return (
 
             <Drawer
+            
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
@@ -104,9 +106,9 @@ export default class Channel extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                <View style={{backgroundColor:'#f5f5f0'}}>
 
-
-                <View style={{ top: 10 }}  >
+                <View style={{ top: 10  }}  >
                     <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
                         <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -154,20 +156,15 @@ export default class Channel extends Component {
                                 <View style={{ top: 50 }}>
                                     <ScrollView>
                                         <FlatGrid
-
-
-
-
-
                                             itemDimension={130}
                                             items={items}
                                             style={styles.gridView}
 
                                             renderItem={({ item, index }) => (
                                                 <TouchableOpacity onPress={() => this.navigatechannel()}>
-                                                    <View style={{ borderRadius: 30 }}>
+                                                    <View style={{ borderRadius: 30,shadowColor:"Black",shadowOffset:5,shadowOpacity:50 }}>
                                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                            <Image style={{ width: 150, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
+                                                            <Image style={{ width: 130, height: 130, top: 16, borderRadius: 10 }} source={item.image} />
                                                             <Text style={styles.itemName}>{item.name}</Text>
                                                             {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                                                         </View>
@@ -181,8 +178,9 @@ export default class Channel extends Component {
                         </View>
                     </ScrollView>
                 </View>
-
+                </View>
             </Drawer>
+          
         );
     }
 }
@@ -208,5 +206,6 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 12,
         color: '#000000',
+     
     },
 });
