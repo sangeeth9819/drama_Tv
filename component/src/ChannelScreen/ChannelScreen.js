@@ -110,31 +110,35 @@ export default class Channel extends Component {
             { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
             { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
             { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },
-            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') }, 
-            { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
- 
+            { name: '      Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
+            { name: '     Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
+            { name: '     CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg') },
+            { name: 'Channel I', code: '#ffffff', image: require('../../assest/BuddhistTv.png') },
+            // { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/ChanneliTv.jpg') },  { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
+
         ];
 
         return (
 
-           
+
             <Drawer
- 
+
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
- 
+
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
 
 
- 
+
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-               
-                <View  >
-                <StatusBar barStyle="light-content" hidden={false} backgroundColor="white" translucent={true} />
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                <View style={{ backgroundColor: '##ffffff' }}>
+
+                    <View style={{ top: 10 }}>
                     <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
                         <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
                             <View >
@@ -145,19 +149,19 @@ export default class Channel extends Component {
                                 {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
+ 
                         <TouchableOpacity  >
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 150, height: 30,right:30,top:10}}>
                                 {/* <View style={{ right:20,width: 150, height: 30, }}> */}
-
+ 
                                     <TextInput
                                         style={{height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10,  }}
                                         placeholder='Search here' />
-
+ 
                                 {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
+ 
                         <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 10,top:15 }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' ,}}>
                                 {/* <View style={{ width: 30, height: 50, borderRadius: 30 }}> */}
@@ -167,7 +171,7 @@ export default class Channel extends Component {
                                 {/* </View> */}
                             </View>
                         </TouchableOpacity>
-                         <TouchableOpacity onPress={() => this.navigatechannelScreen()} style={{top:12,left:20}}>
+                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
@@ -179,47 +183,44 @@ export default class Channel extends Component {
                                 {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
+ 
                     </Header>
-
-                </View>
-
+                    </View>
                     {/* Body Content */}
- 
-                    <ScrollView>
- 
-                        <View>
+                   
+                        <ScrollView>
+
                             <View>
-                         
-                                <View style={{ top: 50 }}>
-                                    <ScrollView>
-                                        <FlatGrid
-                                            itemDimension={130}
-                                            items={items}
-                                            style={styles.gridView}
- 
-                                            renderItem={({ item, index }) => (
-                                                
-                                                <TouchableOpacity onPress={() => this.navigatechannel()}>
-                                                    <View style={{}}>
-                                                        <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                            <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
-                                                            <Text style={styles.itemName}>{item.name}</Text>
-                                                            {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+                                <View>
+
+                                    <View style={{ top: 50, left: 10 }}>
+                                        <ScrollView>
+                                            <FlatGrid
+                                                itemDimension={130}
+                                                items={items}
+                                                style={styles.gridView}
+
+                                                renderItem={({ item, index }) => (
+                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
+                                                        <View style={{}}>
+                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
+                                                                <Text style={styles.itemName}>{item.name}</Text>
+                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+                                                            </View>
                                                         </View>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            )}
-                                        />
-                                    </ScrollView>
+                                                    </TouchableOpacity>
+                                                )}
+                                            />
+                                        </ScrollView>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                    </ScrollView>
-                {/* </View> */}
- 
+                        </ScrollView>
+                    </View>
+                
             </Drawer>
- 
+
 
         );
     }
@@ -235,16 +236,16 @@ const styles = StyleSheet.create({
         height: 130,
         width: 140,
         borderRadius: 20,
-        shadowColor: "#0000",
+        shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 3,
         },
         shadowOpacity: 0.27,
         shadowRadius: 10.65,
- 
+
         elevation: 6,
- 
+
     },
     itemName: {
         top: 10,
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 12,
         color: '#000000',
- 
+
 
 
     },
