@@ -62,11 +62,15 @@ export default class Example extends Component {
 
 
 
-    navigateToTeledrama(value) {
-        this.setState({
-            videoId: 'GuPIZFHFcWQ'
-        })
-        this.refs.modal1.open()
+    navigateToTeledrama(id) {
+        this.props.navigation.navigate('PlayScreen',{
+            id:id
+        });
+        // Alert.alert(this.state.videoId+"")
+        // this.setState({
+        //     videoId: 'GuPIZFHFcWQ'
+        // })
+        // this.refs.modal1.open()
     }
 
     onClose() {
@@ -172,7 +176,7 @@ export default class Example extends Component {
 
                 </View>
                
-                    <Modal
+                    {/* <Modal
                         style={[styles.modal]}
                         ref={"modal1"}
                         swipeToClose={this.state.swipeToClose}
@@ -237,7 +241,7 @@ export default class Example extends Component {
 
                         </View>
 
-                    </Modal>
+                    </Modal> */}
              
 
 
@@ -324,8 +328,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }
-
-
 
 });
 
