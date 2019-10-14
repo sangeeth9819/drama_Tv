@@ -65,10 +65,11 @@ export default class Example extends Component {
 
 
     navigateToTeledrama(value) {
-        this.setState({
-            videoId: 'GuPIZFHFcWQ'
-        })
-
+        // this.setState({
+        //     videoId: 'GuPIZFHFcWQ'
+        // })
+        this.setState.videoId = this.props.navigation.state.params.id
+        Alert.alert("Working")
     }
 
     onClose() {
@@ -208,34 +209,27 @@ export default class Example extends Component {
                         onProgress={e => {
                             this.setState({ currentTime: e.currentTime });
                         }}
-                        
+
+                    />
+                    <FlatList
+                        itemDimension={130}
+                        data={items}
+                        style={styles.gridView}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                                <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                    <Image style={{ height: 125, width: 175, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+
+                                    <Text style={styles.itemName} >{item.videoID}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     />
 
 
-
-                    {/* <FlatList
-                                itemDimension={130}
-                                data={items}
-                                style={styles.gridView}
-                                renderItem={({ item, index }) => (
-                                    <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                                        <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                            <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
-
-                                            <Text style={styles.itemName} >{item.videoID}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
-                            />
- */}
-
                 </View>
 
-
-
-
-                {/* 
-                <FlatList
+                {/* <FlatList
                     itemDimension={130}
                     data={items}
                     style={styles.gridView}
@@ -248,11 +242,9 @@ export default class Example extends Component {
                             </View>
                         </TouchableOpacity>
                     )}
-                /> */}
+                />  */}
 
             </Drawer>
-
-
 
         );
 
