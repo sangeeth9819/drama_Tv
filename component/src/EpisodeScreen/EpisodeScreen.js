@@ -121,41 +121,52 @@ export default class Example extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
                 <View style={{ bottom: 45, }}>
-                    <Header style={{ backgroundColor: 'white', borderRadius: 30, top: 28, height: 44 }}>
-                        <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 10 }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                <View style={{ width: 50, height: 60, borderRadius: 20 }}>
+                <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
+                        <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
+                            <View >
+                                {/* <View style={{ width: 50, height: 60, borderRadius: 20 }}> */}
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 10 }} source={require('../../assest/menu.png')} />
+                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/menu.png')} />
                                     </View>
-                                </View>
+                                {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', top: 5 }}>
-                                <View style={{ width: 250, height: 30, borderRadius: 15, backgroundColor: '#f5f5f0' }}>
-
+ 
+                        <TouchableOpacity  >
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 150, height: 30,right:30,top:10}}>
+                                {/* <View style={{ right:20,width: 150, height: 30, }}> */}
+ 
                                     <TextInput
-                                        style={{ left: 10, height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
+                                        style={{height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10,  }}
                                         placeholder='Search here' />
-
-                                </View>
+ 
+                                {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 0, left: 5 }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                <View style={{ width: 30, height: 50, borderRadius: 30 }}>
+ 
+                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 10,top:15 }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' ,}}>
+                                {/* <View style={{ width: 30, height: 50, borderRadius: 30 }}> */}
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/search.png')} />
+                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/search.png')} />
                                     </View>
-                                </View>
+                                {/* </View> */}
                             </View>
                         </TouchableOpacity>
-
+                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
+                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
+                                        <TextInput
+                                        style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
+                                        placeholder='Live' />
+                                    </View>
+                                {/* </View> */}
+                            </View>
+                        </TouchableOpacity>
+ 
                     </Header>
-
                 </View>
                
                     {/* <Modal
