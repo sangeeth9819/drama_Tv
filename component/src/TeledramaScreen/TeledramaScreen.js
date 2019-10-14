@@ -71,8 +71,8 @@ export default class TeledramaScreen extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
-                <View style={{top:20}}  >
-                    <Header style={{ backgroundColor: 'white', borderRadius: 15, top: 20, height: 44 }}>
+                <View style={{top:10}}  >
+                    <Header style={{ backgroundColor: 'white',  top: 20, height: 44 }}>
                         <TouchableOpacity onPress={() => this.openDrawer()} style={{ right: 15, }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 <View style={{ width: 50, height: 60, borderRadius: 20 }}>

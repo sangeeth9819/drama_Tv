@@ -17,8 +17,12 @@ import styles from './SideMenuScreemStyle'
 
 export default class SideBar extends React.Component {
     navigatechannel() {
-        this.props.navigation.navigate('ChannelScreen')
+        this.props.navigation.navigate('LiveScreen')
     };
+    navigateHome() {
+        this.props.navigation.navigate('AuthScreen')
+    };
+   
     render() {
         return (
 
@@ -42,7 +46,7 @@ export default class SideBar extends React.Component {
 
 
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.navigateHome()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtHome}>
@@ -62,7 +66,7 @@ export default class SideBar extends React.Component {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.navigatechannel()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtCategory}>

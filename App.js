@@ -16,6 +16,7 @@ import Episode from './component/src/EpisodeScreen/EpisodeScreen';
 import Play from './component/src/PlayScreen/PlayScreen';
 import SideMenu from './component/src/SideMenuscreen/SideMenuScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
+import Live from './component/src/LiveScreen/LiveScreen';
 
 
 
@@ -37,16 +38,20 @@ const RootStack = createStackNavigator({
     screen:Episode,
     navigationOptions: { header: null }
   },
-//   PlayScreen: {
-//     screen: Play,
-//     navigationOptions: { header: null }
-//   },
+  PlayScreen: {
+    screen: Play,
+    navigationOptions: { header: null }
+  },
 //   SideMenuScreen: {
 //     screen: SideMenu,
 //     navigationOptions: { header: null }
 //   },
   TeledramaScreen: {
     screen: Teledrama,
+    navigationOptions: { header: null }
+  },
+  LiveScreen: {
+    screen: Live,
     navigationOptions: { header: null }
   },
 
