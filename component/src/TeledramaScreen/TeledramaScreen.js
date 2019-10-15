@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import {
     Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
@@ -10,7 +12,7 @@ import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 
 
-
+ 
 const items = [
     { name: 'Hamuwemu Aye', des: 'week Days 7.00-7.30', code: '#ffff', image: require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg') },
     { name: ' sangeethee', des: 'week Days 8.00-8.30', code: '#ffff', image: require('../../assest/san.jpg') },
@@ -19,12 +21,20 @@ const items = [
     { name: 'Dewani Inima', des: 'week Days 9.00-9.30', code: '#ffff', image: require('../../assest/dewani.jpg') },
     { name: 'Sidu', des: 'week Days 7.30-8.00', code: '#ffff', image: require('../../assest/sidu.jpg') },
 ];
-
+ 
 const extractKey = ({ id }) => id
-
+ 
 export default class TeledramaScreen extends Component {
-
-
+    constructor(props) {
+                super(props);
+                this.state = {
+                    videoId: '',
+                    currentTime: 0,
+                    fullscreen: true,
+                    playerWidth: Dimensions.get('window').width,
+                };
+                   this.state.videoId = this.props.navigation.state.params.id
+            }
     renderItem = ({ item }) => {
         return (
             <Text style={styles.row}>
@@ -38,33 +48,38 @@ export default class TeledramaScreen extends Component {
     closeDrawer = () => {
         this.drawer._root.close()
     };
-
+ 
     openDrawer = () => {
-
+ 
         this.drawer._root.open()
     };
-
+ 
     onClose = () => {
         this.setState({
             showTheThing: true
         })
     }
-
+    navigateToTeledrama(id) {
+                this.props.navigation.navigate('PlayScreen',{
+                    id:id
+                });
+        
+            }
+ 
     render() {
         return (
-
-
+ 
             <Drawer
-
+ 
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
-
+ 
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
 
 
-
+ 
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
@@ -100,35 +115,31 @@ export default class TeledramaScreen extends Component {
                                     <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10 }} >
                                         <Icon name='search' />
                                     </TouchableOpacity>
-
-                                    <TouchableOpacity style={{}} onPress={() => Alert.alert("Liveworkinng")}>
+ 
+                                    <TouchableOpacity style={{}} onPress={() => this.navigateToTeledrama(  this.state.videoId)}>
                                         <Icon name='ios-disc' style={{ color: '#00cc44', }} >
-
+ 
                                             <Text style={{ fontSize: 14, color: 'black', }} >Live</Text>
                                         </Icon>
                                     </TouchableOpacity>
-
+ 
                                 </Right>
-
+ 
                             </Header>
 {/* 
                         </View>
                     </View> */}
                     {/* Body Content */}
-
+ 
                 
-
-                    <ScrollView>
+ 
                         <FlatGrid
                             itemDimension={270}
                             items={items}
                             style={styles.gridView}
                             renderItem={({ item, index }) => (
-                                
                                 <TouchableOpacity onPress={() => this.navigateTo_Episode()} >
-                                   
                                     <View style={{ borderRadius: 50 }}>
-                                 
                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                                            
                                        
@@ -136,21 +147,18 @@ export default class TeledramaScreen extends Component {
                                                 <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} />
 
 
-
+ 
                                                 <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
                                                 <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.des}</Text>
-                                               
+ 
                                             </View>
-                                           
                                         </View>
-                                     
+                                
                                 </TouchableOpacity>
-                               
                             )}
                         />
- </ScrollView>
             </Drawer>
-
+ 
         );
     }
 }
@@ -165,7 +173,7 @@ const styles = StyleSheet.create({
         width: 500,
         height: 80,
         borderRadius: 20,
-
+ 
     },
     itemContainer: {
         height: 250,
@@ -180,12 +188,11 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.50,
         shadowRadius: 12.35,
-
+ 
         elevation: 19,
     },
 
 
 
-
-});
-
+ 
+})

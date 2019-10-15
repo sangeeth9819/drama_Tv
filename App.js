@@ -17,11 +17,6 @@ import Play from './component/src/PlayScreen/PlayScreen';
 import SideMenu from './component/src/SideMenuscreen/SideMenuScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
 
-
-
-
-
-
 const RootStack = createStackNavigator({
     AuthScreen: {
     screen: Auth,
@@ -49,12 +44,13 @@ const RootStack = createStackNavigator({
     screen: Teledrama,
     navigationOptions: { header: null }
   },
+ 
 
 },
 
   {
     initialRouteName: 'AuthScreen'
-// ab6bc4954980e8cd9e2faf3b79edbeee73078
+
   },
   {
     headerMode: 'screen'

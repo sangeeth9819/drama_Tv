@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
     StyleSheet,
     View,
@@ -24,7 +23,6 @@ import YouTube, {
     YouTubeStandaloneIOS,
     YouTubeStandaloneAndroid
 } from 'react-native-youtube';
-
 // import { Header } from 'react-navigation-stack';
 import {
     Header,
@@ -44,9 +42,7 @@ export default class Example extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            // isDisabled: false,
             swipeToClose: true,
-            // sliderValue: 0.3,
             videoId: '',
             isReady: false,
             status: null,
@@ -236,6 +232,21 @@ export default class Example extends Component {
 
 
                 </View>
+
+                {/* <FlatList
+                    itemDimension={130}
+                    data={items}
+                    style={styles.gridView}
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                            <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+                                <Text style={styles.itemName} >{item.videoID}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                />  */}
+
             </Drawer>
 
         );
@@ -257,14 +268,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center'
-
     },
     buttonStyle2: {
         width: 300,
         height: 50,
         borderRadius: 30
     },
-
     text: {
         color: 'white',
     },
