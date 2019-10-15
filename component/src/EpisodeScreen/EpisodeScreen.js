@@ -44,14 +44,11 @@ export default class Example extends Component {
 
  
     navigateToTeledrama(id) {
+       
         this.props.navigation.navigate('PlayScreen',{
             id:id
         });
-        // Alert.alert(this.state.videoId+"")
-        // this.setState({
-        //     videoId: 'GuPIZFHFcWQ'
-        // })
-        // this.refs.modal1.open()
+       
     }
  
     onClose() {
@@ -165,73 +162,7 @@ export default class Example extends Component {
  
                     </Header>
                 </View>
-               
-                    {/* <Modal
-                        style={[styles.modal]}
-                        ref={"modal1"}
-                        swipeToClose={this.state.swipeToClose}
-                        onClosed={this.onClose}
-                        onOpened={this.onOpen}
-                        onClosingState={this.onClosingState}>
- 
-                        <View style={[styles.modalContainer]}>
- 
-                            <YouTube
- 
-                                ref={this._youTubeRef}
-                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                                videoId={this.state.videoId}
- 
-                                play={this.state.isPlaying}
-                                loop={this.state.isLooping}
-                                fullscreen={this.state.fullscreen}
-                                controls={1}
-                                style={[
-                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                    styles.player,
-                                ]}
-                                onError={e => {
-                                    this.setState({ error: e.error });
-                                }}
-                                onReady={e => {
-                                    this.setState({ isReady: true });
-                                }}
-                                onChangeState={e => {
-                                    this.setState({ status: e.state });
-                                }}
-                                onChangeQuality={e => {
-                                    this.setState({ quality: e.quality });
-                                }}
-                                onChangeFullscreen={e => {
-                                    this.setState({ fullscreen: e.isFullscreen });
-                                }}
-                                onProgress={e => {
-                                    this.setState({ currentTime: e.currentTime });
-                                }}
-                            />
-
-
- 
-                            <FlatList
-                                itemDimension={130}
-                                data={items}
-                                style={styles.gridView}
-                                renderItem={({ item, index }) => (
-                                    <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                                        <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                            <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
- 
-                                            <Text style={styles.itemName} >{item.videoID}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
-                            />
- 
-                        </View>
- 
-                    </Modal> */}
              
- 
                 <FlatList
                     itemDimension={130}
                     data={items}

@@ -39,7 +39,7 @@ export default class App extends Component {
 this.props.navigation.dispatch(resetAction);
 
 
-        },5000);
+        },3000);
     }
     render() {
         return (

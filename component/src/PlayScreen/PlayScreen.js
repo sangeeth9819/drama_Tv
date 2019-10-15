@@ -41,9 +41,7 @@ export default class Example extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            // isDisabled: false,
             swipeToClose: true,
-            // sliderValue: 0.3,
             videoId: '',
             isReady: false,
             status: null,

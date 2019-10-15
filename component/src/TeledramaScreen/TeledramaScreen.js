@@ -25,6 +25,16 @@ const items = [
 const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            videoId: '',
+            currentTime: 0,
+            fullscreen: true,
+            playerWidth: Dimensions.get('window').width,
+        };
+           this.state.videoId = this.props.navigation.state.params.id
+    }
 
 
     renderItem = ({ item }) => {
@@ -51,7 +61,12 @@ export default class TeledramaScreen extends Component {
             showTheThing: true
         })
     }
+    navigateToTeledrama(id) {
+        this.props.navigation.navigate('PlayScreen',{
+            id:id
+        });
 
+    }
     render() {
         return (
 
@@ -106,14 +121,16 @@ export default class TeledramaScreen extends Component {
                                 {/* </View> */}
                             </View>
                         </TouchableOpacity>
-                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                         <TouchableOpacity onPress={() => this.navigateToTeledrama(  this.state.videoId)} style={{top:12,left:20}}>
+                            <View >
                                 {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
-                                        <TextInput
+                                        <Image style={{ width: 25, height: 25 }} source={require('../../assest/icons8-live-photos-30.png')} />
+                                        <Text
                                         style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
-                                        placeholder='Live' />
+                                        >
+                                            Live
+                                        </Text>
                                     </View>
                                 {/* </View> */}
                             </View>
