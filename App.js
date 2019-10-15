@@ -5,42 +5,68 @@
  * @format
  * @flow
  */
-
 import React, { Component } from 'react';
-import { } from 'react-native'
-import authScreen from './component/src/AuthScreen/AuthScreen'
-import ChannelScreen from './component/src/ChannelScreen/ChannelScreen'
-import TeledramaScreen from './component/src/TeledramaScreen/TeledramaScreen'
-import EpisodeScreen from './component/src/EpisodeScreen/EpisodeScreen'
-import PlayScreen from './component/src/PlayScreen/PlayScreen'
+import {Navigator} from 'react-native'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator, Header } from 'react-navigation-stack';
+import { View } from 'native-base';
+import Auth from './component/src/AuthScreen/AuthScreen';
+import Channel from './component/src/ChannelScreen/ChannelScreen';
+import Episode from './component/src/EpisodeScreen/EpisodeScreen';
+import Play from './component/src/PlayScreen/PlayScreen';
+import SideMenu from './component/src/SideMenuscreen/SideMenuScreen';
+import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
 
-// const RootStack = createStackNavigator({
-//   AuthScreen: {
-//     screen: authScreen,
+const RootStack = createStackNavigator({
+    AuthScreen: {
+    screen: Auth,
+    navigationOptions: { header: null }
+
+  },
+  ChannelScreen: {
+    screen: Channel,
+    navigationOptions: { header: null }
+
+  },
+  EpisodeScreen: {
+    screen:Episode,
+    navigationOptions: { header: null }
+  },
+  PlayScreen: {
+    screen: Play,
+    navigationOptions: { header: null }
+  },
+//   SideMenuScreen: {
+//     screen: SideMenu,
 //     navigationOptions: { header: null }
 //   },
-  
-// },
-// {
-//   initialRouteName: 'AuthScreen'
-// },
-// {
-//   headerMode: 'screen'
-// },
-// );
+  TeledramaScreen: {
+    screen: Teledrama,
+    navigationOptions: { header: null }
+  },
+ 
 
-// const AppContainer = createAppContainer(RootStack);
+},
 
-// export default class App extends Component {
-//   render() {
-//     return (
-//       < View style={{ flex: 1 }}>
+  {
+    initialRouteName: 'AuthScreen'
 
-//         <AppContainer />        
+  },
+  {
+    headerMode: 'screen'
+  },
+);
 
-//       </View>
-//     )
-//   }
-// }
+const AppContainer = createAppContainer(RootStack);
+export default class App extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+    
+        
+        <AppContainer />
+        {/* <FlashMessage position="top" /> */}
+      </View>
+    );
+  }
+}
