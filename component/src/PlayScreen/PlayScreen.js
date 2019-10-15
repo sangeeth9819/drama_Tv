@@ -236,22 +236,6 @@ export default class Example extends Component {
 
 
                 </View>
-
-                {/* <FlatList
-                    itemDimension={130}
-                    data={items}
-                    style={styles.gridView}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                            <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
-
-                                <Text style={styles.itemName} >{item.videoID}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />  */}
-
             </Drawer>
 
         );

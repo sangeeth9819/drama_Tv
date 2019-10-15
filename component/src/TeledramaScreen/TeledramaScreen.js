@@ -118,17 +118,20 @@ export default class TeledramaScreen extends Component {
 
                 
 
-
+                    <ScrollView>
                         <FlatGrid
                             itemDimension={270}
                             items={items}
                             style={styles.gridView}
                             renderItem={({ item, index }) => (
+                                
                                 <TouchableOpacity onPress={() => this.navigateTo_Episode()} >
+                                   
                                     <View style={{ borderRadius: 50 }}>
+                                 
                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                                            
-
+                                       
 
                                                 <Image style={{ width: 340, height: 250, borderRadius: 10 }} source={item.image} />
 
@@ -136,13 +139,16 @@ export default class TeledramaScreen extends Component {
 
                                                 <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
                                                 <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.des}</Text>
-
+                                               
                                             </View>
+                                           
                                         </View>
-                                
+                                     
                                 </TouchableOpacity>
+                               
                             )}
                         />
+ </ScrollView>
             </Drawer>
 
         );
