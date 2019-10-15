@@ -15,6 +15,7 @@ import {
     ImageBackground,
     StatusBar
 } from 'react-native';
+import { Container, Left, Icon, Body, Title, Right } from 'native-base';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 
 import Modal from 'react-native-modalbox';
@@ -138,52 +139,48 @@ export default class Example extends Component {
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
                     <View style={{ bottom: 45, }}>
-                    <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
-                        <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
-                            <View >
-                                {/* <View style={{ width: 50, height: 60, borderRadius: 20 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/menu.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity  >
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 150, height: 30,right:30,top:10}}>
-                                {/* <View style={{ right:20,width: 150, height: 30, }}> */}
- 
+                    <Header style={{
+                                marginTop: 35, backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 8,
+                                },
+                                shadowOpacity: 0.46,
+                                shadowRadius: 11.14,
+
+                                elevation: 17,
+                            }}>
+
+                                <Left>
+                                    <TouchableOpacity onPress={() => this.openDrawer()}>
+
+                                        <Icon name='menu' style={{ color: 'gray' }} />
+
+                                    </TouchableOpacity>
+
+                                </Left>
+                                <Body>
                                     <TextInput
-                                        style={{height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10,  }}
+                                        style={{ height: 50, borderColor: 'black', borderRadius: 20, width: 100, border: 10, shadowColor: "#000" }}
+
                                         placeholder='Search here' />
- 
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 10,top:15 }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' ,}}>
-                                {/* <View style={{ width: 30, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/search.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
-                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
-                                        <TextInput
-                                        style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
-                                        placeholder='Live' />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                    </Header>
+
+                                </Body>
+                                <Right>
+                                    <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10 }} >
+                                        <Icon name='search' />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity style={{}} onPress={() => Alert.alert("Liveworkinng")}>
+                                        <Icon name='ios-disc' style={{ color: '#00cc44', }} >
+
+                                            <Text style={{ fontSize: 14, color: 'black', }} >Live</Text>
+                                        </Icon>
+                                    </TouchableOpacity>
+
+                                </Right>
+
+                            </Header>
                     </View>
 
 

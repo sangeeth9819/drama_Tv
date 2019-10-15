@@ -3,7 +3,7 @@ import {
     Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
     TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
 } from 'react-native';
-import { Header, Item, Input, Footer, Drawer } from 'native-base';
+import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 const formatData = (data, numColumns) => {
@@ -77,14 +77,15 @@ export default class Channel extends Component {
 
     render() {
         const items = [
+            { name: '      Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
+            { name: '     Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
             { name: '   National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png') },
             { name: '         ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg') },
             { name: "Swarna wahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png') },
             { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
             { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
             { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },
-            { name: '      Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
-            { name: '     Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
+
             { name: '     CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg') },
             { name: 'Channel I', code: '#ffffff', image: require('../../assest/BuddhistTv.png') },
             // { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/ChanneliTv.jpg') },  { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
@@ -109,89 +110,55 @@ export default class Channel extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                <View style={{ backgroundColor: '##ffffff' }}>
 
-                    <View style={{ top: 10 }}>
-                    <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
-                        <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
-                            <View >
-                                {/* <View style={{ width: 50, height: 60, borderRadius: 20 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/menu.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity  >
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 150, height: 30,right:30,top:10}}>
-                                {/* <View style={{ right:20,width: 150, height: 30, }}> */}
- 
-                                    <TextInput
-                                        style={{height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10,  }}
-                                        placeholder='Search here' />
- 
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 10,top:15 }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' ,}}>
-                                {/* <View style={{ width: 30, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/search.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
-                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
-                                        <TextInput
-                                        style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
-                                        placeholder='Live' />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                    </Header>
-                    </View>
-                    {/* Body Content */}
-                   
-                        <ScrollView>
 
-                            <View>
-                                <View>
 
-                                    <View style={{ top: 50, left: 10 }}>
-                                        <ScrollView>
-                                            <FlatGrid
-                                                itemDimension={130}
-                                                items={items}
-                                                style={styles.gridView}
+                <Header style={{ marginTop: 35, backgroundColor: 'white', borderRadius: 10 }}>
+                    <Left>
+                        <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                                                renderItem={({ item, index }) => (
-                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
-                                                        <View style={{}}>
-                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
-                                                                <Text style={styles.itemName}>{item.name}</Text>
-                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
-                                                            </View>
-                                                        </View>
-                                                    </TouchableOpacity>
-                                                )}
-                                            />
-                                        </ScrollView>
-                                    </View>
-                                </View>
+                            <Icon name='menu' style={{ color: 'gray' }} />
+
+                        </TouchableOpacity>
+
+                    </Left>
+                    <Body>
+
+                        <TextInput
+                            style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
+                            placeholder='Search here' />
+
+                    </Body>
+                    <Right>
+                        <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
+                            <Icon name='search' style={{ color: 'gray' }} />
+                        </TouchableOpacity>
+
+                    </Right>
+                </Header>
+
+
+
+                {/* Body Content */}
+
+
+                <FlatGrid
+                    itemDimension={130}
+                    items={items}
+                    style={styles.gridView}
+
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity onPress={() => this.navigatechannel()}>
+
+                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
+                                <Text style={styles.itemName}>{item.name}</Text>
+                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
                             </View>
-                        </ScrollView>
-                    </View>
-                
+
+                        </TouchableOpacity>
+                    )}
+                />
             </Drawer>
 
 
