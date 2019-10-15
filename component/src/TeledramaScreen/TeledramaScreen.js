@@ -92,24 +92,24 @@ export default class TeledramaScreen extends Component {
                                 },
                                 shadowOpacity: 0.46,
                                 shadowRadius: 11.14,
- 
+
                                 elevation: 17,
                             }}>
- 
+
                                 <Left>
                                     <TouchableOpacity onPress={() => this.openDrawer()}>
- 
+
                                         <Icon name='menu' style={{ color: 'gray' }} />
- 
+
                                     </TouchableOpacity>
- 
+
                                 </Left>
                                 <Body>
                                     <TextInput
                                         style={{ height: 50, borderColor: 'black', borderRadius: 20, width: 100, border: 10, shadowColor: "#000" }}
- 
+
                                         placeholder='Search here' />
- 
+
                                 </Body>
                                 <Right>
                                     <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10 }} >

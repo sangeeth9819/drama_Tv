@@ -128,22 +128,22 @@ export default class Channel extends Component {
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
- 
+
                 <Header style={{ marginTop: 35, backgroundColor: 'white', borderRadius: 10 }}>
                     <Left>
                         <TouchableOpacity onPress={() => this.openDrawer()}>
- 
+
                             <Icon name='menu' style={{ color: 'gray' }} />
- 
+
                         </TouchableOpacity>
- 
+
                     </Left>
                     <Body>
- 
+
                         <TextInput
                             style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
                             placeholder='Search here' />
- 
+
                     </Body>
                     <Right>
                         <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
