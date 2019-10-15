@@ -17,10 +17,13 @@ import styles from './SideMenuScreemStyle'
 
 export default class SideBar extends React.Component {
     navigatechannel() {
-        this.props.navigation.navigate('LiveScreen')
+        this.props.navigation.navigate('ChannelScreen')
     };
     navigateHome() {
         this.props.navigation.navigate('AuthScreen')
+    };
+    navigateTele() {
+        this.props.navigation.navigate('TeledramaScreen')
     };
    
     render() {
