@@ -79,7 +79,7 @@ export default class Channel extends Component {
         const items = [
             { name: '   National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png') },
             { name: '         ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg') },
-            { name: "Swarna wahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png') },
+            { name: "Swarnawahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png') },
             { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
             { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
             { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import {
@@ -33,7 +32,6 @@ export default class Example extends Component {
             videoId: '',
             isReady: false,
             status: null,
-            something:false,
             quality: null,
             error: null,
             isPlaying: true,
@@ -48,14 +46,9 @@ export default class Example extends Component {
 
 
     navigateToTeledrama(id) {
-        // this.props.navigation.navigate('PlayScreen', {
-        //     id: id
-        // });
-        this.setState({
-            fullscreen:true,
-            videoId:id,
-            something:true
-        })
+        this.props.navigation.navigate('PlayScreen', {
+            id: id
+        });
         // Alert.alert(this.state.videoId+"")
         // this.setState({
         //     videoId: 'GuPIZFHFcWQ'
@@ -96,15 +89,15 @@ export default class Example extends Component {
 
         var title;
         const items = [
-            { subName: '2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
-            { subName: '2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
-            { subName: '2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
-            { subName: '2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
-            { subName: '2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
-            { subName: '2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
-            { subName: '2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
-            { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
-            { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
+            {subName:'2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
+            {subName:'2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
+            {subName:'2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
+            {subName:'2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
+            {subName:'2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
+            {subName:'2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
+            {subName:'2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
+            {subName:'2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
+            {subName:'2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
         ];
 
 
@@ -124,42 +117,7 @@ export default class Example extends Component {
 
                 <View>
                     <ImageBackground style={{ height: 300 }} source={require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg')} >
-                        {this.state.something &&
-                        <YouTube
 
-                            ref={this._youTubeRef}
-                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                            videoId={this.state.videoId}
-
-                            play={this.state.isPlaying}
-                            loop={this.state.isLooping}
-                            fullscreen={this.state.fullscreen}
-                            controls={1}
-                            style={[
-                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                styles.player,
-                            ]}
-                            onError={e => {
-                                this.setState({ error: e.error });
-                            }}
-                            onReady={e => {
-                                this.setState({ isReady: true });
-                            }}
-                            onChangeState={e => {
-                                this.setState({ status: e.state });
-                            }}
-                            onChangeQuality={e => {
-                                this.setState({ quality: e.quality });
-                            }}
-                            onChangeFullscreen={e => {
-                                this.setState({ fullscreen: e.isFullscreen });
-                            }}
-                            onProgress={e => {
-                                this.setState({ currentTime: e.currentTime });
-                            }}
-
-                        />
-                        }
                         <TouchableOpacity onPress={() => Alert.alert("working")} style={{
                             left: 300,
                             top: 190,
@@ -176,7 +134,7 @@ export default class Example extends Component {
                 </View>
 
                 <View>
-                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50 }}>
+                    <Card style={{ height:'100%', borderRadius: 35, bottom: 50 }}>
 
                         <FlatList
                             itemDimension={130}
@@ -190,7 +148,7 @@ export default class Example extends Component {
                                         <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
                                         <Text style={styles.itemName} >{item.name}</Text>
                                         <Text style={styles.itemName} >{item.subName}</Text>
-                                    </View>
+                                   </View>
                                 </TouchableOpacity>
                             )}
                         />
@@ -261,7 +219,7 @@ const styles = StyleSheet.create({
     itemName: {
         fontSize: 16,
         left: 200,
-        bottom: 100,
+        bottom:100,
         color: 'black',
         fontWeight: 'bold',
     },
@@ -280,5 +238,4 @@ const styles = StyleSheet.create({
     }
 
 });
-
 

@@ -46,6 +46,7 @@ export default class TeledramaScreen extends Component {
         this.drawer._root.open()
     };
 
+  
     onClose = () => {
         this.setState({
             showTheThing: true
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         height: 250,
-        width:340,
+        width: 340,
         elevation: 5,
         marginTop: 50,
         borderRadius: 20,

@@ -63,13 +63,13 @@ export default class Example extends Component {
     }
 
 
-
     navigateToTeledrama(value) {
         // this.setState({
         //     videoId: 'GuPIZFHFcWQ'
         // })
-        this.setState.videoId = this.props.navigation.state.params.id
+        // this.setState.videoId = this.props.navigation.state.params.id
         Alert.alert("Working")
+       
     }
 
     onClose() {
@@ -130,7 +130,6 @@ export default class Example extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
 
                 <View style={styles.wrapper}>
@@ -138,6 +137,7 @@ export default class Example extends Component {
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
                     <View style={{ bottom: 45, }}>
+                        
                     <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
                         <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
                             <View >
@@ -184,44 +184,11 @@ export default class Example extends Component {
                         </TouchableOpacity>
  
                     </Header>
+
                     </View>
 
 
 
-                    <YouTube
-
-                        ref={this._youTubeRef}
-                        apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                        videoId={this.state.videoId}
-
-                        play={this.state.isPlaying}
-                        loop={this.state.isLooping}
-                        fullscreen={this.state.fullscreen}
-                        controls={1}
-                        style={[
-                            { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                            styles.player,
-                        ]}
-                        onError={e => {
-                            this.setState({ error: e.error });
-                        }}
-                        onReady={e => {
-                            this.setState({ isReady: true });
-                        }}
-                        onChangeState={e => {
-                            this.setState({ status: e.state });
-                        }}
-                        onChangeQuality={e => {
-                            this.setState({ quality: e.quality });
-                        }}
-                        onChangeFullscreen={e => {
-                            this.setState({ fullscreen: e.isFullscreen });
-                        }}
-                        onProgress={e => {
-                            this.setState({ currentTime: e.currentTime });
-                        }}
-
-                    />
                     <FlatList
                         itemDimension={130}
                         data={items}
@@ -270,7 +237,7 @@ const styles = StyleSheet.create({
         color: 'white',
         top: 10
 
-    },
+    },  
 
     buttonStyle3: {
         justifyContent: 'center',
