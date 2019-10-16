@@ -125,7 +125,7 @@ export default class Channel extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+              
 
 
 

@@ -105,7 +105,7 @@ export default class Example extends Component {
             tweenHandler={(ratio) => ({
                 main: { opacity: (1 - ratio) / 1 }
             })}>
-            <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+           
  
             <View style={styles.wrapper}>
  

@@ -83,7 +83,7 @@ export default class TeledramaScreen extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+             
                             <Header style={{
                                 marginTop: 35, backgroundColor: 'white', borderRadius: 10,marginTop:40, shadowColor: "#000",
                                 shadowOffset: {
