@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import SwipeCards from 'react-native-swipeable-cards';
+
 import {
     StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
 } from 'react-native';
@@ -30,7 +32,7 @@ export default class Example extends Component {
             videoId: '',
             isReady: false,
             status: null,
-            something:false,
+            something: false,
             quality: null,
             error: null,
             isPlaying: true,
@@ -47,9 +49,9 @@ export default class Example extends Component {
         //     id: id
         // });
         this.setState({
-            fullscreen:true,
-            videoId:id,
-            something:true
+            fullscreen: true,
+            videoId: id,
+            something: true
         })
         // Alert.alert(this.state.videoId+"")
         // this.setState({
@@ -118,42 +120,55 @@ export default class Example extends Component {
 
                 <View>
                     <ImageBackground style={{ height: 300 }} source={require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg')} >
-                        {this.state.something &&
-                        <YouTube
 
-                            ref={this._youTubeRef}
-                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                            videoId={this.state.videoId}
+                        <SwipeCards
+                            renderCard={(cardData) =>    <YouTube
 
-                            play={this.state.isPlaying}
-                            loop={this.state.isLooping}
-                            fullscreen={this.state.fullscreen}
-                            controls={1}
-                            style={[
-                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                styles.player,
-                            ]}
-                            onError={e => {
-                                this.setState({ error: e.error });
-                            }}
-                            onReady={e => {
-                                this.setState({ isReady: true });
-                            }}
-                            onChangeState={e => {
-                                this.setState({ status: e.state });
-                            }}
-                            onChangeQuality={e => {
-                                this.setState({ quality: e.quality });
-                            }}
-                            onChangeFullscreen={e => {
-                                this.setState({ fullscreen: e.isFullscreen });
-                            }}
-                            onProgress={e => {
-                                this.setState({ currentTime: e.currentTime });
-                            }}
+                                ref={this._youTubeRef}
+                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                                videoId={this.state.videoId}
+
+                                play={this.state.isPlaying}
+                                loop={this.state.isLooping}
+                                fullscreen={this.state.fullscreen}
+                                controls={1}
+                                style={[
+                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                    styles.player,
+                                ]}
+                                onError={e => {
+                                    this.setState({ error: e.error });
+                                }}
+                                onReady={e => {
+                                    this.setState({ isReady: true });
+                                }}
+                                onChangeState={e => {
+                                    this.setState({ status: e.state });
+                                }}
+                                onChangeQuality={e => {
+                                    this.setState({ quality: e.quality });
+                                }}
+                                onChangeFullscreen={e => {
+                                    this.setState({ fullscreen: e.isFullscreen });
+                                }}
+                                onProgress={e => {
+                                    this.setState({ currentTime: e.currentTime });
+                                }}
+
+                            />
+}
+                            renderNoMoreCards={() => <NoMoreCards />}
+
+                            onSwipeRight={this.handleYup}
+                            onSwipeLeft={this.handleNope}
+                            onSwipeUp={this.handleMaybe}
+                            hasMaybeAction
+                            // {this.state.something &&
+                         
+                            // }
 
                         />
-                        }
+
                         <TouchableOpacity onPress={() => Alert.alert("working")} style={{
                             left: 300,
                             top: 190,
@@ -236,9 +251,9 @@ const styles = StyleSheet.create({
         shadowOffset: {
             width: 0,
             height: 0,
-              borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+            borderRadius: 4,
+            borderWidth: 0.5,
+            borderColor: '#d6d7da',
         },
         shadowOpacity: 0.1,
         shadowRadius: 5,
