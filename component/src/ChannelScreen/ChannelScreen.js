@@ -129,7 +129,7 @@ export default class Channel extends Component {
 
 
 
-                <Header style={{ marginTop: 35, backgroundColor: 'white', borderRadius: 10 }}>
+                <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
                     <Left>
                         <TouchableOpacity onPress={() => this.openDrawer()}>
 

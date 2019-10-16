@@ -83,9 +83,9 @@ export default class TeledramaScreen extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-             
-                            <Header style={{
-                                marginTop: 35, backgroundColor: 'white', borderRadius: 10,marginTop:40, shadowColor: "#000",
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                            <Header style={{marginTop:5,
+                                 backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",
                                 shadowOffset: {
                                     width: 0,
                                     height: 8,
@@ -142,8 +142,9 @@ export default class TeledramaScreen extends Component {
                                     <View style={{ borderRadius: 50 }}>
                                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                                            
- 
-                                                <Image style={{ width: 340, height: 250, borderRadius: 10 }} source={item.image} />
+                                       
+
+                                                <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} />
 
 
  
@@ -171,7 +172,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: 500,
         height: 80,
-        marginTop: 50,
         borderRadius: 20,
  
     },
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         height: 250,
         width: 340,
         elevation: 5,
-        marginTop: 50,
+    marginTop:50,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
