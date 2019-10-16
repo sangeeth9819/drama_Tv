@@ -19,10 +19,13 @@ export default class SideBar extends React.Component {
     navigatechannel() {
         this.props.navigation.navigate('ChannelScreen')
     };
-
-    navigatesample() {
-        this.props.navigation.navigate('SampleScreen')
+    navigateHome() {
+        this.props.navigation.navigate('AuthScreen')
     };
+    navigateTele() {
+        this.props.navigation.navigate('TeledramaScreen')
+    };
+   
     render() {
         return (
 
@@ -46,7 +49,7 @@ export default class SideBar extends React.Component {
 
 
 
-                    <TouchableOpacity onPress={() => this.navigatesample()}>
+                        <TouchableOpacity onPress={() => this.navigateHome()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtHome}>
@@ -66,7 +69,7 @@ export default class SideBar extends React.Component {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.navigatechannel()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtCategory}>

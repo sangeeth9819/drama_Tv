@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
     StyleSheet,
     View,
@@ -15,25 +14,11 @@ import {
     ImageBackground,
     StatusBar
 } from 'react-native';
+import { Container, Left, Icon, Body, Title, Right } from 'native-base';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-
 import Modal from 'react-native-modalbox';
-
-import YouTube, {
-    YouTubeStandaloneIOS,
-    YouTubeStandaloneAndroid
-} from 'react-native-youtube';
-
-// import { Header } from 'react-navigation-stack';
-import {
-    Header,
-    Item,
-    Input,
-    Footer,
-    Card,
-    Drawer,
-}
-    from 'native-base';
+import YouTube, { YouTubeStandaloneIOS, YouTubeStandaloneAndroid } from 'react-native-youtube';
+import { Header, Item, Input, Footer, Card, Drawer, } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 
 
@@ -43,9 +28,7 @@ export default class Example extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            // isDisabled: false,
             swipeToClose: true,
-            // sliderValue: 0.3,
             videoId: '',
             isReady: false,
             status: null,
@@ -59,7 +42,6 @@ export default class Example extends Component {
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
-        // Alert.alert(this.state.videoId + "")
     }
 
 
@@ -79,7 +61,6 @@ export default class Example extends Component {
     onOpen() {
         console.log('Modal just opened');
     }
-
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
@@ -88,18 +69,15 @@ export default class Example extends Component {
     closeDrawer = () => {
         this.drawer._root.close()
     };
-
     openDrawer = () => {
 
         this.drawer._root.open()
     };
-
     onClose = () => {
         this.setState({
             showTheThing: true
         })
     }
-
     render() {
 
         var title;
@@ -114,8 +92,6 @@ export default class Example extends Component {
             { videoID: 'PC0eYDACeEU' },
             { videoID: 'U5y_K9rZrmA' },
         ];
-
-
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -194,7 +170,7 @@ export default class Example extends Component {
                         data={items}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)} activeOpacity={0.9}>
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                     <Image style={{ height: 125, width: 175, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
 
@@ -203,29 +179,10 @@ export default class Example extends Component {
                             </TouchableOpacity>
                         )}
                     />
-
-
                 </View>
-
-                {/* <FlatList
-                    itemDimension={130}
-                    data={items}
-                    style={styles.gridView}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                            <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
-
-                                <Text style={styles.itemName} >{item.videoID}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />  */}
-
             </Drawer>
 
         );
-
     }
 }
 
@@ -243,14 +200,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center'
-
     },
     buttonStyle2: {
         width: 300,
         height: 50,
         borderRadius: 30
     },
-
     text: {
         color: 'white',
     },
@@ -259,8 +214,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     wrapper: {
-        marginTop: 10,
-        paddingTop: 50,
+        marginTop: 35,
         flex: 1
     },
     itemContainer: {
@@ -290,6 +244,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }
-
 });
 

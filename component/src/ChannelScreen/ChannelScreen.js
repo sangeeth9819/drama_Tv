@@ -1,26 +1,23 @@
+
 import React, { Component } from 'react';
 import {
     Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
     TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
 } from 'react-native';
-import { Header, Item, Input, Footer, Drawer } from 'native-base';
+import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
-
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
         numberOfElementsLastRow++;
     }
-
     return data;
 };
 const numColumns = 3;
-
-
-
 
 export default class Channel extends Component {
 
@@ -40,15 +37,23 @@ export default class Channel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isOpen: false,
+            swipeToClose: true,
+            videoId: '',
+            isReady: false,
+            status: null,
+            quality: null,
+            error: null,
+            isPlaying: true,
+            isLooping: true,
+            duration: 0,
+            currentTime: 0,
+            fullscreen: true,
+            playerWidth: Dimensions.get('window').width,
         };
 
     }
-    //     navigatechannel(value){
-    //    this.state({
 
-    //    })
-    //     }
 
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
@@ -69,131 +74,91 @@ export default class Channel extends Component {
         })
     }
 
-
     Test() {
         Alert.alert("Alert Is Working...")
     }
-
+    navigateToTeledrama(id) {
+        this.props.navigation.navigate('TeledramaScreen', {
+            id: id
+        });
+    }
 
     render() {
         const items = [
-            { name: '   National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png') },
-            { name: '         ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg') },
-            { name: "Swarnawahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png') },
-            { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png') },
-            { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png') },
-            { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg') },
-            { name: '      Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg') },
-            { name: '     Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
-            { name: '     CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg') },
-            { name: 'Channel I', code: '#ffffff', image: require('../../assest/BuddhistTv.png') },
-            // { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/ChanneliTv.jpg') },  { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png') },
+            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg'), videoId: 'sawQL8yOd9U' },
+            { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png'), videoId: 'GuPIZFHFcWQ' },
+            { name: 'National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png'), videoId: 'VbwCghl8vmU' },
+            { name: 'ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg'), videoId: '' },
+            { name: 'Swarna wahini', code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png'), videoId: '' },
+            { name: 'siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png'), videoId: '' },
+            { name: 'Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png'), videoId: '' },
+            { name: 'Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg'), videoId: '' },
+            { name: 'CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg'), videoId: '' },
+            { name: 'Buddhist Tv', code: '#ffffff', image: require('../../assest/BuddhistTv.png'), videoId: '' },
 
         ];
 
         return (
-
 
             <Drawer
 
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
-
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
-
-
-
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                <View style={{ backgroundColor: '##ffffff' }}>
+                <StatusBar barStyle="lite-content" hidden={false} backgroundColor="white" translucent={true} />
+                <View style={styles.wrapper}>
+                    <Header style={{ backgroundColor: 'white', borderRadius: 10 }}>
+                        <Left>
+                            <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                    <View style={{ top: 10 }}>
-                    <Header style={{ backgroundColor: 'white',  top: 20, height: 44, }}>
-                        <TouchableOpacity onPress={() => this.openDrawer()}style={{top:10,right:50}}>
-                            <View >
-                                {/* <View style={{ width: 50, height: 60, borderRadius: 20 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/menu.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity  >
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 150, height: 30,right:30,top:10}}>
-                                {/* <View style={{ right:20,width: 150, height: 30, }}> */}
- 
-                                    <TextInput
-                                        style={{height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10,  }}
-                                        placeholder='Search here' />
- 
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
-                        <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ right: 10,top:15 }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' ,}}>
-                                {/* <View style={{ width: 30, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25,}} source={require('../../assest/search.png')} />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
-                         <TouchableOpacity onPress={() => Alert.alert("Live workinng")} style={{top:12,left:20}}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
-                                        <TextInput
-                                        style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
-                                        placeholder='Live' />
-                                    </View>
-                                {/* </View> */}
-                            </View>
-                        </TouchableOpacity>
- 
+                                <Icon name='menu' style={{ color: 'gray' }} />
+
+                            </TouchableOpacity>
+
+                        </Left>
+                        <Body>
+
+                            <TextInput
+                                style={{
+                                    height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5
+                                }}
+                                placeholder='                      Search here' />
+
+                        </Body>
+                        <Right>
+                            <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
+                                <Icon name='search' style={{ color: 'gray' }} />
+                            </TouchableOpacity>
+
+                        </Right>
                     </Header>
-                    </View>
+
+
                     {/* Body Content */}
-                   
-                        <ScrollView>
 
-                            <View>
-                                <View>
+                    <FlatGrid
+                        itemDimension={130}
+                        items={items}
+                        style={styles.gridView}
 
-                                    <View style={{ top: 50, left: 10 }}>
-                                        <ScrollView>
-                                            <FlatGrid
-                                                itemDimension={130}
-                                                items={items}
-                                                style={styles.gridView}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)} activeOpacity={0.9}>
 
-                                                renderItem={({ item, index }) => (
-                                                    <TouchableOpacity onPress={() => this.navigatechannel()}>
-                                                        <View style={{}}>
-                                                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
-                                                                <Text style={styles.itemName}>{item.name}</Text>
-                                                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
-                                                            </View>
-                                                        </View>
-                                                    </TouchableOpacity>
-                                                )}
-                                            />
-                                        </ScrollView>
-                                    </View>
+                                <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                                    <Image style={{ width: 100, height: 100, top: 10, borderRadius: 10, left: 10 }} source={item.image} />
+                                    <Text style={styles.itemName}>{item.name}</Text>
                                 </View>
-                            </View>
-                        </ScrollView>
-                    </View>
-                
-            </Drawer>
 
+                            </TouchableOpacity>
+                        )}
+                    />
+                </View>
+            </Drawer>
 
         );
     }
@@ -208,6 +173,8 @@ const styles = StyleSheet.create({
         padding: 10,
         height: 130,
         width: 140,
+        marginTop: 20,
+        marginLeft: 10,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -218,21 +185,25 @@ const styles = StyleSheet.create({
         shadowRadius: 10.65,
 
         elevation: 6,
-
+    },
+    wrapper: {
+        marginTop: 30,
+        flex: 1
     },
     itemName: {
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         top: 10,
-        left: 10,
         fontSize: 16,
-        color: '#000000',
+        color: '#6b6b47',
         fontWeight: '600',
+        fontWeight: 'bold',
     },
     itemCode: {
+
         fontWeight: '600',
         fontSize: 12,
         color: '#000000',
-
-
-
     },
 });

@@ -20,16 +20,13 @@ import {
     from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 
-
 export default class Example extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
-            // isDisabled: false,
             swipeToClose: true,
-            // sliderValue: 0.3,
             videoId: '',
             isReady: false,
             status: null,
@@ -44,8 +41,6 @@ export default class Example extends Component {
             playerWidth: Dimensions.get('window').width,
         };
     }
-
-
 
     navigateToTeledrama(id) {
         // this.props.navigation.navigate('PlayScreen', {
@@ -106,7 +101,6 @@ export default class Example extends Component {
             { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
             { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
         ];
-
 
         return (
             <Drawer
@@ -202,7 +196,6 @@ export default class Example extends Component {
 
 
         );
-
     }
 }
 
@@ -220,34 +213,40 @@ const styles = StyleSheet.create({
 
     buttonStyle4: {
         fontWeight: 'bold',
-        fontSize: 18,
-        color: 'white',
-        top: 10
-
     },
 
-    buttonStyle3: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center'
-
-    },
-    buttonStyle2: {
-        width: 300,
-        height: 50,
-        borderRadius: 30
+    itemCode: {
+        fontWeight: '600',
+        fontSize: 12,
+        color: '#fff',
     },
 
-    text: {
-        color: 'white',
+    row: {
+        left: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
     },
-    gridView: {
-        marginTop: 10,
-        flex: 1,
+    itemContainer: {
+        height: 130,
+        marginLeft: 10,
+        width: 340,
+        marginTop: 20,
+        borderRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+              borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 10,
     },
+
     wrapper: {
         marginTop: 10,
-        paddingTop: 50,
         flex: 1
     },
     itemContainer: {
@@ -264,21 +263,8 @@ const styles = StyleSheet.create({
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
-    },
-    modal: {
-        color: 'blue',
-    },
-    itemCode: {
-        fontWeight: '600',
-        fontSize: 12,
-        color: '#fff',
-    },
-    modalContainer: {
-        top: 55,
-        flex: 1,
-        backgroundColor: 'white',
-    }
 
+    },
 });
 
 
