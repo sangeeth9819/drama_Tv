@@ -131,7 +131,7 @@ export default class Channel extends Component {
                 })}>
               
 
-
+              <View style={styles.wrapper}>
 
                 <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
                     <Left>
@@ -178,6 +178,7 @@ export default class Channel extends Component {
                         </TouchableOpacity>
                     )}
                 />
+                </View>
             </Drawer>
 
         );
@@ -207,7 +208,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     wrapper: {
-        
+        marginTop:30,
         flex: 1
     },
     itemName: {
