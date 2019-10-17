@@ -7,24 +7,20 @@ import {
 import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
- 
     let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
     while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
         data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
         numberOfElementsLastRow++;
     }
- 
     return data;
 };
 const numColumns = 3;
 
-
-
- 
 export default class Channel extends Component {
- 
+
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -37,7 +33,7 @@ export default class Channel extends Component {
             </View>
         );
     };
- 
+
     constructor(props) {
                 super(props);
                 this.state = {
@@ -92,50 +88,41 @@ export default class Channel extends Component {
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
- 
+
     closeDrawer = () => {
         this.drawer._root.close()
     };
- 
+
     openDrawer = () => {
- 
+
         this.drawer._root.open()
     };
- 
+
     onClose = () => {
         this.setState({
             showTheThing: true
         })
     }
- 
+
     Test() {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id) {
-                // Alert.alert(id)
-                this.props.navigation.navigate('TeledramaScreen', {
-                    id: id
-        
-                });
-                // Alert.alert(id)
-        
-        
-            }
- 
+        this.props.navigation.navigate('TeledramaScreen', {
+            id: id
+        });
+    }
+
     render() {
         return (
- 
+
             <Drawer
- 
+
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
- 
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
-
-
- 
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
@@ -189,11 +176,11 @@ export default class Channel extends Component {
                     )}
                 />
             </Drawer>
- 
+
         );
     }
 }
- 
+
 const styles = StyleSheet.create({
     gridView: {
         flex: 1,
@@ -203,6 +190,8 @@ const styles = StyleSheet.create({
         padding: 10,
         height: 130,
         width: 140,
+        marginTop: 20,
+        marginLeft: 10,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -211,23 +200,27 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 10.65,
- 
+
         elevation: 6,
- 
+    },
+    wrapper: {
+        marginTop: 30,
+        flex: 1
     },
     itemName: {
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         top: 10,
-        left: 10,
         fontSize: 16,
-        color: '#000000',
+        color: '#6b6b47',
         fontWeight: '600',
+        fontWeight: 'bold',
     },
     itemCode: {
+
         fontWeight: '600',
         fontSize: 12,
         color: '#000000',
-
-
- 
     },
 });

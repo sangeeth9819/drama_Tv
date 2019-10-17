@@ -16,23 +16,9 @@ import {
 } from 'react-native';
 import { Container, Left, Icon, Body, Title, Right } from 'native-base';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-
 import Modal from 'react-native-modalbox';
-
-import YouTube, {
-    YouTubeStandaloneIOS,
-    YouTubeStandaloneAndroid
-} from 'react-native-youtube';
-// import { Header } from 'react-navigation-stack';
-import {
-    Header,
-    Item,
-    Input,
-    Footer,
-    Card,
-    Drawer,
-}
-    from 'native-base';
+import YouTube, { YouTubeStandaloneIOS, YouTubeStandaloneAndroid } from 'react-native-youtube';
+import { Header, Item, Input, Footer, Card, Drawer, } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 
 
@@ -56,15 +42,8 @@ export default class Example extends Component {
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
-        // Alert.alert(this.state.videoId + "")
     }
-
-
-
     navigateToTeledrama(value) {
-        // this.setState({
-        //     videoId: 'GuPIZFHFcWQ'
-        // })
         this.setState.videoId = this.props.navigation.state.params.id
         Alert.alert("Working")
     }
@@ -76,7 +55,6 @@ export default class Example extends Component {
     onOpen() {
         console.log('Modal just opened');
     }
-
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
@@ -85,18 +63,15 @@ export default class Example extends Component {
     closeDrawer = () => {
         this.drawer._root.close()
     };
-
     openDrawer = () => {
 
         this.drawer._root.open()
     };
-
     onClose = () => {
         this.setState({
             showTheThing: true
         })
     }
-
     render() {
 
         var title;
@@ -111,8 +86,6 @@ export default class Example extends Component {
             { videoID: 'PC0eYDACeEU' },
             { videoID: 'U5y_K9rZrmA' },
         ];
-
-
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -135,48 +108,39 @@ export default class Example extends Component {
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
                     <View style={{ bottom: 45, }}>
-                    <Header style={{
-                                marginTop: 35, backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",
-                                shadowOffset: {
-                                    width: 0,
-                                    height: 8,
-                                },
-                                shadowOpacity: 0.46,
-                                shadowRadius: 11.14,
+                        <Header style={{
+                            marginTop: 40, backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",
+                            shadowOffset: {
+                                width: 0,
+                                height: 8,
+                            },
+                            shadowOpacity: 0.46,
+                            shadowRadius: 11.14,
 
-                                elevation: 17,
-                            }}>
+                            elevation: 17,
+                        }}>
 
-                                <Left>
-                                    <TouchableOpacity onPress={() => this.openDrawer()}>
+                            <Left>
+                                <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                                        <Icon name='menu' style={{ color: 'gray' }} />
+                                    <Icon name='menu' style={{ color: 'gray' }} />
 
-                                    </TouchableOpacity>
+                                </TouchableOpacity>
+                            </Left>
+                            <Body>
+                            <TextInput
+                                style={{ height: 40, width: 250, borderRadius: 10,  borderRadius: 20,marginTop:5
+                             }}
+                                placeholder='                      Search here' />
 
-                                </Left>
-                                <Body>
-                                    <TextInput
-                                        style={{ height: 50, borderColor: 'black', borderRadius: 20, width: 100, border: 10, shadowColor: "#000" }}
+                            </Body>
+                            <Right>
+                                <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10 }} >
+                                    <Icon name='search' />
+                                </TouchableOpacity>
+                            </Right>
 
-                                        placeholder='Search here' />
-
-                                </Body>
-                                <Right>
-                                    <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10 }} >
-                                        <Icon name='search' />
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity style={{}} onPress={() => Alert.alert("Liveworkinng")}>
-                                        <Icon name='ios-disc' style={{ color: '#00cc44', }} >
-
-                                            <Text style={{ fontSize: 14, color: 'black', }} >Live</Text>
-                                        </Icon>
-                                    </TouchableOpacity>
-
-                                </Right>
-
-                            </Header>
+                        </Header>
                     </View>
 
 
@@ -213,14 +177,14 @@ export default class Example extends Component {
                         onProgress={e => {
                             this.setState({ currentTime: e.currentTime });
                         }}
-
                     />
+
                     <FlatList
                         itemDimension={130}
                         data={items}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)} activeOpacity={0.9}>
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                     <Image style={{ height: 125, width: 175, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
 
@@ -229,28 +193,10 @@ export default class Example extends Component {
                             </TouchableOpacity>
                         )}
                     />
-
-
                 </View>
-
-                {/* <FlatList
-                    itemDimension={130}
-                    data={items}
-                    style={styles.gridView}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
-                            <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                <Image style={{ height: 125, width: 150, bottom: 20, right: 20, borderRadius: 0 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
-                                <Text style={styles.itemName} >{item.videoID}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />  */}
-
             </Drawer>
 
         );
-
     }
 }
 
@@ -263,7 +209,6 @@ const styles = StyleSheet.create({
         top: 10
 
     },
-
     buttonStyle3: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -282,8 +227,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     wrapper: {
-        marginTop: 10,
-        paddingTop: 50,
+        marginTop: 35,
         flex: 1
     },
     itemContainer: {
@@ -313,6 +257,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     }
-
 });
 
