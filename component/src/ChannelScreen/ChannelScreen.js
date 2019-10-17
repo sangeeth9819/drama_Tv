@@ -55,11 +55,39 @@ export default class Channel extends Component {
                     duration: 0,
                     currentTime: 0,
                     fullscreen: true,
+                    getall: [],
                     playerWidth: Dimensions.get('window').width,
                 };
         
             }
-   
+            componentDidMount() {
+                this.getAll()
+            }
+        
+            getAll() {
+                console.log('text');
+                fetch('https://testingsiteweb.000webhostapp.com/api/channels', {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+        
+                })
+                    .then((resp) => resp.json())
+                    .then((responseJson) => {
+                        console.log("getAll :" + JSON.stringify(responseJson))
+                        this.setState({
+                            getall: responseJson
+                        })
+        
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+        
+        
+            }
  
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
@@ -95,20 +123,6 @@ export default class Channel extends Component {
             }
  
     render() {
-        const items = [
-                        { name: '      Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg'), videoId: 'sawQL8yOd9U' },
-                        { name: '     Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png'), videoId: 'GuPIZFHFcWQ' },
-                        { name: '   National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png'), videoId: 'VbwCghl8vmU' },
-                        { name: '         ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg'), videoId: '' },
-                        { name: "Swarna wahini", code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png'), videoId: '' },
-                        { name: '    siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png'), videoId: '' },
-                        { name: '        Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png'), videoId: '' },
-                        { name: '       Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg'), videoId: '' },
-                        { name: '     CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg'), videoId: '' },
-                        { name: 'Channel I', code: '#ffffff', image: require('../../assest/BuddhistTv.png'), videoId: '' },
-            
-                    ];
- 
         return (
  
             <Drawer
@@ -155,20 +169,20 @@ export default class Channel extends Component {
 
 
  
-                {/* Body Content */}
+           
  
                 <FlatGrid
                     itemDimension={130}
-                    items={items}
+                    items={this.state.getall}
                     style={styles.gridView}
  
                     renderItem={({ item, index }) => (
                         <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)}>
  
-                            <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={item.image} />
-                                <Text style={styles.itemName}>{item.name}</Text>
-                                {/* <Text style={styles.itemCode}>{item.code}</Text> */}
+                            <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+item.ch_Image}} />
+                                <Text style={styles.itemName}>{item.ch_Name}</Text>
+                               
                             </View>
  
                         </TouchableOpacity>
