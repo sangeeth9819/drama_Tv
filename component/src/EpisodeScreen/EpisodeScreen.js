@@ -98,7 +98,7 @@ export default class Example extends Component {
 
                 <View style={styles.wrapper}>
 
-                    <Header style={{backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", marginTop: 20,
+                    <Header style={{backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", 
                         shadowOffset: {
                             width: 0,
                             height: 8,
@@ -141,12 +141,22 @@ export default class Example extends Component {
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)} activeOpacity={0.8}>
+                              
+
+                               
+                           
+                           
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ height: 130, width: 130, borderRadius: 20, }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }}/>
+                                
+                                    <Image style={{ height: 130, width: 130,  }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }}/>
+                                  
                                   
                                     <Text style={styles.itemName} >{item.videoID}</Text>
+                                  
                                 </View>
+                                
                             </TouchableOpacity>
+                            
                         )}
                     />
                 </View>
@@ -161,11 +171,7 @@ const styles = StyleSheet.create({
        
       
     },
-    itemName: {
-        fontSize: 16,
-        color: '#8c8c8c',
-        fontWeight: 'bold',
-    },
+   
 
     itemCode: {
         fontWeight: '600',
@@ -176,7 +182,6 @@ const styles = StyleSheet.create({
     row: {
         left: 20,
         backgroundColor: 'white',
-        borderRadius: 20,
     },
     itemContainer: {
         height: 130,
@@ -198,7 +203,7 @@ const styles = StyleSheet.create({
     },
 
     wrapper: {
-        marginTop: 10,
+        marginTop:30,
         flex: 1
     },
     itemName: {
@@ -206,6 +211,11 @@ const styles = StyleSheet.create({
         marginLeft: 150,
         color: '#8c8c8c',
         fontWeight: 'bold',
+        justifyContent:"center",
+        textAlign:"center",
+    
+        
+    
 
     },
 });

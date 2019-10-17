@@ -21,6 +21,9 @@ const numColumns = 3;
 
 export default class Channel extends Component {
 
+
+
+    
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -111,8 +114,8 @@ export default class Channel extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
                 <StatusBar barStyle="lite-content" hidden={false} backgroundColor="white" translucent={true} />
-                <View style={styles.wrapper}>
-                    <Header style={{ backgroundColor: 'white', borderRadius: 10 }}>
+
+                <Header style={{ backgroundColor: 'white', borderRadius: 10,marginTop:30 }}>
                         <Left>
                             <TouchableOpacity onPress={() => this.openDrawer()}>
 
@@ -137,6 +140,9 @@ export default class Channel extends Component {
 
                         </Right>
                     </Header>
+
+                <View style={styles.wrapper}>
+                   
 
 
                     {/* Body Content */}
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     wrapper: {
-        marginTop: 30,
+        
         flex: 1
     },
     itemName: {

@@ -109,7 +109,7 @@ export default class Example extends Component {
 
                     <View style={{ bottom: 45, }}>
                         <Header style={{
-                            marginTop: 40, backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",
+                          backgroundColor: 'white', borderRadius: 10, shadowColor: "#000",marginTop:40,
                             shadowOffset: {
                                 width: 0,
                                 height: 8,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     wrapper: {
-        marginTop: 35,
+        marginTop:30,
         flex: 1
     },
     itemContainer: {
