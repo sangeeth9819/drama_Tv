@@ -129,59 +129,6 @@ export default class Channel extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-<<<<<<< HEAD
-                <StatusBar barStyle="lite-content" hidden={false} backgroundColor="white" translucent={true} />
-
-                <Header style={{ backgroundColor: 'white', borderRadius: 10,marginTop:30 }}>
-                        <Left>
-                            <TouchableOpacity onPress={() => this.openDrawer()}>
-
-                                <Icon name='menu' style={{ color: 'gray' }} />
-
-                            </TouchableOpacity>
-
-                        </Left>
-                        <Body>
-
-                            <TextInput
-                                style={{
-                                    height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5
-                                }}
-                                placeholder='                      Search here' />
-
-                        </Body>
-                        <Right>
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
-                                <Icon name='search' style={{ color: 'gray' }} />
-                            </TouchableOpacity>
-
-                        </Right>
-                    </Header>
-
-                <View style={styles.wrapper}>
-                   
-
-
-                    {/* Body Content */}
-
-                    <FlatGrid
-                        itemDimension={130}
-                        items={items}
-                        style={styles.gridView}
-
-                        renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)} activeOpacity={0.9}>
-
-                                <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                    <Image style={{ width: 100, height: 100, top: 10, borderRadius: 10, left: 10 }} source={item.image} />
-                                    <Text style={styles.itemName}>{item.name}</Text>
-                                </View>
-
-                            </TouchableOpacity>
-                        )}
-                    />
-                </View>
-=======
               
 
 
@@ -231,7 +178,6 @@ export default class Channel extends Component {
                         </TouchableOpacity>
                     )}
                 />
->>>>>>> 14508b82a1bccb2f62873688f08f73792156ba3e
             </Drawer>
 
         );
