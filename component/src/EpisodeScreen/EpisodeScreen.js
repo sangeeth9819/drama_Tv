@@ -230,14 +230,6 @@ const styles = StyleSheet.create({
 
     },
 
-    // imagebutton: {
-    //     backgroundColor: '#f44336',
-    //     width: 50,
-    //     height: 50,
-    //     borderRadius: 100,
-
-
-    // },
 
     buttonStyle4: {
         fontWeight: 'bold',
