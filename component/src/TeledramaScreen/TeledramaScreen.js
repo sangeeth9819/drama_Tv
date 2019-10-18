@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
-TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput} from 'react-native';
+import {
+    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
+    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
+} from 'react-native';
 import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -17,13 +19,49 @@ const items = [
 const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {
+
+
+    componentDidMount() {
+        this.getallteledrama()
+    }
+    getallteledrama() {
+        fetch('https://testingsiteweb.000webhostapp.com/api/teledramas', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                console.log("Getall :" + JSON.stringify(responseJson))
+
+                this.setState({
+                    getall: responseJson
+                })
+            })
+
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+
     constructor(props) {
+
+
+
         super(props);
         this.state = {
             videoId: '',
+            getall: [],
             currentTime: 0,
             fullscreen: true,
             playerWidth: Dimensions.get('window').width,
+
+
+
+
         };
         this.state.videoId = this.props.navigation.state.params.id
     }
@@ -85,14 +123,15 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         </Left>
                         <Body>
-                        <TextInput
-                                style={{ height: 40, width: 200, borderRadius: 10,  borderRadius: 20,marginTop:5
-                             }}
+                            <TextInput
+                                style={{
+                                    height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
+                                }}
                                 placeholder='                      Search here' />
 
                         </Body>
                         <Right>
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10,backgroundColor:'Black' }} >
+                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10, backgroundColor: 'Black' }} >
                                 <Icon name='search' />
                             </TouchableOpacity>
 
@@ -107,16 +146,23 @@ export default class TeledramaScreen extends Component {
                     {/* Body Content */}
                     <FlatGrid
                         itemDimension={270}
-                        items={items}
+                        items={this.state.getall}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this.navigateTo_Episode()} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
-                                    <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                        <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} />
-                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
-                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.des}</Text>
+                                    <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                        {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
+                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+ item.te_Image }} >
 
+                                        </Image>
+                                        {/* <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
+                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.des}</Text> */}
+
+                                        {/* <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.id}</Text> */}
+                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
+                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{item.created_at}</Text>
+                                    
                                     </View>
                                 </View>
 
@@ -133,8 +179,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 2,
     },
-    gridView:{
-      
+    gridView: {
+
     },
     row: {
         left: 20,
@@ -148,7 +194,7 @@ const styles = StyleSheet.create({
         height: 250,
         width: 340,
         elevation: 5,
-        marginTop: 40,
+        marginTop: 42,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {

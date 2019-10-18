@@ -244,7 +244,6 @@ const styles = StyleSheet.create({
     row: {
         left: 20,
         backgroundColor: 'white',
-        borderRadius: 20,
     },
     itemContainer: {
         height: 130,
@@ -266,7 +265,7 @@ const styles = StyleSheet.create({
     },
 
     wrapper: {
-        marginTop: 10,
+        marginTop:30,
         flex: 1
     },
     itemContainer: {
@@ -283,6 +282,11 @@ const styles = StyleSheet.create({
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
+        justifyContent:"center",
+        textAlign:"center",
+    
+        
+    
 
     },
 });

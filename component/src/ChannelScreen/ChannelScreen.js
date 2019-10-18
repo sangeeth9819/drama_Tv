@@ -21,6 +21,9 @@ const numColumns = 3;
 
 export default class Channel extends Component {
 
+
+
+    
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -35,26 +38,56 @@ export default class Channel extends Component {
     };
 
     constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false,
-            swipeToClose: true,
-            videoId: '',
-            isReady: false,
-            status: null,
-            quality: null,
-            error: null,
-            isPlaying: true,
-            isLooping: true,
-            duration: 0,
-            currentTime: 0,
-            fullscreen: true,
-            playerWidth: Dimensions.get('window').width,
-        };
-
-    }
-
-
+                super(props);
+                this.state = {
+                    isOpen: false,
+                    // isDisabled: false,
+                    swipeToClose: true,
+                    // sliderValue: 0.3,
+                    videoId: '',
+                    isReady: false,
+                    status: null,
+                    quality: null,
+                    error: null,
+                    isPlaying: true,
+                    isLooping: true,
+                    duration: 0,
+                    currentTime: 0,
+                    fullscreen: true,
+                    getall: [],
+                    playerWidth: Dimensions.get('window').width,
+                };
+        
+            }
+            componentDidMount() {
+                this.getAll()
+            }
+        
+            getAll() {
+                console.log('text');
+                fetch('https://testingsiteweb.000webhostapp.com/api/channels', {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+        
+                })
+                    .then((resp) => resp.json())
+                    .then((responseJson) => {
+                        console.log("getAll :" + JSON.stringify(responseJson))
+                        this.setState({
+                            getall: responseJson
+                        })
+        
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+        
+        
+            }
+ 
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -84,20 +117,6 @@ export default class Channel extends Component {
     }
 
     render() {
-        const items = [
-            { name: 'Hiru Tv', code: '#ffffff', image: require('../../assest/hiruTv.jpg'), videoId: 'sawQL8yOd9U' },
-            { name: 'Tv Deran', code: '#ffffff', image: require('../../assest/deranaTv.png'), videoId: 'GuPIZFHFcWQ' },
-            { name: 'National Tv', code: '#ffffff', image: require('../../assest/nationalTv.png'), videoId: 'VbwCghl8vmU' },
-            { name: 'ITN', code: '#ffffff', image: require('../../assest/itnTv.jpg'), videoId: '' },
-            { name: 'Swarna wahini', code: "#ffffff", image: require('../../assest/Swarnavahini_logo.png'), videoId: '' },
-            { name: 'siyath Tv', code: '#ffffff', image: require('../../assest/siyathaTv.png'), videoId: '' },
-            { name: 'Tv 1', code: '#ffffff', image: require('../../assest/tv1Tv.png'), videoId: '' },
-            { name: 'Sirasa Tv', code: '#ffffff', image: require('../../assest/sirasaTv.jpg'), videoId: '' },
-            { name: 'CSN', code: '#ffffff', image: require('../../assest/csnTv.jpg'), videoId: '' },
-            { name: 'Buddhist Tv', code: '#ffffff', image: require('../../assest/BuddhistTv.png'), videoId: '' },
-
-        ];
-
         return (
 
             <Drawer
@@ -110,53 +129,55 @@ export default class Channel extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="lite-content" hidden={false} backgroundColor="white" translucent={true} />
-                <View style={styles.wrapper}>
-                    <Header style={{ backgroundColor: 'white', borderRadius: 10 }}>
-                        <Left>
-                            <TouchableOpacity onPress={() => this.openDrawer()}>
+              
 
-                                <Icon name='menu' style={{ color: 'gray' }} />
+              <View style={styles.wrapper}>
 
-                            </TouchableOpacity>
+                <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
+                    <Left>
+                        <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                        </Left>
-                        <Body>
+                            <Icon name='menu' style={{ color: 'gray' }} />
 
-                            <TextInput
-                                style={{
-                                    height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5
-                                }}
-                                placeholder='                      Search here' />
+                        </TouchableOpacity>
 
-                        </Body>
-                        <Right>
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
-                                <Icon name='search' style={{ color: 'gray' }} />
-                            </TouchableOpacity>
+                    </Left>
+                    <Body>
 
-                        </Right>
-                    </Header>
+                        <TextInput
+                            style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
+                            placeholder='Search here' />
+
+                    </Body>
+                    <Right>
+                        <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
+                            <Icon name='search' style={{ color: 'gray' }} />
+                        </TouchableOpacity>
+ 
+                    </Right>
+                </Header>
 
 
-                    {/* Body Content */}
-
-                    <FlatGrid
-                        itemDimension={130}
-                        items={items}
-                        style={styles.gridView}
-
-                        renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)} activeOpacity={0.9}>
-
-                                <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                                    <Image style={{ width: 100, height: 100, top: 10, borderRadius: 10, left: 10 }} source={item.image} />
-                                    <Text style={styles.itemName}>{item.name}</Text>
-                                </View>
-
-                            </TouchableOpacity>
-                        )}
-                    />
+ 
+           
+ 
+                <FlatGrid
+                    itemDimension={130}
+                    items={this.state.getall}
+                    style={styles.gridView}
+ 
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)}>
+ 
+                            <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+item.ch_Image}} />
+                                <Text style={styles.itemName}>{item.ch_Name}</Text>
+                               
+                            </View>
+ 
+                        </TouchableOpacity>
+                    )}
+                />
                 </View>
             </Drawer>
 
@@ -187,7 +208,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     wrapper: {
-        marginTop: 30,
+        marginTop:30,
         flex: 1
     },
     itemName: {
