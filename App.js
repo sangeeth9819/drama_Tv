@@ -31,10 +31,10 @@ const RootStack = createStackNavigator({
     screen:Episode,
     navigationOptions: { header: null }
   },
-  PlayScreen: {
-    screen: Play,
-    navigationOptions: { header: null }
-  },
+  // PlayScreen: {
+  //   screen: Play,
+  //   navigationOptions: { header: null }
+  // },
   // SampleScreen: {
   //   screen: SampleMenu,
   //   navigationOptions: { header: null }
