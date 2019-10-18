@@ -255,6 +255,13 @@ export default class TeledramaScreen extends Component {
                                             fontWeight: 'bold',
                                         }}></Text>
 
+<<<<<<< HEAD
+=======
+                                        {/* <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.id}</Text> */}
+                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
+                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{}</Text>
+                                    
+>>>>>>> finalDay
                                     </View>
                                 </View>
 
