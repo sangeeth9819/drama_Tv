@@ -22,6 +22,11 @@ const RootStack = createStackNavigator({
     navigationOptions: { header: null }
 
   },
+  // SampleScreen: {
+  //   screen: Sample,
+  //   navigationOptions: { header: null }
+
+  // },
   ChannelScreen: {
     screen: Channel,
     navigationOptions: { header: null }

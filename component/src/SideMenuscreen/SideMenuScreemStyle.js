@@ -1,6 +1,6 @@
 import React, { StyleSheet } from 'react-native'
 export default StyleSheet.create({
-    
+
     AllView: {
         width: 270,
         height: 220,
@@ -71,8 +71,8 @@ export default StyleSheet.create({
         alignContent: "center",
         textAlign: "center",
         top: 27,
-        right:6
-        
+        right: 6
+
     },
 
     SecondView: {

@@ -84,6 +84,7 @@ export default class TeledramaScreen extends Component {
         this.drawer._root.open()
     };
 
+  
     onClose = () => {
         this.setState({
             showTheThing: true
