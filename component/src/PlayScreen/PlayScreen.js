@@ -150,7 +150,7 @@ export default class Example extends Component {
                             <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
                                 {/* <View style={{ width: 35, height: 50, borderRadius: 30 }}> */}
                                     <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                                        <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} />
+                                        {/* <Image style={{ width: 25, height: 25, top: 8 }} source={require('../../assest/icons8-live-photos-30.png')} /> */}
                                         <TextInput
                                         style={{ bottom:25,left:30,height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, borderColor: '#FAFAFA' }}
                                         placeholder='Live' />

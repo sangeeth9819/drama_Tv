@@ -89,6 +89,19 @@ export default class Example extends Component {
         })
     }
 
+    changeScreenRotate(e) {
+        this.setState({ fullscreen: e.isFullscreen });
+        // Alert.alert(JSON.stringify(e))
+        if(e.isFullscreen===true){
+            // Alert.alert('true')
+        }else{
+            this.setState({
+                something:false
+            })
+            // Alert.alert('false')
+        }
+    }
+
     render() {
 
         var title;
@@ -121,8 +134,9 @@ export default class Example extends Component {
                 <View>
                     <ImageBackground style={{ height: 300 }} source={require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg')} >
 
-                        <SwipeCards
-                            renderCard={(cardData) =>    <YouTube
+
+                        {this.state.something &&
+                            <YouTube
 
                                 ref={this._youTubeRef}
                                 apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
@@ -149,26 +163,16 @@ export default class Example extends Component {
                                     this.setState({ quality: e.quality });
                                 }}
                                 onChangeFullscreen={e => {
-                                    this.setState({ fullscreen: e.isFullscreen });
+                                    this.changeScreenRotate(e)
                                 }}
                                 onProgress={e => {
                                     this.setState({ currentTime: e.currentTime });
                                 }}
 
                             />
-}
-                            renderNoMoreCards={() => <NoMoreCards />}
 
-                            onSwipeRight={this.handleYup}
-                            onSwipeLeft={this.handleNope}
-                            onSwipeUp={this.handleMaybe}
-                            hasMaybeAction
-                            // {this.state.something &&
-                         
-                            // }
 
-                        />
-
+                        }
                         <TouchableOpacity onPress={() => Alert.alert("working")} style={{
                             left: 300,
                             top: 190,
