@@ -40,8 +40,10 @@ export default class Example extends Component {
             duration: 0,
             currentTime: 0,
             fullscreen: true,
+            getall:[],
             playerWidth: Dimensions.get('window').width,
         };
+        this.state.videoId = this.props.navigation.state.params.id
     }
 
     navigateToTeledrama(id) {
@@ -101,6 +103,41 @@ export default class Example extends Component {
             // Alert.alert('false')
         }
     }
+    
+    componentDidMount() {
+        this.getallteledrama()
+    }
+    getallteledrama() {
+        this.setState({
+            loading:true
+        })
+        fetch('http://878d5ff5.ngrok.io/api/episodes/'+this.state.videoId, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                this.setState({
+                    loading:false
+                })
+                console.log("Getall :" + JSON.stringify(responseJson))
+
+                this.setState({
+                    getall: responseJson
+                })
+            })
+
+            .catch((error) => {
+                this.setState({
+                    loading:false
+                })
+                console.error(error);
+            });
+    }
+
 
     render() {
 
@@ -193,7 +230,7 @@ export default class Example extends Component {
 
                         <FlatList
                             itemDimension={130}
-                            data={items}
+                            data={this.state.getall}
                             style={styles.gridView}
 
                             renderItem={({ item, index }) => (

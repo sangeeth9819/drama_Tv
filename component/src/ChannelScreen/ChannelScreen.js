@@ -7,6 +7,9 @@ import {
 import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+import Spinner from 'react-native-loading-spinner-overlay';
+import Spinkit from 'react-native-spinkit';
+
 
 const formatData = (data, numColumns) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -54,6 +57,7 @@ export default class Channel extends Component {
                     duration: 0,
                     currentTime: 0,
                     fullscreen: true,
+                    loading:false,
                     getall: [],
                     playerWidth: Dimensions.get('window').width,
                 };
@@ -64,8 +68,11 @@ export default class Channel extends Component {
             }
         
             getAll() {
+                this.setState({
+                    loading:true
+                })
                 console.log('text');
-                fetch('https://testingsiteweb.000webhostapp.com/api/channels', {
+                fetch('http://878d5ff5.ngrok.io/api/channels', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
@@ -75,6 +82,9 @@ export default class Channel extends Component {
                 })
                     .then((resp) => resp.json())
                     .then((responseJson) => {
+                        this.setState({
+                            loading:false
+                        })
                         console.log("getAll :" + JSON.stringify(responseJson))
                         this.setState({
                             getall: responseJson
@@ -82,6 +92,9 @@ export default class Channel extends Component {
         
                     })
                     .catch((error) => {
+                        this.setState({
+                            loading:false
+                        })
                         console.error(error);
                     });
         
@@ -111,7 +124,9 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id) {
+        // Alert.alert(id+"")
         this.props.navigation.navigate('TeledramaScreen', {
+            
             id: id
         });
     }
@@ -158,7 +173,16 @@ export default class Channel extends Component {
                 </Header>
 
 
- 
+                <Spinner
+                      name="three-bounce"
+                       color="white"
+                        //visibility of Overlay Loading Spinner
+                        visible={this.state.loading}
+                        //Text with the Spinner 
+                        textContent={'Loading...'}
+                        //Text style of the Spinner Text
+                        textStyle={styles.spinnerTextStyle}
+                    />
            
  
                 <FlatGrid
@@ -167,7 +191,7 @@ export default class Channel extends Component {
                     style={styles.gridView}
  
                     renderItem={({ item, index }) => (
-                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoId)}>
+                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
  
                             <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
                                 <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+item.ch_Image}} />
@@ -227,4 +251,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#000000',
     },
+    spinnerTextStyle: {
+        color: '#FFF',
+      },
 });

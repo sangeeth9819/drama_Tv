@@ -6,7 +6,7 @@ import {
 import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 const items = [
     { name: 'Hamuwemu Aye', des: 'week Days 7.00-7.30', code: '#ffff', image: require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg') },
     { name: ' sangeethee', des: 'week Days 8.00-8.30', code: '#ffff', image: require('../../assest/san.jpg') },
@@ -19,34 +19,6 @@ const items = [
 const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {
-
-
-    componentDidMount() {
-        this.getallteledrama()
-    }
-    getallteledrama() {
-        fetch('https://testingsiteweb.000webhostapp.com/api/teledramas', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((resp) => resp.json())
-            .then((responseJson) => {
-                console.log("Getall :" + JSON.stringify(responseJson))
-
-                this.setState({
-                    getall: responseJson
-                })
-            })
-
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-
-
     constructor(props) {
 
 
@@ -57,6 +29,7 @@ export default class TeledramaScreen extends Component {
             getall: [],
             currentTime: 0,
             fullscreen: true,
+            loading:false,
             playerWidth: Dimensions.get('window').width,
 
 
@@ -64,7 +37,45 @@ export default class TeledramaScreen extends Component {
 
         };
         this.state.videoId = this.props.navigation.state.params.id
+        // Alert.alert(this.state.videoId+"")
     }
+
+    componentDidMount() {
+        this.getallteledrama()
+    }
+    getallteledrama() {
+        this.setState({
+            loading:true
+        })
+        fetch('http://878d5ff5.ngrok.io/api/teledramas/'+this.state.videoId, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                this.setState({
+                    loading:false
+                })
+                console.log("Getall :" + JSON.stringify(responseJson))
+
+                this.setState({
+                    getall: responseJson
+                })
+            })
+
+            .catch((error) => {
+                this.setState({
+                    loading:false
+                })
+                console.error(error);
+            });
+    }
+
+
+    
     renderItem = ({ item }) => {
         return (
             <Text style={styles.row}>
@@ -91,7 +102,7 @@ export default class TeledramaScreen extends Component {
         })
     }
     navigateToTeledrama(id) {
-        this.props.navigation.navigate('PlayScreen', {
+        this.props.navigation.navigate('EpisodeScreen', {
             id: id
         });
 
@@ -143,13 +154,21 @@ export default class TeledramaScreen extends Component {
                         </Right>
 
                     </Header>
+                    <Spinner
+                        //visibility of Overlay Loading Spinner
+                        visible={this.state.loading}
+                        //Text with the Spinner 
+                        textContent={'Loading...'}
+                        //Text style of the Spinner Text
+                        textStyle={styles.spinnerTextStyle}
+                    />
                     {/* Body Content */}
                     <FlatGrid
                         itemDimension={270}
                         items={this.state.getall}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateTo_Episode()} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
