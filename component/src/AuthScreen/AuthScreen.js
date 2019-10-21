@@ -67,14 +67,20 @@ export default class App extends Component {
         
         {!this.state.alignsecond ? null : (
           <View style={{ margin: 10 }}>
-            <Text
+            <Text 
               style={{ color: 'black', fontSize: 30, fontWeight: 'bold' }}>
               Drama TV
             </Text>
           </View>
         )}
       </View>
- 
-    );
-  }
+
+
+
+
+
+
+        );
+    }
 }
+

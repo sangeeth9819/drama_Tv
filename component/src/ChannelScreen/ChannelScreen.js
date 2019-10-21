@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import {
@@ -36,7 +35,6 @@ export default class Channel extends Component {
     };
 
     constructor(props) {
-<<<<<<< HEAD
         super(props);
         this.state = {
             isOpen: false,
@@ -87,42 +85,6 @@ export default class Channel extends Component {
                 console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                 this.setState({
                     getall: responseJson
-=======
-                super(props);
-                this.state = {
-                    isOpen: false,
-                    // isDisabled: false,
-                    swipeToClose: true,
-                    // sliderValue: 0.3,
-                    videoId: '',
-                    isReady: false,
-                    status: null,
-                    quality: null,
-                    error: null,
-                    isPlaying: true,
-                    isLooping: true,
-                    duration: 0,
-                    currentTime: 0,
-                    fullscreen: true,
-                    getall: [],
-                    playerWidth: Dimensions.get('window').width,
-                };
-        
-            }
-            componentDidMount() {
-                this.getAll()
-            }
-        
-            getAll() {
-                console.log('text');
-                fetch('http://fd81035c.ngrok.io/api/channels', {
-                    method: 'GET',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-        
->>>>>>> new123
                 })
 
             })
@@ -234,4 +196,3 @@ export default class Channel extends Component {
         );
     }
 }
-

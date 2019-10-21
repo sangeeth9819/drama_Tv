@@ -64,14 +64,7 @@ export default class TeledramaScreen extends Component {
         }
     }
     getallteledrama() {
-<<<<<<< HEAD
-        this.setState({
-            isVisible: true
-        })
-        fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId, {
-=======
         fetch('http://fd81035c.ngrok.io/api/teledramas'+ items.ch_Id ,{
->>>>>>> new123
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -122,10 +115,6 @@ export default class TeledramaScreen extends Component {
         this.drawer._root.open()
     };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> new123
     onClose = () => {
         this.setState({
             showTheThing: true
@@ -262,13 +251,10 @@ export default class TeledramaScreen extends Component {
                                             fontWeight: 'bold',
                                         }}></Text>
 
-<<<<<<< HEAD
-=======
                                         {/* <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.id}</Text> */}
                                         <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
                                         <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{item.created_at}</Text>
                                     
->>>>>>> finalDay
                                     </View>
                                 </View>
 
