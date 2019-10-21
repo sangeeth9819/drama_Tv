@@ -96,7 +96,13 @@ export default class Example extends Component {
 
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
+<<<<<<< HEAD
         if (e.isFullscreen === true) {
+=======
+        // Alert.alert(JSON.stringify(e))
+        if (e.isFullscreen === true) {
+            // Alert.alert('true')
+>>>>>>> new123
         } else {
             this.setState({
                 something: false
@@ -160,7 +166,61 @@ export default class Example extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
 
+                <ImageBackground style={{ height: 300 }} source={require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg')} >
 
+
+                    {this.state.something &&
+                        <YouTube
+
+                            ref={this._youTubeRef}
+                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                            videoId={this.state.videoId}
+
+                            play={this.state.isPlaying}
+                            loop={this.state.isLooping}
+                            fullscreen={this.state.fullscreen}
+                            controls={1}
+                            style={[
+                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                styles.player,
+                            ]}
+                            onError={e => {
+                                this.setState({ error: e.error });
+                            }}
+                            onReady={e => {
+                                this.setState({ isReady: true });
+                            }}
+                            onChangeState={e => {
+                                this.setState({ status: e.state });
+                            }}
+                            onChangeQuality={e => {
+                                this.setState({ quality: e.quality });
+                            }}
+                            onChangeFullscreen={e => {
+                                this.changeScreenRotate(e)
+                            }}
+                            onProgress={e => {
+                                this.setState({ currentTime: e.currentTime });
+                            }}
+
+                        />
+
+
+                    }
+                    <TouchableOpacity onPress={() => Alert.alert("working")} style={{
+                        left: 300,
+                        top: 190,
+                    }}>
+                        <View style={styles.imagebutton}>
+                            <Image style={{
+                                width: 33, height: 33, top: 8, left: 10,
+                            }} source={require('../../assest/play.png')} />
+                        </View>
+                    </TouchableOpacity>
+
+                </ImageBackground>
+
+<<<<<<< HEAD
                 <View>
                     <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
@@ -225,12 +285,17 @@ export default class Example extends Component {
                         </TouchableOpacity>
 
                     </ImageBackground>
+=======
+>>>>>>> new123
 
-                </View>
 
                 <View>
+<<<<<<< HEAD
 
                     <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
+=======
+                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50,   }}>
+>>>>>>> new123
 
                         <FlatList
                             itemDimension={130}
@@ -241,7 +306,11 @@ export default class Example extends Component {
 
                             renderItem={({ item, index }) => (
 
+<<<<<<< HEAD
                                 <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
+=======
+                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)} style={{}}>
+>>>>>>> new123
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{ height: 108, width: 192, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
@@ -304,7 +373,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
+<<<<<<< HEAD
         width: 375,
+=======
+        width: 340,
+>>>>>>> new123
         marginTop: 20,
         marginLeft: 6,
         borderRadius: 20,
