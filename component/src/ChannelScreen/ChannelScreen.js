@@ -72,7 +72,7 @@ export default class Channel extends Component {
                     loading:true
                 })
                 console.log('text');
-                fetch('http://878d5ff5.ngrok.io/api/channels', {
+                fetch('https://testingsiteweb.000webhostapp.com/api/channels', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
