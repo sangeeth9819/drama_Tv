@@ -47,7 +47,7 @@ export default class TeledramaScreen extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://878d5ff5.ngrok.io/api/teledramas/'+this.state.videoId, {
+        fetch('http://75f68750.ngrok.io/api/teledramas/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -172,7 +172,7 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
-                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+ item.te_Image }} >
+                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'http://75f68750.ngrok.io/images/'+ item.te_Image }} >
 
                                         </Image>
                                         {/* <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>

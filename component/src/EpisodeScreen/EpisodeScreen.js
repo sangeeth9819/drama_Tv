@@ -111,7 +111,7 @@ export default class Example extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://878d5ff5.ngrok.io/api/episodes/'+this.state.videoId, {
+        fetch('http://75f68750.ngrok.io/api/episodes/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -127,6 +127,7 @@ export default class Example extends Component {
 
                 this.setState({
                     getall: responseJson
+                
                 })
             })
 
@@ -235,11 +236,11 @@ export default class Example extends Component {
 
                             renderItem={({ item, index }) => (
 
-                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.videoID)}>
+                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
-                                        <Text style={styles.itemName} >{item.name}</Text>
-                                        <Text style={styles.itemName} >{item.subName}</Text>
+                                        <Text style={styles.itemName} >{item.ep_Title}</Text>
+                                        <Text style={styles.itemName} >{item.ep_DateTime}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -316,7 +317,7 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 16,
-        left: 200,
+        left: 150,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
