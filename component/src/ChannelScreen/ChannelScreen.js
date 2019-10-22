@@ -64,7 +64,7 @@ export default class Channel extends Component {
         
             }
             componentDidMount() {
-                this.getAll()
+                // this.getAll()
             }
         
             getAll() {
@@ -72,7 +72,7 @@ export default class Channel extends Component {
                     loading:true
                 })
                 console.log('text');
-                fetch('http://878d5ff5.ngrok.io/api/channels', {
+                fetch('http://75f68750.ngrok.io/api/channels/', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
