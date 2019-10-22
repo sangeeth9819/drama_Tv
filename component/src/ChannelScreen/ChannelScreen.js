@@ -72,7 +72,7 @@ export default class Channel extends Component {
                     loading:true
                 })
                 console.log('text');
-                fetch('https://testingsiteweb.000webhostapp.com/api/channels', {
+                fetch('http://75f68750.ngrok.io/api/channels', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
@@ -85,7 +85,7 @@ export default class Channel extends Component {
                         this.setState({
                             loading:false
                         })
-                        console.log("getAll :" + JSON.stringify(responseJson))
+                        console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                         this.setState({
                             getall: responseJson
                         })
@@ -194,7 +194,7 @@ export default class Channel extends Component {
                         <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
  
                             <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
-                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'https://testingsiteweb.000webhostapp.com/images/'+item.ch_Image}} />
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'http://75f68750.ngrok.io/images/'+item.ch_Image}} />
                                 <Text style={styles.itemName}>{item.ch_Name}</Text>
                                
                             </View>
