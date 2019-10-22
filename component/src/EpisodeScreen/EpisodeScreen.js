@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import SwipeCards from 'react-native-swipeable-cards';
 
 import {
-    StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
+    StyleSheet, View, Text, ScrollView,TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
 } from 'react-native';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Modal from 'react-native-modalbox';
@@ -41,9 +41,11 @@ export default class Example extends Component {
             currentTime: 0,
             fullscreen: true,
             getall:[],
+            imagepath:'',
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
+        this.state.imagepath = this.props.navigation.state.params.imagepath
     }
 
     navigateToTeledrama(id) {
@@ -111,7 +113,7 @@ export default class Example extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://75f68750.ngrok.io/api/episodes/'+this.state.videoId, {
+        fetch('http://fee30d2c.ngrok.io/api/episodes/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -126,7 +128,7 @@ export default class Example extends Component {
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
-                    getall: responseJson
+                    getall: responseJson.reverse()
                 
                 })
             })
@@ -154,7 +156,10 @@ export default class Example extends Component {
             { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
             { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
         ];
-
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            
+        }
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -170,7 +175,7 @@ export default class Example extends Component {
 
 
                 <View>
-                    <ImageBackground style={{ height: 300 }} source={require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg')} >
+                    <ImageBackground style={{ height: 300 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+ this.state.imagepath }} >
 
 
                         {this.state.something &&
@@ -226,9 +231,12 @@ export default class Example extends Component {
 
                 </View>
 
-                <View>
-                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50 }}>
 
+
+                <View>
+              
+                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50 }}>
+                  
                         <FlatList
                             itemDimension={130}
                             data={this.state.getall}
@@ -238,17 +246,18 @@ export default class Example extends Component {
 
                                 <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.videoID + '/default.jpg' }} />
+                                        <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.ep_videoID + '/default.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
-                                        <Text style={styles.itemName} >{item.ep_DateTime}</Text>
+                                        {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
                                 </TouchableOpacity>
                             )}
                         />
 
                     </Card>
+                   
                 </View>
-
+                
             </Drawer>
 
 
@@ -258,27 +267,23 @@ export default class Example extends Component {
 
 
 const styles = StyleSheet.create({
-
     imagebutton: {
         backgroundColor: '#f44336',
         width: 50,
         height: 50,
         borderRadius: 100,
-
-
     },
-
-
+ 
     buttonStyle4: {
         fontWeight: 'bold',
     },
-
+ 
     itemCode: {
-        fontWeight: '600',
-        fontSize: 12,
+        fontWeight: '100',
+        fontSize: 8,
         color: '#fff',
     },
-
+ 
     row: {
         left: 20,
         backgroundColor: 'white',
@@ -288,7 +293,6 @@ const styles = StyleSheet.create({
         height: 130,
         marginLeft: 10,
         width: 340,
-        marginTop: 20,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -301,27 +305,26 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
-    },
-
-    wrapper: {
-        marginTop: 10,
-        flex: 1
-    },
-    itemContainer: {
-        elevation: 5,
-        width: 360,
-        margin: 10,
+        width: 340,
+        marginTop: 20,
+        marginLeft: 6,
         borderRadius: 20,
         padding: 20,
         height: 105,
     },
+    wrapper: {
+        marginTop: 50,
+        flex: 1
+    },
     itemName: {
-        fontSize: 16,
+        fontSize: 14,
         left: 150,
+        height:100,
+        width:150,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
-
+ 
     },
 });
 

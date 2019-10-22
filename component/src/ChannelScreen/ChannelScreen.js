@@ -72,7 +72,7 @@ export default class Channel extends Component {
                     loading:true
                 })
                 console.log('text');
-                fetch('http://75f68750.ngrok.io/api/channels', {
+                fetch('http://fee30d2c.ngrok.io/api/channels', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
@@ -145,7 +145,7 @@ export default class Channel extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
               
-
+           
               <View style={styles.wrapper}>
 
                 <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
@@ -172,7 +172,7 @@ export default class Channel extends Component {
                     </Right>
                 </Header>
 
-
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                 <Spinner
                       name="three-bounce"
                        color="white"
@@ -194,7 +194,7 @@ export default class Channel extends Component {
                         <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
  
                             <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
-                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'http://75f68750.ngrok.io/images/'+item.ch_Image}} />
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+item.ch_Image}} />
                                 <Text style={styles.itemName}>{item.ch_Name}</Text>
                                
                             </View>

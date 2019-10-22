@@ -47,7 +47,7 @@ export default class TeledramaScreen extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://75f68750.ngrok.io/api/teledramas/'+this.state.videoId, {
+        fetch('http://fee30d2c.ngrok.io/api/teledramas/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -101,9 +101,10 @@ export default class TeledramaScreen extends Component {
             showTheThing: true
         })
     }
-    navigateToTeledrama(id) {
+    navigateToTeledrama(id,imagepath) {
         this.props.navigation.navigate('EpisodeScreen', {
-            id: id
+            id: id,
+            imagepath:imagepath
         });
 
     }
@@ -120,7 +121,7 @@ export default class TeledramaScreen extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+              
                 <View style={styles.wrapper}>
                     <Header style={{
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
@@ -154,6 +155,7 @@ export default class TeledramaScreen extends Component {
                         </Right>
 
                     </Header>
+                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                     <Spinner
                         //visibility of Overlay Loading Spinner
                         visible={this.state.loading}
@@ -168,11 +170,11 @@ export default class TeledramaScreen extends Component {
                         items={this.state.getall}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
-                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'http://75f68750.ngrok.io/images/'+ item.te_Image }} >
+                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+ item.te_Image }} >
 
                                         </Image>
                                         {/* <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
