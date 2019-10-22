@@ -64,7 +64,7 @@ export default class Channel extends Component {
         
             }
             componentDidMount() {
-                // this.getAll()
+                this.getAll()
             }
         
             getAll() {
