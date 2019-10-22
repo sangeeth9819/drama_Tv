@@ -143,17 +143,17 @@ export default class Example extends Component {
     render() {
 
         var title;
-        const items = [
-            { subName: '2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
-            { subName: '2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
-            { subName: '2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
-            { subName: '2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
-            { subName: '2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
-            { subName: '2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
-            { subName: '2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
-            { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
-            { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
-        ];
+        // const items = [
+        //     { subName: '2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
+        //     { subName: '2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
+        //     { subName: '2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
+        //     { subName: '2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
+        //     { subName: '2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
+        //     { subName: '2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
+        //     { subName: '2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
+        //     { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
+        //     { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
+        // ];
 
         return (
             <Drawer
