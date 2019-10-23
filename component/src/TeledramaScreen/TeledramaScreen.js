@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
-    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
+  StyleSheet, Text, View, Image, TouchableOpacity, Alert,StatusBar,
+     Dimensions,TextInput
 } from 'react-native';
-import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
+import { Header, Drawer, Left,Icon, Body, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Spinner from 'react-native-loading-spinner-overlay';
+import Spinner from'react-native-spinkit'
 import baseurl from '../../resource/strings'
-const items = [
-    { name: 'Hamuwemu Aye', des: 'week Days 7.00-7.30', code: '#ffff', image: require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg') },
-    { name: ' sangeethee', des: 'week Days 8.00-8.30', code: '#ffff', image: require('../../assest/san.jpg') },
-    { name: 'Husmak Tharamata', des: 'week Days 7.00-7.30', code: '#ffff', image: require('../../assest/husmak-tharamata-450x300.jpg') },
-    { name: "pawela", des: 'Weekends 7.30-8.30', code: "#fafafa", image: require('../../assest/pawela.jpg') },
-    { name: 'Dewani Inima', des: 'week Days 9.00-9.30', code: '#ffff', image: require('../../assest/dewani.jpg') },
-    { name: 'Sidu', des: 'week Days 7.30-8.00', code: '#ffff', image: require('../../assest/sidu.jpg') },
-];
+
 
 const extractKey = ({ id }) => id
 
@@ -31,6 +24,10 @@ export default class TeledramaScreen extends Component {
             currentTime: 0,
             fullscreen: true,
             loading:false,
+            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
+            size: 37,
+            color: "red",
+            isVisible: false,
             playerWidth: Dimensions.get('window').width,
 
 
@@ -38,7 +35,7 @@ export default class TeledramaScreen extends Component {
 
         };
         this.state.videoId = this.props.navigation.state.params.id
-        // Alert.alert(this.state.videoId+"")
+       
     }
 
     componentDidMount() {
@@ -46,7 +43,7 @@ export default class TeledramaScreen extends Component {
     }
     getallteledrama() {
         this.setState({
-            loading:true
+            isVisible:true
         })
         fetch(baseurl.BASE_URL+'/api/teledramas/'+this.state.videoId, {
             method: 'GET',
@@ -58,7 +55,7 @@ export default class TeledramaScreen extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    loading:false
+                    isVisible:false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
@@ -69,7 +66,7 @@ export default class TeledramaScreen extends Component {
 
             .catch((error) => {
                 this.setState({
-                    loading:false
+                    isVisible:false
                 })
                 console.error(error);
             });
@@ -157,14 +154,7 @@ export default class TeledramaScreen extends Component {
 
                     </Header>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    <Spinner
-                        //visibility of Overlay Loading Spinner
-                        visible={this.state.loading}
-                        //Text with the Spinner 
-                        textContent={'Loading...'}
-                        //Text style of the Spinner Text
-                        textStyle={styles.spinnerTextStyle}
-                    />
+                    
                     {/* Body Content */}
                     <FlatGrid
                         itemDimension={270}
@@ -174,15 +164,11 @@ export default class TeledramaScreen extends Component {
                             <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
+                                        
                                         <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: baseurl.BASE_URL+'/images/'+ item.te_Image }} >
 
                                         </Image>
-                                        {/* <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
-                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.des}</Text> */}
-
-                                        {/* <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.id}</Text> */}
-                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
+                                                 <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
                                         <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{item.created_at}</Text>
                                     
                                     </View>
@@ -191,6 +177,7 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         )}
                     />
+                        <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
             </Drawer>
 
@@ -232,4 +219,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         flex: 1
     },
+    spinner: {
+        alignItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        marginBottom:350,
+        left:150
+       
+      },
 })

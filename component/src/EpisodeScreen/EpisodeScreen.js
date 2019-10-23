@@ -1,27 +1,19 @@
 
 import React, { Component } from 'react';
-
-import SwipeCards from 'react-native-swipeable-cards';
 import baseurl from '../../resource/strings'
-
 import {
-    StyleSheet, View, Text, ScrollView,TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
+    StyleSheet, View, Text,TouchableOpacity, Alert, FlatList, Image, PixelRatio,Dimensions, ImageBackground,
 } from 'react-native';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Modal from 'react-native-modalbox';
-
+import Spinner from'react-native-spinkit'
 import YouTube, {
-    YouTubeStandaloneIOS,
-    YouTubeStandaloneAndroid
 } from 'react-native-youtube';
-
-// import { Header } from 'react-navigation-stack';
 import {
-    Header, Item, Input, Footer, Card,
+  Card,
     Drawer,
 }
     from 'native-base';
-import { FlatGrid } from 'react-native-super-grid';
+
 
 export default class Example extends Component {
 
@@ -43,6 +35,10 @@ export default class Example extends Component {
             fullscreen: true,
             getall:[],
             imagepath:'',
+            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
+            size: 37,
+            color: "red",
+            isVisible: false,
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -50,39 +46,22 @@ export default class Example extends Component {
       
     }
 
-    navigateToTeledrama(id) {
-        // this.props.navigation.navigate('PlayScreen', {
-        //     id: id
-        // });
+    navigateToTeledrama(id) {   
         this.setState({
             fullscreen: true,
             videoId: id,
             something: true
         })
-        // Alert.alert(this.state.videoId+"")
-        // this.setState({
-        //     videoId: 'GuPIZFHFcWQ'
-        // })
-        // this.refs.modal1.open()
     }
 
     navigateToplaybutton(id) {       
         this.setState({
             fullscreen: true,
-            new_play: id,
+            videoId: id,
             something: true
         })       
     }
     
-
-    onClose() {
-        console.log('Modal just closed');
-    }
-
-    onOpen() {
-        console.log('Modal just opened');
-    }
-
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
@@ -105,14 +84,12 @@ export default class Example extends Component {
 
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
-        // Alert.alert(JSON.stringify(e))
         if(e.isFullscreen===true){
-            // Alert.alert('true')
         }else{
             this.setState({
                 something:false
             })
-            // Alert.alert('false')
+          
         }
     }
   
@@ -121,7 +98,7 @@ export default class Example extends Component {
     }
     getallteledrama() {
         this.setState({
-            loading:true
+            isVisible:true
         })
         fetch(baseurl.BASE_URL+'/api/episodes/'+this.state.videoId, {
             method: 'GET',
@@ -133,7 +110,7 @@ export default class Example extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    loading:false
+                    isVisible:false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
@@ -145,7 +122,7 @@ export default class Example extends Component {
 
             .catch((error) => {
                 this.setState({
-                    loading:false
+                    isVisible:false
                 })
                 console.error(error);
             });
@@ -175,7 +152,7 @@ export default class Example extends Component {
 
                         {this.state.something &&
                             <YouTube
-
+                          
                                 ref={this._youTubeRef}
                                 apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
                                 videoId={this.state.videoId}
@@ -211,7 +188,7 @@ export default class Example extends Component {
 
 
                         }
-                        <TouchableOpacity onPress={() => Alert.alert(this.state.getall[0].ep_videoID)} style={{
+                        <TouchableOpacity onPress={() =>  this. navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
                         }}>
@@ -252,7 +229,7 @@ export default class Example extends Component {
                         />
 
                     </Card>
-                  
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
                 
             </Drawer>
@@ -323,6 +300,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
  
     },
+    spinner: {
+        alignItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        marginBottom:350,
+        left:150
+       
+      },
 });
 
 

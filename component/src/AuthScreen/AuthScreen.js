@@ -1,50 +1,52 @@
 import React, { Component } from 'react';
-import { Platform, Alert, ImageBackground, Image ,StatusBar} from 'react-native';
-import { View,Text } from 'native-base';
-import {NavigationAction,StackActions, NavigationActions} from 'react-navigation'
-import styles from '../AuthScreen/AuthScreenStyle'
+ 
+import { Image } from 'react-native';
+ 
+import { View, Text } from 'native-base';
+ 
+import { StackActions, NavigationActions } from 'react-navigation'
+ 
 import BackgroundTimer from 'react-native-background-timer';
+ 
 export default class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-          animating: false,
-          align: 'center',
-          alignsecond: false,
-        };
-        setTimeout(
-          () =>
-            this.setState({ align: 'flex-start' }, function() {
-              this.setState({
-                alignsecond: true,
-              });
-            }),
-          2000
-        );
-      }
-    componentDidMount(){
-        this.test()
-    }
-   
-    test(){
-       const timeoutId= BackgroundTimer.setTimeout(() => {
-       const resetAction=StackActions.reset({
-           index:0,
-           actions:[
-               NavigationActions.navigate({routeName:'ChannelScreen'})
-           ],
-           
-
-});
-this.props.navigation.dispatch(resetAction);
-
-
-        },3000);
-    }
-    render() {
-        return (
-
-            <View
+  constructor() {
+    super();
+    this.state = {
+      animating: false,
+      align: 'center',
+      alignsecond: false,
+    };
+    setTimeout(
+      () =>
+        this.setState({ align: 'flex-start' }, function () {
+          this.setState({
+            alignsecond: true,
+          });
+        }),
+      2000
+    );
+  }
+  componentDidMount() {
+    this.test()
+  }
+ 
+  test() {
+    const timeoutId = BackgroundTimer.setTimeout(() => {
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'ChannelScreen' })
+        ],
+ 
+      });
+      this.props.navigation.dispatch(resetAction);
+ 
+    }, 3000);
+  }
+  render() {
+    return (
+ 
+      <View
         style={{
           flex: 1,
           alignItems: 'center',
@@ -54,11 +56,13 @@ this.props.navigation.dispatch(resetAction);
         }}>
         <Image
           source={require
-                            (
-                                 '../../assest/original.png'
-                            )}
-          style={{  height: 100,
-            width: 150,}}
+            (
+              '../../assest/original.png'
+            )}
+          style={{
+            height: 100,
+            width: 150,
+          }}
         />
         {!this.state.alignsecond ? null : (
           <View style={{ margin: 10 }}>
@@ -74,7 +78,7 @@ this.props.navigation.dispatch(resetAction);
 
 
 
-
-        );
-    }
+ 
+    );
+  }
 }

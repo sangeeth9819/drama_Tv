@@ -1,33 +1,23 @@
 
 import React, { Component } from 'react';
 import {
-    Platform, StyleSheet, Text, View, Image, TouchableOpacity, Alert, TouchableHighlight, StatusBar,
-    TouchableNativeFeedback, TouchableWithoutFeedback, FlatList, Dimensions, SearchBar, ScrollView, TextInput
+    StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar,
+    Dimensions, TextInput
 } from 'react-native';
-import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right } from 'native-base';
+import { Header, Drawer, Left, Button, Icon, Body, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Spinner from 'react-native-loading-spinner-overlay';
-import Spinkit from 'react-native-spinkit';
+// import Spinner from 'react-native-loading-spinner-overlay';
 import baseurl from '../../resource/strings'
+import Spinner from'react-native-spinkit'
 
-
-const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns);
-    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-        numberOfElementsLastRow++;
-    }
-    return data;
-};
 const numColumns = 3;
 
 export default class Channel extends Component {
 
 
 
-    
+
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -42,66 +32,69 @@ export default class Channel extends Component {
     };
 
     constructor(props) {
-                super(props);
-                this.state = {
-                    isOpen: false,
-                    // isDisabled: false,
-                    swipeToClose: true,
-                    // sliderValue: 0.3,
-                    videoId: '',
-                    isReady: false,
-                    status: null,
-                    quality: null,
-                    error: null,
-                    isPlaying: true,
-                    isLooping: true,
-                    duration: 0,
-                    currentTime: 0,
-                    fullscreen: true,
-                    loading:false,
-                    getall: [],
-                    playerWidth: Dimensions.get('window').width,
-                };
-        
-            }
-            componentDidMount() {
-                this.getAll()
-            }
-        
-            getAll() {
+        super(props);
+        this.state = {
+            isOpen: false,
+            swipeToClose: true,
+            videoId: '',
+            isReady: false,
+            status: null,
+            quality: null,
+            error: null,
+            isPlaying: true,
+            isLooping: true,
+            duration: 0,
+            currentTime: 0,
+            fullscreen: true,
+            loading: false,
+            getall: [],
+            playerWidth: Dimensions.get('window').width,
+            index: 0,
+            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
+            size: 37,
+            color: "red",
+            isVisible: false
+        };
+
+    }
+    componentDidMount() {
+        this.getAll()
+    }
+
+    getAll() {
+        this.setState({
+            isVisible: true
+        })
+        console.log('text');
+        fetch(baseurl.BASE_URL + '/api/channels', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
                 this.setState({
-                    loading:true
+                    isVisible: false
                 })
-                console.log('text');
-                fetch(baseurl.BASE_URL+'/api/channels', {
-                    method: 'GET',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-        
+                console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                this.setState({
+                    getall: responseJson
                 })
-                    .then((resp) => resp.json())
-                    .then((responseJson) => {
-                        this.setState({
-                            loading:false
-                        })
-                        console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
-                        this.setState({
-                            getall: responseJson
-                        })
-        
-                    })
-                    .catch((error) => {
-                        this.setState({
-                            loading:false
-                        })
-                        console.error(error);
-                    });
-        
-        
-            }
- 
+
+            })
+            .catch((error) => {
+                this.setState({
+                    isVisible: false
+                })
+                console.error(error);
+            });
+
+
+    }
+
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -125,9 +118,8 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id) {
-        // Alert.alert(id+"")
         this.props.navigation.navigate('TeledramaScreen', {
-            
+
             id: id
         });
     }
@@ -145,65 +137,65 @@ export default class Channel extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-              
-           
-              <View style={styles.wrapper}>
 
-                <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
-                    <Left>
-                        <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                            <Icon name='menu' style={{ color: 'gray' }} />
+                <View style={styles.wrapper}>
 
-                        </TouchableOpacity>
+                    <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
+                        <Left>
+                            <TouchableOpacity onPress={() => this.openDrawer()}>
 
-                    </Left>
-                    <Body>
+                                <Icon name='menu' style={{ color: 'gray' }} />
 
-                        <TextInput
-                            style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
-                            placeholder='Search here' />
+                            </TouchableOpacity>
 
-                    </Body>
-                    <Right>
-                        <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
-                            <Icon name='search' style={{ color: 'gray' }} />
-                        </TouchableOpacity>
- 
-                    </Right>
-                </Header>
+                        </Left>
+                        <Body>
 
-                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                <Spinner
-                      name="three-bounce"
-                       color="white"
-                        //visibility of Overlay Loading Spinner
+                            <TextInput
+                                style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
+                                placeholder='Search here' />
+
+                        </Body>
+                        <Right>
+                            <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
+                                <Icon name='search' style={{ color: 'gray' }} />
+                            </TouchableOpacity>
+
+                        </Right>
+                    </Header>
+
+                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                    {/* <Spinner
+                        name="three-bounce"
+                        color="white"
                         visible={this.state.loading}
-                        //Text with the Spinner 
                         textContent={'Loading...'}
-                        //Text style of the Spinner Text
                         textStyle={styles.spinnerTextStyle}
+                    /> */}
+                
+
+
+                    <FlatGrid
+                        itemDimension={130}
+                        items={this.state.getall}
+                        style={styles.gridView}
+
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
+
+                                <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                    <Text style={styles.itemName}>{item.ch_Name}</Text>
+
+                                </View>
+
+                            </TouchableOpacity>
+                        )}
                     />
-           
- 
-                <FlatGrid
-                    itemDimension={130}
-                    items={this.state.getall}
-                    style={styles.gridView}
- 
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
- 
-                            <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
-                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL+'/images/'+item.ch_Image}} />
-                                <Text style={styles.itemName}>{item.ch_Name}</Text>
-                               
-                            </View>
- 
-                        </TouchableOpacity>
-                    )}
-                />
+                      <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
+                  
             </Drawer>
 
         );
@@ -233,7 +225,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     wrapper: {
-        marginTop:30,
+        marginTop: 30,
         flex: 1
     },
     itemName: {
@@ -246,6 +238,14 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontWeight: 'bold',
     },
+    spinner: {
+        alignItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        marginBottom:350,
+        left:150
+       
+      },
     itemCode: {
 
         fontWeight: '600',
@@ -254,5 +254,5 @@ const styles = StyleSheet.create({
     },
     spinnerTextStyle: {
         color: '#FFF',
-      },
+    },
 });
