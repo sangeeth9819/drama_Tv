@@ -9,6 +9,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Spinkit from 'react-native-spinkit';
+import baseurl from '../../resource/strings'
 
 
 const formatData = (data, numColumns) => {
@@ -72,7 +73,7 @@ export default class Channel extends Component {
                     loading:true
                 })
                 console.log('text');
-                fetch('http://fee30d2c.ngrok.io/api/channels', {
+                fetch(baseurl.BASE_URL+'/api/channels', {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
@@ -194,7 +195,7 @@ export default class Channel extends Component {
                         <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
  
                             <View style={[styles.itemContainer, { backgroundColor:'white' }]}>
-                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+item.ch_Image}} />
+                                <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL+'/images/'+item.ch_Image}} />
                                 <Text style={styles.itemName}>{item.ch_Name}</Text>
                                
                             </View>

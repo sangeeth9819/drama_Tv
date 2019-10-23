@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import SwipeCards from 'react-native-swipeable-cards';
+import baseurl from '../../resource/strings'
 
 import {
     StyleSheet, View, Text, ScrollView,TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
@@ -46,6 +47,7 @@ export default class Example extends Component {
         };
         this.state.videoId = this.props.navigation.state.params.id
         this.state.imagepath = this.props.navigation.state.params.imagepath
+      
     }
 
     navigateToTeledrama(id) {
@@ -64,6 +66,14 @@ export default class Example extends Component {
         // this.refs.modal1.open()
     }
 
+    navigateToplaybutton(id) {       
+        this.setState({
+            fullscreen: true,
+            new_play: id,
+            something: true
+        })       
+    }
+    
 
     onClose() {
         console.log('Modal just closed');
@@ -105,7 +115,7 @@ export default class Example extends Component {
             // Alert.alert('false')
         }
     }
-    
+  
     componentDidMount() {
         this.getallteledrama()
     }
@@ -113,7 +123,7 @@ export default class Example extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://fee30d2c.ngrok.io/api/episodes/'+this.state.videoId, {
+        fetch(baseurl.BASE_URL+'/api/episodes/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -143,23 +153,8 @@ export default class Example extends Component {
 
 
     render() {
-
-        var title;
-        const items = [
-            { subName: '2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
-            { subName: '2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
-            { subName: '2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
-            { subName: '2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
-            { subName: '2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
-            { subName: '2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
-            { subName: '2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
-            { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
-            { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
-        ];
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
-            
-        }
+        // var new_play=this.state.getall[0].ep_videoID
+        var title; 
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -175,7 +170,7 @@ export default class Example extends Component {
 
 
                 <View>
-                    <ImageBackground style={{ height: 300 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+ this.state.imagepath }} >
+                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL+'/images/'+ this.state.imagepath }} >
 
 
                         {this.state.something &&
@@ -216,7 +211,7 @@ export default class Example extends Component {
 
 
                         }
-                        <TouchableOpacity onPress={() => Alert.alert("working")} style={{
+                        <TouchableOpacity onPress={() => Alert.alert(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
                         }}>
@@ -244,18 +239,20 @@ export default class Example extends Component {
 
                             renderItem={({ item, index }) => (
 
-                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)}>
+                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.ep_videoID + '/default.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
                                 </TouchableOpacity>
+                                
                             )}
+                            
                         />
 
                     </Card>
-                   
+                  
                 </View>
                 
             </Drawer>

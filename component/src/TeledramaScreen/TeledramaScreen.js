@@ -7,6 +7,7 @@ import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Bod
 import { FlatGrid } from 'react-native-super-grid';
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-loading-spinner-overlay';
+import baseurl from '../../resource/strings'
 const items = [
     { name: 'Hamuwemu Aye', des: 'week Days 7.00-7.30', code: '#ffff', image: require('../../assest/Hamuwemu-Aye-Sansare-450x300.jpg') },
     { name: ' sangeethee', des: 'week Days 8.00-8.30', code: '#ffff', image: require('../../assest/san.jpg') },
@@ -47,7 +48,7 @@ export default class TeledramaScreen extends Component {
         this.setState({
             loading:true
         })
-        fetch('http://fee30d2c.ngrok.io/api/teledramas/'+this.state.videoId, {
+        fetch(baseurl.BASE_URL+'/api/teledramas/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -174,7 +175,7 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         {/* <Image style={{ width: 340, height: 250, borderRadius: 10, }} source={item.image} /> */}
-                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+ item.te_Image }} >
+                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: baseurl.BASE_URL+'/images/'+ item.te_Image }} >
 
                                         </Image>
                                         {/* <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.name}</Text>
