@@ -1,13 +1,12 @@
 
 import React, { Component } from 'react';
 
-import SwipeCards from 'react-native-swipeable-cards';
 
 import {
-    StyleSheet, View, Text, ScrollView,TextInput, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Button, Dimensions, ImageBackground, StatusBar
+    StyleSheet, View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, StatusBar
 } from 'react-native';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Modal from 'react-native-modalbox';
 
 import YouTube, {
     YouTubeStandaloneIOS,
@@ -16,11 +15,9 @@ import YouTube, {
 
 // import { Header } from 'react-navigation-stack';
 import {
-    Header, Item, Input, Footer, Card,
+    Card,
     Drawer,
-}
-    from 'native-base';
-import { FlatGrid } from 'react-native-super-grid';
+}from 'native-base';
 
 export default class Example extends Component {
 
@@ -40,8 +37,8 @@ export default class Example extends Component {
             duration: 0,
             currentTime: 0,
             fullscreen: true,
-            getall:[],
-            imagepath:'',
+            getall: [],
+            imagepath: '',
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -49,9 +46,7 @@ export default class Example extends Component {
     }
 
     navigateToTeledrama(id) {
-        // this.props.navigation.navigate('PlayScreen', {
-        //     id: id
-        // });
+       
         this.setState({
             fullscreen: true,
             videoId: id,
@@ -96,24 +91,24 @@ export default class Example extends Component {
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         // Alert.alert(JSON.stringify(e))
-        if(e.isFullscreen===true){
+        if (e.isFullscreen === true) {
             // Alert.alert('true')
-        }else{
+        } else {
             this.setState({
-                something:false
+                something: false
             })
             // Alert.alert('false')
         }
     }
-    
+
     componentDidMount() {
         this.getallteledrama()
     }
     getallteledrama() {
         this.setState({
-            loading:true
+            loading: true
         })
-        fetch('http://fee30d2c.ngrok.io/api/episodes/'+this.state.videoId, {
+        fetch('http://4e2c2590.ngrok.io/api/episodes/' + this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -123,19 +118,19 @@ export default class Example extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    loading:false
+                    loading: false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
                     getall: responseJson.reverse()
-                
+
                 })
             })
 
             .catch((error) => {
                 this.setState({
-                    loading:false
+                    loading: false
                 })
                 console.error(error);
             });
@@ -156,7 +151,7 @@ export default class Example extends Component {
             { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
             { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
         ];
-      
+
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -172,7 +167,7 @@ export default class Example extends Component {
 
 
                 <View>
-                    <ImageBackground style={{ height: 300 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/'+ this.state.imagepath }} >
+                    <ImageBackground style={{ height: 300 }} source={{ uri: 'http://4e2c2590.ngrok.io/images/' + this.state.imagepath }} >
 
 
                         {this.state.something &&
@@ -213,10 +208,11 @@ export default class Example extends Component {
 
 
                         }
-                        <TouchableOpacity onPress={() => Alert.alert("working")} style={{
+                        <TouchableOpacity onPress={() => this.state.getall[0]} style={{
                             left: 300,
                             top: 190,
                         }}>
+
                             <View style={styles.imagebutton}>
                                 <Image style={{
                                     width: 33, height: 33, top: 8, left: 10,
@@ -231,9 +227,9 @@ export default class Example extends Component {
 
 
                 <View>
-              
-                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50 }}>
-                  
+
+                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
+
                         <FlatList
                             itemDimension={130}
                             data={this.state.getall}
@@ -252,9 +248,9 @@ export default class Example extends Component {
                         />
 
                     </Card>
-                   
+
                 </View>
-                
+
             </Drawer>
 
 
@@ -270,17 +266,17 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 100,
     },
- 
+
     buttonStyle4: {
         fontWeight: 'bold',
     },
- 
+
     itemCode: {
         fontWeight: '100',
         fontSize: 8,
         color: '#fff',
     },
- 
+
     row: {
         left: 20,
         backgroundColor: 'white',
@@ -316,12 +312,12 @@ const styles = StyleSheet.create({
     itemName: {
         fontSize: 14,
         left: 150,
-        height:100,
-        width:150,
+        height: 100,
+        width: 150,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
- 
+
     },
 });
 
