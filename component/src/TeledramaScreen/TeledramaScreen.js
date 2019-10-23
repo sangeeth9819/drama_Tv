@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import {
     Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
 } from 'react-native';
-
-import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
-
+import { Header, Item, Input, Footer, Drawer, Container, Left, Button, Icon, Body, Title, Right, Label } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -14,6 +12,8 @@ import baseurl from '../../resource/strings'
 import YouTube, {
 } from 'react-native-youtube';
 
+
+const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
@@ -29,14 +29,7 @@ export default class TeledramaScreen extends Component {
             swipeToClose: true,
             currentTime: 0,
             fullscreen: true,
-            something: false,
             loading: false,
-            fullscreen: true,
-            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
-            size: 37,
-            color: "red",
-            isVisible: false,
-            isFetching: false,
             playerWidth: Dimensions.get('window').width,
 
         };
@@ -64,7 +57,10 @@ export default class TeledramaScreen extends Component {
         }
     }
     getallteledrama() {
-        fetch('http://fd81035c.ngrok.io/api/teledramas'+ items.ch_Id ,{
+        this.setState({
+            loading: true
+        })
+        fetch('http://75f68750.ngrok.io/api/teledramas/' + this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -74,10 +70,7 @@ export default class TeledramaScreen extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    isVisible: false
-                })
-                this.setState({
-                    isFetching: false
+                    loading: false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
@@ -88,7 +81,7 @@ export default class TeledramaScreen extends Component {
 
             .catch((error) => {
                 this.setState({
-                    isVisible: false
+                    loading: false
                 })
                 console.error(error);
             });
@@ -153,10 +146,12 @@ export default class TeledramaScreen extends Component {
                 })}>
 
                 <View style={styles.wrapper}>
+                
                     <Header style={{
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
                         elevation: 17,
+                    
                     }}>
 
                         <Left>
@@ -221,12 +216,17 @@ export default class TeledramaScreen extends Component {
 
                             />
 
-
-                        }
-
-                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                    <Spinner
+                        //visibility of Overlay Loading Spinner
+                        visible={this.state.loading}
+                        //Text with the Spinner 
+                        textContent={'Loading...'}
+                        //Text style of the Spinner Text
+                        textStyle={styles.spinnerTextStyle}
+                    />
 
                     {/* Body Content */}
+                   
                     <FlatGrid
                         itemDimension={270}
                         items={this.state.getall}
@@ -234,35 +234,31 @@ export default class TeledramaScreen extends Component {
                         refreshing={this.state.isFetching}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image)} activeOpacity={0.8}>
-                                <View style={{ borderRadius: 50 }}>
+                            
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
+                                
+                                
+                                   
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-
-                                        <Image style={{ height: 150, width: 373, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
-
+                                        <Image style={{ height: 250, width: 340, borderRadius: 20 }} source={{ uri: 'http://75f68750.ngrok.io/images/' + item.te_Image }} >
                                         </Image>
-                                        <Text style={styles.itemName} style={{
-                                            fontSize: 22,
-                                            left: 230,
-                                            height: 100,
-                                            width: 120,
-                                            bottom: 95,
-                                            color: 'black',
-                                            fontWeight: 'bold',
-                                        }}></Text>
+                                        
+                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold', }}>{item.te_Name}</Text>
+                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' ,}}>{item.created_at}</Text>
+                                        </View>
+                                        
 
-                                        {/* <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.id}</Text> */}
-                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
-                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{item.created_at}</Text>
-                                    
-                                    </View>
-                                </View>
-
+                                 
+                                   
+                              
+                                
                             </TouchableOpacity>
+                           
                         )}
 
                     />
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                 
+
                 </View>
             </Drawer>
 
@@ -274,11 +270,14 @@ const styles = StyleSheet.create({
         flex: 2,
     },
     gridView: {
-
+        flex: 1,
     },
     row: {
+        
         left: 20,
         padding: 15,
+        margin:20,
+        marginBottom:10,
         backgroundColor: 'white',
         width: 500,
         height: 80,
@@ -287,8 +286,7 @@ const styles = StyleSheet.create({
     itemContainer: {
         height: 250,
         width: 340,
-        elevation: 5,
-        marginTop: 42,
+        marginTop: 50,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -301,8 +299,10 @@ const styles = StyleSheet.create({
     },
 
     wrapper: {
-        marginTop: 30,
-        flex: 1
+        marginTop: 40,
+        flex: 50,
+    
+        
     },
     spinner: {
         alignItems: "center",
