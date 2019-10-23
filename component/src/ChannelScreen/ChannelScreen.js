@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     gridView: {
         flex: 1,
     },
-    itemContainer: {
+    itemContainer: { 
         justifyContent: 'flex-end',
         padding: 10,
         height: 130,
