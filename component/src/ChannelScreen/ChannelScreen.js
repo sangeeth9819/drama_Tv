@@ -119,11 +119,11 @@ export default class Channel extends Component {
     Test() {
         Alert.alert("Alert Is Working...")
     }
-    navigateToTeledrama(id) {
+    navigateToTeledrama(id,ch_videoID) {
         this.props.navigation.navigate('TeledramaScreen', {
 
-            id: id
-         
+            id: id,
+            ch_videoID:ch_videoID
         });
     }
 
@@ -185,7 +185,7 @@ export default class Channel extends Component {
                         style={styles.gridView}
 
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id,item.ch_videoID)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                     <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />

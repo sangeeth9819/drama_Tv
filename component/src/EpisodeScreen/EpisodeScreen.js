@@ -69,7 +69,7 @@ export default class Example extends Component {
         this.props.navigation.navigate('TeledramaScreen')
     }
     onRefresh() {
-        this.setState({ isFetching: true }, function() { this.getApiData() });
+        this.setState({ isFetching: true }, function() { this.getallteledrama() });
      }
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
