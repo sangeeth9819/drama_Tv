@@ -2,23 +2,24 @@
 import React, { Component } from 'react';
 
 import {
-    StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar,
-    Dimensions, TextInput
+    Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
 } from 'react-native';
-import { Header, Drawer, Left, Button, Icon, Body, Right } from 'native-base';
+
+import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
+
 import { FlatGrid } from 'react-native-super-grid';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+
 // import Spinner from 'react-native-loading-spinner-overlay';
 import baseurl from '../../resource/strings'
-import Spinner from'react-native-spinkit'
 
-const numColumns = 3;
+import Spinner from 'react-native-spinkit'
+
+import styles from './ChannelScreenStyle';
+
 
 export default class Channel extends Component {
-
-
-
 
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
@@ -28,6 +29,7 @@ export default class Channel extends Component {
             <View
                 style={styles.item}
             >
+                
                 <Text style={styles.itemText}>{item.key}</Text>
             </View>
         );
@@ -168,15 +170,6 @@ export default class Channel extends Component {
                     </Header>
 
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    {/* <Spinner
-                        name="three-bounce"
-                        color="white"
-                        visible={this.state.loading}
-                        textContent={'Loading...'}
-                        textStyle={styles.spinnerTextStyle}
-                    /> */}
-                
-
 
                     <FlatGrid
                         itemDimension={130}
@@ -195,66 +188,12 @@ export default class Channel extends Component {
                             </TouchableOpacity>
                         )}
                     />
-                      <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
                 </View>
-                  
+
             </Drawer>
 
         );
     }
 }
 
-const styles = StyleSheet.create({
-    gridView: {
-        flex: 1,
-    },
-    itemContainer: { 
-        justifyContent: 'flex-end',
-        padding: 10,
-        height: 130,
-        width: 140,
-        marginTop: 20,
-        marginLeft: 10,
-        borderRadius: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 10.65,
-
-        elevation: 6,
-    },
-    wrapper: {
-        marginTop: 30,
-        flex: 1
-    },
-    itemName: {
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 10,
-        fontSize: 16,
-        color: '#6b6b47',
-        fontWeight: '600',
-        fontWeight: 'bold',
-    },
-    spinner: {
-        alignItems:"center",
-        justifyContent:"center",
-        alignContent:"center",
-        marginBottom:350,
-        left:150
-       
-      },
-    itemCode: {
-
-        fontWeight: '600',
-        fontSize: 12,
-        color: '#000000',
-    },
-    spinnerTextStyle: {
-        color: '#FFF',
-    },
-});
