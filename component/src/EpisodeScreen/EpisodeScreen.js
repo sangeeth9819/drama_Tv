@@ -39,6 +39,7 @@ export default class Example extends Component {
             size: 37,
             color: "red",
             isVisible: false,
+            isFetching: false,
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -61,7 +62,9 @@ export default class Example extends Component {
             something: true
         })       
     }
-    
+    onRefresh() {
+        this.setState({ isFetching: true }, function() { this.getApiData() });
+     }
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
@@ -112,6 +115,9 @@ export default class Example extends Component {
                 this.setState({
                     isVisible:false
                 })
+                this.setState({
+                     isFetching: false
+                     })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
@@ -212,13 +218,15 @@ export default class Example extends Component {
                         <FlatList
                             itemDimension={130}
                             data={this.state.getall}
+                            onRefresh={() => this.onRefresh()}
+                            refreshing={this.state.isFetching}
                             style={styles.gridView}
 
                             renderItem={({ item, index }) => (
 
                                 <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.ep_videoID + '/default.jpg' }} />
+                                        <Image style={{ height: 108, width: 192, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
@@ -292,9 +300,9 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 150,
+        left: 180,
         height:100,
-        width:150,
+        width:120,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',

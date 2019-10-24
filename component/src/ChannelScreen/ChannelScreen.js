@@ -60,7 +60,7 @@ export default class Channel extends Component {
     componentDidMount() {
         this.getAll()
     }
-
+    
     getAll() {
         this.setState({
             isVisible: true
@@ -121,6 +121,7 @@ export default class Channel extends Component {
         this.props.navigation.navigate('TeledramaScreen', {
 
             id: id
+         
         });
     }
 

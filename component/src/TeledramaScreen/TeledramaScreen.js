@@ -28,6 +28,7 @@ export default class TeledramaScreen extends Component {
             size: 37,
             color: "red",
             isVisible: false,
+            isFetching: false,
             playerWidth: Dimensions.get('window').width,
 
 
@@ -37,7 +38,10 @@ export default class TeledramaScreen extends Component {
         this.state.videoId = this.props.navigation.state.params.id
        
     }
-
+    onRefresh() {
+        this.setState({ isFetching: true }, function() { this.getApiData() });
+     }
+    
     componentDidMount() {
         this.getallteledrama()
     }
@@ -57,6 +61,9 @@ export default class TeledramaScreen extends Component {
                 this.setState({
                     isVisible:false
                 })
+                this.setState({
+                     isFetching: false 
+                    })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
@@ -159,6 +166,8 @@ export default class TeledramaScreen extends Component {
                     <FlatGrid
                         itemDimension={270}
                         items={this.state.getall}
+                        onRefresh={() => this.onRefresh()}
+                        refreshing={this.state.isFetching}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
