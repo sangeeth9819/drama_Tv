@@ -13,7 +13,6 @@ import { View } from 'native-base';
 import Auth from './component/src/AuthScreen/AuthScreen';
 import Channel from './component/src/ChannelScreen/ChannelScreen';
 import Episode from './component/src/EpisodeScreen/EpisodeScreen';
-import Play from './component/src/PlayScreen/PlayScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
 
 const RootStack = createStackNavigator({
