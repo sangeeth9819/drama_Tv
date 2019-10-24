@@ -2,16 +2,17 @@
 import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 import {
-    StyleSheet, View, Text,TouchableOpacity, Alert, FlatList, Image, PixelRatio,Dimensions, ImageBackground,
+    StyleSheet, View, Text, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Spinner from'react-native-spinkit'
+import Spinner from 'react-native-spinkit'
 import YouTube, {
 } from 'react-native-youtube';
 import {
-  Card,
+    Card,
     Drawer,
+    Icon,
 }
     from 'native-base';
 
@@ -34,8 +35,8 @@ export default class Example extends Component {
             duration: 0,
             currentTime: 0,
             fullscreen: true,
-            getall:[],
-            imagepath:'',
+            getall: [],
+            imagepath: '',
             types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
             size: 37,
             color: "red",
@@ -45,10 +46,10 @@ export default class Example extends Component {
         };
         this.state.videoId = this.props.navigation.state.params.id
         this.state.imagepath = this.props.navigation.state.params.imagepath
-      
+
     }
 
-    navigateToTeledrama(id) {   
+    navigateToTeledrama(id) {
         this.setState({
             fullscreen: true,
             videoId: id,
@@ -56,12 +57,16 @@ export default class Example extends Component {
         })
     }
 
-    navigateToplaybutton(id) {       
+    navigateToplaybutton(id) {
         this.setState({
             fullscreen: true,
             videoId: id,
             something: true
-        })       
+        })
+    }
+
+    navigateToTeleScreen() {
+        this.props.navigation.navigate('TeledramaScreen')
     }
     onRefresh() {
         this.setState({ isFetching: true }, function() { this.getApiData() });
@@ -88,23 +93,23 @@ export default class Example extends Component {
 
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
-        if(e.isFullscreen===true){
-        }else{
+        if (e.isFullscreen === true) {
+        } else {
             this.setState({
                 something: false
             })
-          
+
         }
     }
-  
+
     componentDidMount() {
         this.getallteledrama()
     }
     getallteledrama() {
         this.setState({
-            isVisible:true
+            isVisible: true
         })
-        fetch(baseurl.BASE_URL+'/api/episodes/'+this.state.videoId, {
+        fetch(baseurl.BASE_URL + '/api/episodes/' + this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -114,7 +119,7 @@ export default class Example extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    isVisible:false
+                    isVisible: false
                 })
                 this.setState({
                      isFetching: false
@@ -129,7 +134,7 @@ export default class Example extends Component {
 
             .catch((error) => {
                 this.setState({
-                    isVisible:false
+                    isVisible: false
                 })
                 console.error(error);
             });
@@ -138,7 +143,7 @@ export default class Example extends Component {
 
     render() {
         // var new_play=this.state.getall[0].ep_videoID
-        var title; 
+        var title;
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -154,12 +159,11 @@ export default class Example extends Component {
 
 
                 <View>
-                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL+'/images/'+ this.state.imagepath }} >
-
+                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
                         {this.state.something &&
                             <YouTube
-                          
+
                                 ref={this._youTubeRef}
                                 apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
                                 videoId={this.state.videoId}
@@ -195,17 +199,31 @@ export default class Example extends Component {
 
 
                         }
-                        <TouchableOpacity onPress={() =>  this. navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
+
+
+                        <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
                         }}>
 
                             <View style={styles.imagebutton}>
+
                                 <Image style={{
                                     width: 33, height: 33, top: 8, left: 10,
                                 }} source={require('../../assest/play.png')} />
+
+
                             </View>
                         </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{}}>
+                            <Image style={{
+                                width: 30, height: 30, bottom: 12, left: 10
+                            }} source={require('../../assest/iconBack.png')} />
+                        </TouchableOpacity>
+
+
+
 
                     </ImageBackground>
 
@@ -233,13 +251,13 @@ export default class Example extends Component {
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
                                 </TouchableOpacity>
-                                
+
                             )}
-                            
+
                         />
 
                     </Card>
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
                 </View>
 
             </Drawer>
@@ -304,20 +322,20 @@ const styles = StyleSheet.create({
         fontSize: 14,
         left: 180,
         height: 100,
-        width: 150,
+        width: 120,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
 
     },
     spinner: {
-        alignItems:"center",
-        justifyContent:"center",
-        alignContent:"center",
-        marginBottom:350,
-        left:150
-       
-      },
+        alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+        marginBottom: 350,
+        left: 150
+
+    },
 });
 
 
