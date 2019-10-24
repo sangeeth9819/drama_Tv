@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
+ 
 import { Image } from 'react-native';
-
+ 
 import { View, Text } from 'native-base';
-
+ 
 import { StackActions, NavigationActions } from 'react-navigation'
-
+ 
 import BackgroundTimer from 'react-native-background-timer';
-
+ 
 export default class App extends Component {
   constructor() {
     super();
@@ -29,7 +29,7 @@ export default class App extends Component {
   componentDidMount() {
     this.test()
   }
-
+ 
   test() {
     const timeoutId = BackgroundTimer.setTimeout(() => {
       const resetAction = StackActions.reset({
@@ -37,17 +37,15 @@ export default class App extends Component {
         actions: [
           NavigationActions.navigate({ routeName: 'ChannelScreen' })
         ],
-
-
+ 
       });
       this.props.navigation.dispatch(resetAction);
-
-
+ 
     }, 3000);
   }
   render() {
     return (
-
+ 
       <View
         style={{
           flex: 1,
@@ -80,7 +78,7 @@ export default class App extends Component {
 
 
 
-
+ 
     );
   }
 }

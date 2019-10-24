@@ -2,26 +2,17 @@
 import React, { Component } from 'react';
 
 import {
-    StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
+    StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar,
+    Dimensions, TextInput
 } from 'react-native';
-
-import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
-
+import { Header, Drawer, Left, Button, Icon, Body, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+// import Spinner from 'react-native-loading-spinner-overlay';
+import baseurl from '../../resource/strings'
+import Spinner from'react-native-spinkit'
 
-import Spinner from 'react-native-loading-spinner-overlay';
-
-const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns);
-    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
-        numberOfElementsLastRow++;
-    }
-    return data;
-};
 const numColumns = 3;
 
 export default class Channel extends Component {
@@ -60,6 +51,11 @@ export default class Channel extends Component {
             loading: false,
             getall: [],
             playerWidth: Dimensions.get('window').width,
+            index: 0,
+            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
+            size: 37,
+            color: "red",
+            isVisible: false
         };
 
     }
@@ -69,10 +65,10 @@ export default class Channel extends Component {
 
     getAll() {
         this.setState({
-            loading: true
+            isVisible: true
         })
         console.log('text');
-        fetch('http://4e2c2590.ngrok.io/api/channels', {
+        fetch(baseurl.BASE_URL + '/api/channels', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -83,7 +79,7 @@ export default class Channel extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    loading: false
+                    isVisible: false
                 })
                 console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                 this.setState({
@@ -93,7 +89,7 @@ export default class Channel extends Component {
             })
             .catch((error) => {
                 this.setState({
-                    loading: false
+                    isVisible: false
                 })
                 console.error(error);
             });
@@ -172,19 +168,14 @@ export default class Channel extends Component {
                     </Header>
 
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    <Spinner
+                    {/* <Spinner
                         name="three-bounce"
                         color="white"
-
-                        //visibility of Overlay Loading Spinner
                         visible={this.state.loading}
-
-                        //Text with the Spinner 
                         textContent={'Loading...'}
-
-                        //Text style of the Spinner Text
                         textStyle={styles.spinnerTextStyle}
-                    />
+                    /> */}
+                
 
 
                     <FlatGrid
@@ -196,7 +187,7 @@ export default class Channel extends Component {
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: 'http://fee30d2c.ngrok.io/images/' + item.ch_Image }} />
+                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
                                     <Text style={styles.itemName}>{item.ch_Name}</Text>
 
                                 </View>
@@ -204,7 +195,9 @@ export default class Channel extends Component {
                             </TouchableOpacity>
                         )}
                     />
+                      <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
+                  
             </Drawer>
 
         );
@@ -247,6 +240,14 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontWeight: 'bold',
     },
+    spinner: {
+        alignItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        marginBottom:350,
+        left:150
+       
+      },
     itemCode: {
 
         fontWeight: '600',

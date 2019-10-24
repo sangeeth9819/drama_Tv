@@ -1,23 +1,20 @@
 
 import React, { Component } from 'react';
-
-
+import baseurl from '../../resource/strings'
 import {
-    StyleSheet, View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, StatusBar
+    StyleSheet, View, Text,TouchableOpacity, Alert, FlatList, Image, PixelRatio,Dimensions, ImageBackground,
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-
+import Spinner from'react-native-spinkit'
 import YouTube, {
-    YouTubeStandaloneIOS,
-    YouTubeStandaloneAndroid
 } from 'react-native-youtube';
-
-// import { Header } from 'react-navigation-stack';
 import {
-    Card,
+  Card,
     Drawer,
-}from 'native-base';
+}
+    from 'native-base';
+
 
 export default class Example extends Component {
 
@@ -37,37 +34,35 @@ export default class Example extends Component {
             duration: 0,
             currentTime: 0,
             fullscreen: true,
-            getall: [],
-            imagepath: '',
+            getall:[],
+            imagepath:'',
+            types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
+            size: 37,
+            color: "red",
+            isVisible: false,
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
         this.state.imagepath = this.props.navigation.state.params.imagepath
+      
     }
 
-    navigateToTeledrama(id) {
-       
+    navigateToTeledrama(id) {   
         this.setState({
             fullscreen: true,
             videoId: id,
             something: true
         })
-        // Alert.alert(this.state.videoId+"")
-        // this.setState({
-        //     videoId: 'GuPIZFHFcWQ'
-        // })
-        // this.refs.modal1.open()
     }
 
-
-    onClose() {
-        console.log('Modal just closed');
+    navigateToplaybutton(id) {       
+        this.setState({
+            fullscreen: true,
+            videoId: id,
+            something: true
+        })       
     }
-
-    onOpen() {
-        console.log('Modal just opened');
-    }
-
+    
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
@@ -90,25 +85,23 @@ export default class Example extends Component {
 
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
-        // Alert.alert(JSON.stringify(e))
-        if (e.isFullscreen === true) {
-            // Alert.alert('true')
-        } else {
+        if(e.isFullscreen===true){
+        }else{
             this.setState({
                 something: false
             })
-            // Alert.alert('false')
+          
         }
     }
-
+  
     componentDidMount() {
         this.getallteledrama()
     }
     getallteledrama() {
         this.setState({
-            loading: true
+            isVisible:true
         })
-        fetch('http://4e2c2590.ngrok.io/api/episodes/' + this.state.videoId, {
+        fetch(baseurl.BASE_URL+'/api/episodes/'+this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -118,7 +111,7 @@ export default class Example extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    loading: false
+                    isVisible:false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
@@ -130,7 +123,7 @@ export default class Example extends Component {
 
             .catch((error) => {
                 this.setState({
-                    loading: false
+                    isVisible:false
                 })
                 console.error(error);
             });
@@ -138,20 +131,8 @@ export default class Example extends Component {
 
 
     render() {
-
-        var title;
-        const items = [
-            { subName: '2019-01-01', name: 'Episode 169', videoID: '1aJR_sOx70A' },
-            { subName: '2019-01-02', name: 'Episode 170', videoID: '3DsgHY6mtRo' },
-            { subName: '2019-01-03', name: 'Episode 171', videoID: '5ODFPY7Ft1E' },
-            { subName: '2019-01-04', name: 'Episode 172', videoID: 'ddx8d3LZU54' },
-            { subName: '2019-01-05', name: 'Episode 173', videoID: '4EcqUSwYb5I' },
-            { subName: '2019-01-08', name: 'Episode 174', videoID: 'EJHi0msJQvU' },
-            { subName: '2019-01-09', name: 'Episode 175', videoID: 'UAd967OgTpc' },
-            { subName: '2019-01-10', name: 'Episode 176', videoID: 'PC0eYDACeEU' },
-            { subName: '2019-01-11', name: 'Episode 177', videoID: 'U5y_K9rZrmA' },
-        ];
-
+        // var new_play=this.state.getall[0].ep_videoID
+        var title; 
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -167,12 +148,12 @@ export default class Example extends Component {
 
 
                 <View>
-                    <ImageBackground style={{ height: 300 }} source={{ uri: 'http://4e2c2590.ngrok.io/images/' + this.state.imagepath }} >
+                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL+'/images/'+ this.state.imagepath }} >
 
 
                         {this.state.something &&
                             <YouTube
-
+                          
                                 ref={this._youTubeRef}
                                 apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
                                 videoId={this.state.videoId}
@@ -208,7 +189,7 @@ export default class Example extends Component {
 
 
                         }
-                        <TouchableOpacity onPress={() => this.state.getall[0]} style={{
+                        <TouchableOpacity onPress={() =>  this. navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
                         }}>
@@ -237,18 +218,20 @@ export default class Example extends Component {
 
                             renderItem={({ item, index }) => (
 
-                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)}>
+                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{ height: 105, width: 150, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://i1.ytimg.com/vi/' + item.ep_videoID + '/default.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
                                 </TouchableOpacity>
+                                
                             )}
+                            
                         />
 
                     </Card>
-
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
 
             </Drawer>
@@ -319,6 +302,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
 
     },
+    spinner: {
+        alignItems:"center",
+        justifyContent:"center",
+        alignContent:"center",
+        marginBottom:350,
+        left:150
+       
+      },
 });
 
 
