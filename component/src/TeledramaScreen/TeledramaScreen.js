@@ -164,11 +164,18 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
 
-                                        <Image style={{ height: 250, width: 340, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
+                                        <Image style={{ height: 150, width: 373, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
 
                                         </Image>
-                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000', fontWeight: 'bold' }}>{item.te_Name}</Text>
-                                        <Text style={styles.itemName} style={{ left: 18, fontSize: 18, color: '#000' }}>{item.created_at}</Text>
+                                        <Text style={styles.itemName} style={{
+                                            fontSize: 22,
+                                            left: 230,
+                                            height: 100,
+                                            width: 120,
+                                            bottom: 95,
+                                            color: 'black',
+                                            fontWeight: 'bold',
+                                        }}></Text>
 
                                     </View>
                                 </View>

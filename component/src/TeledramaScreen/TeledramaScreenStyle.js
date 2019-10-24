@@ -16,10 +16,10 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
     itemContainer: {
-        height: 250,
-        width: 340,
+        height: 125,
+        width: 373,
         elevation: 5,
-        marginTop: 42,
+        marginTop: 35,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
