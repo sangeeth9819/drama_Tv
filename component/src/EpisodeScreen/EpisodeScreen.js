@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 150,
+        left: 180,
         height: 100,
         width: 150,
         bottom: 100,
