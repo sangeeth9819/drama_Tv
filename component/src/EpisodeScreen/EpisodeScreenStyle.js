@@ -1,6 +1,7 @@
-import React, { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
+
     imagebutton: {
         backgroundColor: '#f44336',
         width: 50,
@@ -39,12 +40,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
-        width: 340,
+        width: 375,
         marginTop: 20,
         marginLeft: 6,
         borderRadius: 20,
         padding: 20,
-        height: 105,
+        height: 108,
     },
     wrapper: {
         marginTop: 50,
@@ -52,25 +53,21 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 150,
+        left: 200,
         height: 100,
-        width: 150,
+        width: 120,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
 
     },
-    gridimage: {
-        height: 105,
-        width: 150,
-        bottom: 20,
-        right: 20,
-        borderRadius: 20
+    spinner: {
+        alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+        marginBottom: 350,
+        left: 150
+
     },
-    playbtn:{
-        width: 33,
-        height: 33,
-        top: 8,
-        left: 10,
-    }
+
 });

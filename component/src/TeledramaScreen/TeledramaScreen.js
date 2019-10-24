@@ -254,7 +254,6 @@ export default class TeledramaScreen extends Component {
                         )}
 
                     />
-
                     <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
                 </View>
             </Drawer>

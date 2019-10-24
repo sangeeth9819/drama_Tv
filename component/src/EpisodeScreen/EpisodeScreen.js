@@ -1,21 +1,24 @@
 
 import React, { Component } from 'react';
+
 import baseurl from '../../resource/strings'
+
 import {
-    StyleSheet, View, Text, TouchableOpacity, Alert, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
+    StyleSheet, View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-spinkit'
-import YouTube, {
-} from 'react-native-youtube';
+
+import YouTube, {} from 'react-native-youtube';
+
 import {
     Card,
     Drawer,
-    Icon,
-}
-    from 'native-base';
+   
+} from 'native-base';
 
+import styles from './EpisodeScreenStyle';
 
 export default class Example extends Component {
 
@@ -200,7 +203,6 @@ export default class Example extends Component {
 
                         }
 
-
                         <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
@@ -222,14 +224,9 @@ export default class Example extends Component {
                             }} source={require('../../assest/iconBack.png')} />
                         </TouchableOpacity>
 
-
-
-
                     </ImageBackground>
 
                 </View>
-
-
 
                 <View>
 

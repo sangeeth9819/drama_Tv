@@ -64,6 +64,7 @@ export default class App extends Component {
             width: 150,
           }}
         />
+        
         {!this.state.alignsecond ? null : (
           <View style={{ margin: 10 }}>
             <Text
@@ -73,11 +74,6 @@ export default class App extends Component {
           </View>
         )}
       </View>
-
-
-
-
-
  
     );
   }
