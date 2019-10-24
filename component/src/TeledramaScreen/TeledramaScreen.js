@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-    StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
+    Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
 } from 'react-native';
 
 import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
