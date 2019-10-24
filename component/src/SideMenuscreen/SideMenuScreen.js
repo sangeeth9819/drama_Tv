@@ -1,19 +1,15 @@
 import React from "react";
-import { AppRegistry, Image, StatusBar, View, TouchableOpacity } from "react-native";
+
+import { Image, View, TouchableOpacity } from "react-native";
+
 import {
-    Button,
     Text,
     Container,
-    List,
-    ListItem,
     Content,
-    Icon,
-    Left
 } from "native-base";
 
 import styles from './SideMenuScreemStyle'
 
-// const routes = ["Home", "Category", "Latest", "Favourite", "Request Drama", "Aboutus", "Rate App", "Help"];
 
 export default class SideBar extends React.Component {
     navigatechannel() {
@@ -25,12 +21,9 @@ export default class SideBar extends React.Component {
     navigateTele() {
         this.props.navigation.navigate('TeledramaScreen')
     };
-   
+
     render() {
         return (
-
-
-
             <Container>
                 <Content >
                     <View style={styles.AllView}>
@@ -46,9 +39,6 @@ export default class SideBar extends React.Component {
                     />
 
                     <View>
-
-
-
                         <TouchableOpacity onPress={() => this.navigateHome()}>
                             <View>
                                 <View>
@@ -216,15 +206,12 @@ export default class SideBar extends React.Component {
                             </View>
 
                         </TouchableOpacity >
-
-
-
                     </View>
                 </Content>
             </Container>
 
         );
-       
+
     }
-   
+
 }

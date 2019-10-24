@@ -1,11 +1,13 @@
 
 import React, { Component } from 'react';
+
 import {
     StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar,
     Dimensions, TextInput
 } from 'react-native';
 import { Header, Drawer, Left, Button, Icon, Body, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 // import Spinner from 'react-native-loading-spinner-overlay';
 import baseurl from '../../resource/strings'
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
     gridView: {
         flex: 1,
     },
-    itemContainer: {
+    itemContainer: { 
         justifyContent: 'flex-end',
         padding: 10,
         height: 130,

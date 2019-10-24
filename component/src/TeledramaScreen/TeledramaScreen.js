@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
+
 import {
   StyleSheet, Text, View, Image, TouchableOpacity, Alert,StatusBar,
      Dimensions,TextInput
 } from 'react-native';
 import { Header, Drawer, Left,Icon, Body, Right } from 'native-base';
 import { FlatGrid } from 'react-native-super-grid';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from'react-native-spinkit'
 import baseurl from '../../resource/strings'
 
 
-const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
-
-
-
         super(props);
         this.state = {
             videoId: '',
@@ -30,9 +28,6 @@ export default class TeledramaScreen extends Component {
             isVisible: false,
             isFetching: false,
             playerWidth: Dimensions.get('window').width,
-
-
-
 
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -80,7 +75,7 @@ export default class TeledramaScreen extends Component {
     }
 
 
-    
+
     renderItem = ({ item }) => {
         return (
             <Text style={styles.row}>
@@ -100,16 +95,16 @@ export default class TeledramaScreen extends Component {
         this.drawer._root.open()
     };
 
-  
+
     onClose = () => {
         this.setState({
             showTheThing: true
         })
     }
-    navigateToTeledrama(id,imagepath) {
+    navigateToTeledrama(id, imagepath) {
         this.props.navigation.navigate('EpisodeScreen', {
             id: id,
-            imagepath:imagepath
+            imagepath: imagepath
         });
 
     }
@@ -126,7 +121,7 @@ export default class TeledramaScreen extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-              
+
                 <View style={styles.wrapper}>
                     <Header style={{
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
@@ -170,7 +165,7 @@ export default class TeledramaScreen extends Component {
                         refreshing={this.state.isFetching}
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         

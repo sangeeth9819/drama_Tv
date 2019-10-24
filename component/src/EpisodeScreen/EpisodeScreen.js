@@ -4,6 +4,7 @@ import baseurl from '../../resource/strings'
 import {
     StyleSheet, View, Text,TouchableOpacity, Alert, FlatList, Image, PixelRatio,Dimensions, ImageBackground,
 } from 'react-native';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from'react-native-spinkit'
 import YouTube, {
@@ -90,7 +91,7 @@ export default class Example extends Component {
         if(e.isFullscreen===true){
         }else{
             this.setState({
-                something:false
+                something: false
             })
           
         }
@@ -122,7 +123,7 @@ export default class Example extends Component {
 
                 this.setState({
                     getall: responseJson.reverse()
-                
+
                 })
             })
 
@@ -198,6 +199,7 @@ export default class Example extends Component {
                             left: 300,
                             top: 190,
                         }}>
+
                             <View style={styles.imagebutton}>
                                 <Image style={{
                                     width: 33, height: 33, top: 8, left: 10,
@@ -212,9 +214,9 @@ export default class Example extends Component {
 
 
                 <View>
-              
-                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50 }}>
-                  
+
+                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
+
                         <FlatList
                             itemDimension={130}
                             data={this.state.getall}
@@ -239,7 +241,7 @@ export default class Example extends Component {
                     </Card>
                     <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                 </View>
-                
+
             </Drawer>
 
 
@@ -255,17 +257,17 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 100,
     },
- 
+
     buttonStyle4: {
         fontWeight: 'bold',
     },
- 
+
     itemCode: {
         fontWeight: '100',
         fontSize: 8,
         color: '#fff',
     },
- 
+
     row: {
         left: 20,
         backgroundColor: 'white',
@@ -287,7 +289,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
-        width: 340,
+        width: 375,
         marginTop: 20,
         marginLeft: 6,
         borderRadius: 20,
@@ -300,13 +302,13 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 180,
-        height:100,
-        width:120,
+        left: 150,
+        height: 100,
+        width: 150,
         bottom: 100,
         color: 'black',
         fontWeight: 'bold',
- 
+
     },
     spinner: {
         alignItems:"center",
