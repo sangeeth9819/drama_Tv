@@ -21,11 +21,7 @@ const RootStack = createStackNavigator({
     navigationOptions: { header: null }
 
   },
-  // SampleScreen: {
-  //   screen: Sample,
-  //   navigationOptions: { header: null }
-
-  // },
+  
   ChannelScreen: {
     screen: Channel,
     navigationOptions: { header: null }
@@ -35,14 +31,7 @@ const RootStack = createStackNavigator({
     screen:Episode,
     navigationOptions: { header: null }
   },
-  // PlayScreen: {
-  //   screen: Play,
-  //   navigationOptions: { header: null }
-  // },
-  // SampleScreen: {
-  //   screen: SampleMenu,
-  //   navigationOptions: { header: null }
-  // },
+ 
   TeledramaScreen: {
     screen: Teledrama,
     navigationOptions: { header: null }
