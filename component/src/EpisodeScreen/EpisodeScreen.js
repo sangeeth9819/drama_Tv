@@ -265,7 +265,3 @@ export default class Example extends Component {
 }
 
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 8d18edb99bb1a819375d5cd646a5cc8453d479ed
