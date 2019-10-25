@@ -192,7 +192,8 @@ export default class Channel extends Component {
 
                     <FlatGrid
                         itemDimension={130}
-                        items={this.state.getall}
+                       
+                        items={this.state.getall}                
                         style={styles.gridView}
 
                         renderItem={({ item, index }) => (
