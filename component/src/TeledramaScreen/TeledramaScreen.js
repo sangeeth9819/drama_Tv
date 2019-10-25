@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-    Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
+    Text, View, Image, TouchableOpacity, Alert, StatusBar,PixelRatio, Dimensions, TextInput,StyleSheet
 } from 'react-native';
 
 import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
@@ -13,7 +13,7 @@ import Spinner from 'react-native-spinkit'
 import baseurl from '../../resource/strings'
 import YouTube, {
 } from 'react-native-youtube';
-
+import styles from '../TeledramaScreen/TeledramaScreenStyle'
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
@@ -242,10 +242,10 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
 
-                                        <Image style={{ height: 150, width: 373, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
+                                        <Image style={{ height: 150, width: 340, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
 
                                         </Image>
-                                        <Text style={styles.itemName} style={{
+                                        {/* <Text style={styles.itemName} style={{
                                             fontSize: 22,
                                             left: 230,
                                             height: 100,
@@ -253,7 +253,7 @@ export default class TeledramaScreen extends Component {
                                             bottom: 95,
                                             color: 'black',
                                             fontWeight: 'bold',
-                                        }}></Text>
+                                        }}></Text> */}
 
                                     </View>
                                 </View>
@@ -269,47 +269,4 @@ export default class TeledramaScreen extends Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 2,
-    },
-    gridView: {
 
-    },
-    row: {
-        left: 20,
-        padding: 15,
-        backgroundColor: 'white',
-        width: 500,
-        height: 80,
-        borderRadius: 20,
-    },
-    itemContainer: {
-        height: 250,
-        width: 340,
-        elevation: 5,
-        marginTop: 42,
-        borderRadius: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 9,
-        },
-        shadowOpacity: 0.50,
-        shadowRadius: 12.35,
-        elevation: 19,
-    },
-
-    wrapper: {
-        marginTop: 30,
-        flex: 1
-    },
-    spinner: {
-        alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        marginBottom: 350,
-        left: 150
-
-    },
-})

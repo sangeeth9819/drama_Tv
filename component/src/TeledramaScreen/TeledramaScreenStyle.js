@@ -4,9 +4,7 @@ export default StyleSheet.create({
     container: {
         flex: 2,
     },
-    gridView: {
-
-    },
+   
     row: {
         left: 20,
         padding: 15,
@@ -16,10 +14,10 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
     itemContainer: {
-        height: 125,
-        width: 373,
+        height: 145,
+        width: 340,
         elevation: 5,
-        marginTop: 35,
+        marginTop: 20,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {

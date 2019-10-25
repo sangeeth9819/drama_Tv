@@ -57,14 +57,19 @@ export default class Channel extends Component {
             types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
             size: 37,
             color: "red",
+            isFetching: false,
             isVisible: false
         };
 
     }
+    onRefresh() {
+        this.setState({ isFetching: true }, function () { this.getAll() });
+    }
     componentDidMount() {
         this.getAll()
     }
-    
+  
+
     getAll() {
         this.setState({
             isVisible: true
@@ -82,6 +87,9 @@ export default class Channel extends Component {
             .then((responseJson) => {
                 this.setState({
                     isVisible: false
+                })
+                this.setState({
+                    isFetching: false
                 })
                 console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                 this.setState({
@@ -181,7 +189,7 @@ export default class Channel extends Component {
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id,item.ch_videoID)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image}} />
                                     <Text style={styles.itemName}>{item.ch_Name}</Text>
 
                                 </View>
