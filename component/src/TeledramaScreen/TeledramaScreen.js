@@ -9,12 +9,6 @@ import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from'react-native-spinkit'
 import baseurl from '../../resource/strings'
 
-
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Alert, AsyncStorage} from 'react-native';
-import firebase from 'react-native-firebase';
-
-
 const extractKey = ({ id }) => id
 
 export default class TeledramaScreen extends Component {

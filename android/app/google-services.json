@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "728370322796",
+    "firebase_url": "https://drama-tv-65792.firebaseio.com",
+    "project_id": "drama-tv-65792",
+    "storage_bucket": "drama-tv-65792.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728370322796:android:ef25a851c267639b82e749",
+        "android_client_info": {
+          "package_name": "com.dramatv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728370322796-cuijmu04pjmklciklro9jhlouv0h5jjo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5sg6yU170VZzzKf1ONyiBliQDGJJtXVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728370322796-cuijmu04pjmklciklro9jhlouv0h5jjo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
