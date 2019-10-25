@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 export default StyleSheet.create({
     container: {
         flex: 2,
@@ -14,8 +16,8 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
     itemContainer: {
-        height: 145,
-        width: 340,
+        height: hp('20%'),
+        width: wp('95%'),
         elevation: 5,
         marginTop: 20,
         borderRadius: 20,

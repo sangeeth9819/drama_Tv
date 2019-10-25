@@ -18,6 +18,9 @@ import {
 
 } from 'native-base';
 
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+
 import styles from './EpisodeScreenStyle';
 
 export default class Example extends Component {
@@ -71,7 +74,7 @@ export default class Example extends Component {
     navigateToTeleScreen() {
         this.props.navigation.navigate('TeledramaScreen')
     }
-    onRefresh() {
+    onRe5fresh() {
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
     }
     onClosingState(state) {
@@ -243,7 +246,7 @@ export default class Example extends Component {
 
                                 <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: 108, width: 192, bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
+                                        <Image style={{ height: hp('14.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
@@ -254,8 +257,11 @@ export default class Example extends Component {
                         />
 
                     </Card>
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                    <View>
+                        <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                    </View>
                 </View>
+
 
             </Drawer>
 

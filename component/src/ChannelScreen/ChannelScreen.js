@@ -15,6 +15,8 @@ import baseurl from '../../resource/strings'
 
 import Spinner from 'react-native-spinkit'
 
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import styles from './ChannelScreenStyle';
 
 

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 export default StyleSheet.create({
 
     imagebutton: {
@@ -40,12 +42,13 @@ export default StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
-        width: 375,
+        width: wp('95%'),
+        height: hp('14.7%'),
         marginTop: 20,
         marginLeft: 6,
         borderRadius: 20,
         padding: 20,
-        height: 108,
+       
     },
     wrapper: {
         marginTop: 50,
