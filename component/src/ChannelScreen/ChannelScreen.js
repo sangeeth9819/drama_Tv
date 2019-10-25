@@ -200,9 +200,10 @@ export default class Channel extends Component {
                          <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
                 </View>
                     <FlatGrid
-                        itemDimension={130}
-                       
-                        items={this.state.getall}                
+                        itemDimension={130}                      
+                        items={this.state.getall}  
+                        onRefresh={() => this.onRefresh()} 
+                        refreshing={this.state.isFetching}                  
                         style={styles.gridView}
 
                         renderItem={({ item, index }) => (

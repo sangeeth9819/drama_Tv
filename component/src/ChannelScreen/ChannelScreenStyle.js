@@ -11,7 +11,7 @@ export default StyleSheet.create({
         justifyContent: 'flex-end',
         padding: 10,
         height: 130,
-        width: 140,
+        width: 145,
         marginTop: 20,
         marginLeft: 10,
         borderRadius: 20,

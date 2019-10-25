@@ -238,7 +238,8 @@ export default class TeledramaScreen extends Component {
                     <FlatGrid
                         itemDimension={270}
                         items={this.state.getall}
-                        // onRefresh={() => this.onRefresh()}                     
+                        onRefresh={() => this.onRefresh()} 
+                        refreshing={this.state.isFetching}                    
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image)} activeOpacity={0.8}>
@@ -260,12 +261,8 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         )}
                     />
-<<<<<<< HEAD
                    
                       
-=======
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
->>>>>>> 1f4ed3bc63ae901cd6fc90c09699336c422fefab
                 </View>
             </Drawer>
 

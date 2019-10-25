@@ -111,6 +111,9 @@ export default class Example extends Component {
     componentDidMount() {
         this.getallteledrama()
     }
+    onRefresh() {
+        this.setState({ isFetching: true }, function () { this.getallteledrama() });
+    }
     getallteledrama() {
         this.setState({
             isVisible: true
@@ -208,7 +211,7 @@ export default class Example extends Component {
 <View style={{alignItems: "center",
         justifyContent: "center",
         alignContent: "center",
-        top:250}}>
+        top:130}}>
                     <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                     </View>
                         <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{

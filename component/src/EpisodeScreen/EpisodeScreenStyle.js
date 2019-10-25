@@ -56,7 +56,7 @@ export default StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 200,
+        left: 170,
         height: 100,
         width: 120,
         bottom: 100,
