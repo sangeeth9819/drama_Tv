@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-    gridView: {
+
+export default StyleSheet.create({
+        gridView: {
         flex: 1,
     },
     itemContainer: {
@@ -51,5 +53,5 @@ export default StyleSheet.create({
     spinnerTextStyle: {
         color: '#FFF',
     },
-    
+
 });

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import {
-    Text, View, Image, TouchableOpacity, Alert, StatusBar,PixelRatio, Dimensions, TextInput,StyleSheet
+    Text, View, Image, TouchableOpacity, Alert, StatusBar, PixelRatio, Dimensions, TextInput, StyleSheet
 } from 'react-native';
-import { Header, Drawer, Left,Icon, Body, Right } from 'native-base';
+import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
+
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { FlatGrid } from 'react-native-super-grid';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
-import Spinner from'react-native-spinkit'
+
+import Spinner from 'react-native-spinkit'
+
 import baseurl from '../../resource/strings'
-import YouTube, {
-} from 'react-native-youtube';
-import styles from '../TeledramaScreen/TeledramaScreenStyle'
+
+import styles from './TeledramaScreenStyle';
+
+
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
@@ -17,7 +24,7 @@ export default class TeledramaScreen extends Component {
         this.state = {
             isOpen: false,
             swipeToClose: true,
-            liveid:'',
+            liveid: '',
             videoId: '',
             getall: [],
             isReady: false,
@@ -30,7 +37,7 @@ export default class TeledramaScreen extends Component {
             duration: 0,
             currentTime: 0,
             fullscreen: true,
-            loading:false,
+            loading: false,
             types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
             size: 37,
             color: "red",
@@ -41,19 +48,19 @@ export default class TeledramaScreen extends Component {
         };
         this.state.videoId = this.props.navigation.state.params.id
         this.state.liveid = this.props.navigation.state.params.ch_videoID
-       
+
     }
-  
+
     componentDidMount() {
         this.getallteledrama()
     }
-   
-  
+
+
     getallteledrama() {
         this.setState({
-            isVisible:true
+            isVisible: true
         })
-        fetch(baseurl.BASE_URL+'/api/teledramas/'+this.state.videoId, {
+        fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -63,11 +70,11 @@ export default class TeledramaScreen extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    isVisible:false
+                    isVisible: false
                 })
                 this.setState({
                     isFetching: false
-                    })
+                })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
@@ -77,14 +84,14 @@ export default class TeledramaScreen extends Component {
 
             .catch((error) => {
                 this.setState({
-                    isVisible:false
+                    isVisible: false
                 })
                 console.error(error);
             });
     }
 
 
-    
+
     renderItem = ({ item }) => {
         return (
             <Text style={styles.row}>
@@ -105,9 +112,9 @@ export default class TeledramaScreen extends Component {
         this.drawer._root.open()
     };
     onRefresh() {
-        this.setState({ isFetching: true }, function() { this.getallteledrama() });
-     }
-  
+        this.setState({ isFetching: true }, function () { this.getallteledrama() });
+    }
+
     onClose = () => {
         this.setState({
             showTheThing: true
@@ -120,10 +127,10 @@ export default class TeledramaScreen extends Component {
             something: true
         })
     }
-    navigateToTeledrama(id,imagepath) {
+    navigateToTeledrama(id, imagepath) {
         this.props.navigation.navigate('EpisodeScreen', {
             id: id,
-            imagepath:imagepath
+            imagepath: imagepath
         });
 
     }
@@ -150,7 +157,7 @@ export default class TeledramaScreen extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
-              
+
                 <View style={styles.wrapper}>
                     <Header style={{
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
@@ -192,64 +199,60 @@ export default class TeledramaScreen extends Component {
                     <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
                     </View>
                     {this.state.something &&
-                            <YouTube
+                        <YouTube
 
-                                ref={this._youTubeRef}
-                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                                videoId={this.state.liveid}
+                            ref={this._youTubeRef}
+                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                            videoId={this.state.liveid}
 
-                                play={this.state.isPlaying}
-                                loop={this.state.isLooping}
-                                fullscreen={this.state.fullscreen}
-                                controls={1}
-                                style={[
-                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                    styles.player,
-                                ]}
-                                onError={e => {
-                                    this.setState({ error: e.error });
-                                }}
-                                onReady={e => {
-                                    this.setState({ isReady: true });
-                                }}
-                                onChangeState={e => {
-                                    this.setState({ status: e.state });
-                                }}
-                                onChangeQuality={e => {
-                                    this.setState({ quality: e.quality });
-                                }}
-                                onChangeFullscreen={e => {
-                                    this.changeScreenRotate(e)
-                                }}
-                                onProgress={e => {
-                                    this.setState({ currentTime: e.currentTime });
-                                }}
+                            play={this.state.isPlaying}
+                            loop={this.state.isLooping}
+                            fullscreen={this.state.fullscreen}
+                            controls={1}
+                            style={[
+                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                styles.player,
+                            ]}
+                            onError={e => {
+                                this.setState({ error: e.error });
+                            }}
+                            onReady={e => {
+                                this.setState({ isReady: true });
+                            }}
+                            onChangeState={e => {
+                                this.setState({ status: e.state });
+                            }}
+                            onChangeQuality={e => {
+                                this.setState({ quality: e.quality });
+                            }}
+                            onChangeFullscreen={e => {
+                                this.changeScreenRotate(e)
+                            }}
+                            onProgress={e => {
+                                this.setState({ currentTime: e.currentTime });
+                            }}
 
-                            />
-                            }
+                        />
+                    }
                     {/* Body Content */}
                     <FlatGrid
                         itemDimension={270}
-                        items={this.state.getall}  
+                        items={this.state.getall}
                         // onRefresh={() => this.onRefresh()}                     
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
 
-                                        <Image style={{ height: 150, width: 340, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
+                                        <Image style={{
+                                            height: hp('20%'),
+                                            width: wp('95%'),
+                                            borderRadius: 20
+                                        }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
 
                                         </Image>
-                                        {/* <Text style={styles.itemName} style={{
-                                            fontSize: 22,
-                                            left: 230,
-                                            height: 100,
-                                            width: 120,
-                                            bottom: 95,
-                                            color: 'black',
-                                            fontWeight: 'bold',
-                                        }}></Text> */}
+                    
 
                                     </View>
                                 </View>
@@ -257,8 +260,12 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         )}
                     />
+<<<<<<< HEAD
                    
                       
+=======
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+>>>>>>> 1f4ed3bc63ae901cd6fc90c09699336c422fefab
                 </View>
             </Drawer>
 
