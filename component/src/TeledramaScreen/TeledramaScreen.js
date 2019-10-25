@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, Image, TouchableOpacity, Alert,StatusBar,
-     Dimensions,TextInput
+    Text, View, Image, TouchableOpacity, Alert, StatusBar,PixelRatio, Dimensions, TextInput,StyleSheet
 } from 'react-native';
 import { Header, Drawer, Left,Icon, Body, Right } from 'native-base';
 
@@ -15,7 +14,7 @@ import baseurl from '../../resource/strings'
 
 import styles from './TeledramaScreenStyle';
 
-const extractKey = ({ id }) => id
+
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
@@ -169,8 +168,8 @@ export default class TeledramaScreen extends Component {
                             <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        
-                                        <Image style={{ height: 125, width: 373,borderRadius:20 }} source={{ uri: baseurl.BASE_URL+'/images/'+ item.te_Image }} >
+
+                                        <Image style={{ height: 150, width: 340, borderRadius: 20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
 
                                         </Image>
                                         {/* <Text style={styles.itemName} style={{

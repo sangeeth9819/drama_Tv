@@ -9,25 +9,25 @@ import React, { Component } from 'react';
 import {Navigator,StatusBar,Platform, StyleSheet, Text, View, Alert, AsyncStorage} from 'react-native'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator, Header } from 'react-navigation-stack';
-
+ 
 import Auth from './component/src/AuthScreen/AuthScreen';
 import Channel from './component/src/ChannelScreen/ChannelScreen';
 import Episode from './component/src/EpisodeScreen/EpisodeScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
-
+ 
 import firebase from 'react-native-firebase';
-
+ 
 const RootStack = createStackNavigator({
     AuthScreen: {
     screen: Auth,
     navigationOptions: { header: null }
-
+ 
   },
   
   ChannelScreen: {
     screen: Channel,
     navigationOptions: { header: null }
-
+ 
   },
   EpisodeScreen: {
     screen:Episode,
@@ -39,20 +39,20 @@ const RootStack = createStackNavigator({
     navigationOptions: { header: null }
   },
  
-
+ 
 },
-
+ 
   {
     initialRouteName: 'AuthScreen'
-
+ 
   },
   {
     headerMode: 'screen'
   },
 );
-
+ 
 const AppContainer = createAppContainer(RootStack);
-
+ 
 type Props = {};
 export default class App extends Component {
   render() {
@@ -65,17 +65,17 @@ export default class App extends Component {
       </View>
     );
   }
-
+ 
   async componentDidMount() {
     this.checkPermission();
     this.createNotificationListeners(); //add this line
   }
-
+ 
   componentWillUnmount() {
     this.notificationListener;
     this.notificationOpenedListener;
   }
-
+ 
   //1
   async checkPermission() {
     const enabled = await firebase.messaging().hasPermission();
@@ -85,7 +85,7 @@ export default class App extends Component {
       this.requestPermission();
     }
   }
-
+ 
   //3
   async getToken() {
     let fcmToken = await AsyncStorage.getItem('fcmToken');
@@ -99,7 +99,7 @@ export default class App extends Component {
     }
     console.log('fcmToken:', fcmToken);
   }
-
+ 
   //2
   async requestPermission() {
     try {
@@ -111,7 +111,7 @@ export default class App extends Component {
       console.log('permission rejected');
     }
   }
-
+ 
   async createNotificationListeners() {
     /*
     * Triggered when a particular notification has been received in foreground
@@ -132,17 +132,17 @@ export default class App extends Component {
         .android.setSmallIcon('@drawable/ic_launcher') // create this icon in Android Studio
         .android.setColor('#000000') // you can set a color here
         .android.setPriority(firebase.notifications.Android.Priority.High);
-
+ 
         firebase.notifications()
           .displayNotification(localNotification)
           .catch(err => console.error(err));
     });
-
+ 
     const channel = new firebase.notifications.Android.Channel('fcm_FirebaseNotifiction_default_channel', 'Demo app name', firebase.notifications.Android.Importance.High)
       .setDescription('Demo app description')
       .setSound('sampleaudio.wav');
     firebase.notifications().android.createChannel(channel);
-
+ 
     /*
     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
     * */
@@ -151,7 +151,7 @@ export default class App extends Component {
       console.log('onNotificationOpened:');
       Alert.alert(title, body)
     });
-
+ 
     /*
     * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
     * */
@@ -169,16 +169,15 @@ export default class App extends Component {
       console.log("JSON.stringify:", JSON.stringify(message));
     });
   }
-
+ 
   
 }
 
 
 
-
+ 
 //----------------------------------------------------------------------------//
-
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -198,3 +197,4 @@ const styles = StyleSheet.create({
   },
 });
 
+ 
