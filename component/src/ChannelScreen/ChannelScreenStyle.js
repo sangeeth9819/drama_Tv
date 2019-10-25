@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-
-    gridView: {
+        gridView: {
         flex: 1,
     },
     itemContainer: {
@@ -54,5 +53,5 @@ export default StyleSheet.create({
     spinnerTextStyle: {
         color: '#FFF',
     },
-    
+
 });
