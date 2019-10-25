@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 
 import {
-    StyleSheet, View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
+    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
