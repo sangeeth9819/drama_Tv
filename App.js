@@ -6,19 +6,15 @@
  * @flow
  */
 import React, { Component } from 'react';
-import {Navigator,StatusBar} from 'react-native'
+import {Navigator,StatusBar,Platform, StyleSheet, Text, View, Alert, AsyncStorage} from 'react-native'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator, Header } from 'react-navigation-stack';
-import { View } from 'native-base';
+
 import Auth from './component/src/AuthScreen/AuthScreen';
 import Channel from './component/src/ChannelScreen/ChannelScreen';
 import Episode from './component/src/EpisodeScreen/EpisodeScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
 
-
-
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Alert, AsyncStorage} from 'react-native';
 import firebase from 'react-native-firebase';
 
 const RootStack = createStackNavigator({
@@ -56,6 +52,8 @@ const RootStack = createStackNavigator({
 );
 
 const AppContainer = createAppContainer(RootStack);
+
+type Props = {};
 export default class App extends Component {
   render() {
     return (
@@ -67,19 +65,6 @@ export default class App extends Component {
       </View>
     );
   }
-}
-
-//----------------------------------------------------------------------------//
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
 
   async componentDidMount() {
     this.checkPermission();
@@ -195,6 +180,12 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+
+
+
+//----------------------------------------------------------------------------//
+
 
 const styles = StyleSheet.create({
   container: {
