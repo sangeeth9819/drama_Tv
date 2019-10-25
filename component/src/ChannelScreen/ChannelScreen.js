@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import {
@@ -95,18 +94,29 @@ export default class Channel extends Component {
                 this.setState({
                     getall: responseJson
                 })
-
-            })
-            .catch((error) => {
-                this.setState({
-                    isVisible: false
-                })
-                console.error(error);
-            });
-
-
-    }
-
+                    .then((resp) => resp.json())
+                    .then((responseJson) => {
+                        this.setState({
+                            loading:false
+                        })
+                        console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                        this.setState({
+                            getall: responseJson
+                        })
+        
+                    })
+                    .catch((error) => {
+                        this.setState({
+                            loading:false
+                        })
+                        console.error(error);
+                    });
+        
+        
+            }
+            )}
+        
+ 
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -205,4 +215,3 @@ export default class Channel extends Component {
         );
     }
 }
-
