@@ -18,13 +18,21 @@ import styles from './TeledramaScreenStyle';
 
 export default class TeledramaScreen extends Component {
     constructor(props) {
-
-
-
         super(props);
         this.state = {
+            isOpen: false,
+            swipeToClose: true,
+            liveid:'',
             videoId: '',
             getall: [],
+            isReady: false,
+            status: null,
+            something: false,
+            quality: null,
+            error: null,
+            isPlaying: true,
+            isLooping: true,
+            duration: 0,
             currentTime: 0,
             fullscreen: true,
             loading:false,
@@ -32,19 +40,20 @@ export default class TeledramaScreen extends Component {
             size: 37,
             color: "red",
             isVisible: false,
+            isFetching: false,
             playerWidth: Dimensions.get('window').width,
-
-
-
 
         };
         this.state.videoId = this.props.navigation.state.params.id
+        this.state.liveid = this.props.navigation.state.params.ch_videoID
        
     }
-
+  
     componentDidMount() {
         this.getallteledrama()
     }
+   
+  
     getallteledrama() {
         this.setState({
             isVisible:true
@@ -61,6 +70,9 @@ export default class TeledramaScreen extends Component {
                 this.setState({
                     isVisible:false
                 })
+                this.setState({
+                    isFetching: false
+                    })
                 console.log("Getall :" + JSON.stringify(responseJson))
 
                 this.setState({
@@ -91,16 +103,26 @@ export default class TeledramaScreen extends Component {
     closeDrawer = () => {
         this.drawer._root.close()
     };
+    _youTubeRef = React.createRef();
 
     openDrawer = () => {
 
         this.drawer._root.open()
     };
-
+    onRefresh() {
+        this.setState({ isFetching: true }, function() { this.getallteledrama() });
+     }
   
     onClose = () => {
         this.setState({
             showTheThing: true
+        })
+    }
+    navigateToplay(ch_videoID) {
+        this.setState({
+            fullscreen: true,
+            liveid: ch_videoID,
+            something: true
         })
     }
     navigateToTeledrama(id,imagepath) {
@@ -109,6 +131,16 @@ export default class TeledramaScreen extends Component {
             imagepath:imagepath
         });
 
+    }
+    changeScreenRotate(e) {
+        this.setState({ fullscreen: e.isFullscreen });
+        if (e.isFullscreen === true) {
+        } else {
+            this.setState({
+                something: false
+            })
+
+        }
     }
 
     render() {
@@ -149,7 +181,7 @@ export default class TeledramaScreen extends Component {
                                 <Icon name='search' />
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={{}} onPress={() => this.navigateToTeledrama(this.state.videoId)}>
+                            <TouchableOpacity style={{}} onPress={() => this.navigateToplay(this.state.liveid)}>
                                 <Icon name='ios-disc' style={{ color: '#00cc44', }} >
                                     <Text style={{ fontSize: 14, color: 'black', }} >Live</Text>
                                 </Icon>
@@ -158,11 +190,47 @@ export default class TeledramaScreen extends Component {
 
                     </Header>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    
+                    {this.state.something &&
+                            <YouTube
+
+                                ref={this._youTubeRef}
+                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                                videoId={this.state.liveid}
+
+                                play={this.state.isPlaying}
+                                loop={this.state.isLooping}
+                                fullscreen={this.state.fullscreen}
+                                controls={1}
+                                style={[
+                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                    styles.player,
+                                ]}
+                                onError={e => {
+                                    this.setState({ error: e.error });
+                                }}
+                                onReady={e => {
+                                    this.setState({ isReady: true });
+                                }}
+                                onChangeState={e => {
+                                    this.setState({ status: e.state });
+                                }}
+                                onChangeQuality={e => {
+                                    this.setState({ quality: e.quality });
+                                }}
+                                onChangeFullscreen={e => {
+                                    this.changeScreenRotate(e)
+                                }}
+                                onProgress={e => {
+                                    this.setState({ currentTime: e.currentTime });
+                                }}
+
+                            />
+                            }
                     {/* Body Content */}
                     <FlatGrid
                         itemDimension={270}
-                        items={this.state.getall}
+                        items={this.state.getall}  
+                        // onRefresh={() => this.onRefresh()}                     
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this. navigateToTeledrama(item.id , item.te_Image)} activeOpacity={0.8}>
