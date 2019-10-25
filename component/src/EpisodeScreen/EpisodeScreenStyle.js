@@ -62,11 +62,7 @@ export default StyleSheet.create({
 
     },
     spinner: {
-        alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        marginBottom: 350,
-        left: 150
+        
 
     },
 

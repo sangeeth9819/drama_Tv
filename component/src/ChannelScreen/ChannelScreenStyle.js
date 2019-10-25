@@ -38,11 +38,8 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
     spinner: {
-        alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        marginBottom: 350,
-        left: 150
+       
+      
 
     },
     itemCode: {

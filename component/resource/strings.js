@@ -1,3 +1,3 @@
 export default{
-    BASE_URL:'http://dramatv.commercialtp.com'
+    BASE_URL:'https://dramatv.commercialtp.com'
 }

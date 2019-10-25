@@ -34,11 +34,7 @@ export default StyleSheet.create({
         flex: 1
     },
     spinner: {
-        alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        marginBottom: 350,
-        left: 150
+
 
     },
 });

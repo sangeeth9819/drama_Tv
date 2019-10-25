@@ -185,6 +185,12 @@ export default class TeledramaScreen extends Component {
 
                     </Header>
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                    <View style={{alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+        top:250}}>
+                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
+                    </View>
                     {this.state.something &&
                             <YouTube
 
@@ -251,7 +257,8 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         )}
                     />
-                        <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
+                   
+                      
                 </View>
             </Drawer>
 

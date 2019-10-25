@@ -57,7 +57,7 @@ export default class Channel extends Component {
             size: 37,
             color: "red",
             isFetching: false,
-            isVisible: false
+            isVisible: false,
         };
 
     }
@@ -97,7 +97,7 @@ export default class Channel extends Component {
                     .then((resp) => resp.json())
                     .then((responseJson) => {
                         this.setState({
-                            loading:false
+                            isVisible:false
                         })
                         console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                         this.setState({
@@ -107,7 +107,7 @@ export default class Channel extends Component {
                     })
                     .catch((error) => {
                         this.setState({
-                            loading:false
+                            isVisible:false
                         })
                         console.error(error);
                     });
@@ -189,7 +189,14 @@ export default class Channel extends Component {
                     </Header>
 
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-
+                    <View style={{ alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+        top:250
+        
+       }}>
+                         <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                </View>
                     <FlatGrid
                         itemDimension={130}
                        
@@ -208,9 +215,8 @@ export default class Channel extends Component {
                             </TouchableOpacity>
                         )}
                     />
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                   
                 </View>
-
             </Drawer>
 
         );
