@@ -4,10 +4,16 @@ import {
      Dimensions,TextInput
 } from 'react-native';
 import { Header, Drawer, Left,Icon, Body, Right } from 'native-base';
+
 import { FlatGrid } from 'react-native-super-grid';
+
 import SideBar from '../SideMenuscreen/SideMenuScreen';
+
 import Spinner from'react-native-spinkit'
+
 import baseurl from '../../resource/strings'
+
+import styles from './TeledramaScreenStyle';
 
 const extractKey = ({ id }) => id
 
@@ -164,10 +170,9 @@ export default class TeledramaScreen extends Component {
                                 <View style={{ borderRadius: 50 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         
-                                        <Image style={{ height: 250, width: 340,borderRadius:20 }} source={{ uri: baseurl.BASE_URL+'/images/'+ item.te_Image }} >
+                                        <Image style={{ height: 125, width: 373,borderRadius:20 }} source={{ uri: baseurl.BASE_URL+'/images/'+ item.te_Image }} >
 
                                         </Image>
-<<<<<<< HEAD
                                         {/* <Text style={styles.itemName} style={{
                                             fontSize: 22,
                                             left: 230,
@@ -178,11 +183,6 @@ export default class TeledramaScreen extends Component {
                                             fontWeight: 'bold',
                                         }}></Text> */}
 
-=======
-                                                 <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000', fontWeight: 'bold'}}>{item.te_Name}</Text>
-                                        <Text style={styles.itemName} style={{left: 18, fontSize: 18, color: '#000'}}>{item.created_at}</Text>
-                                    
->>>>>>> 36ff1379307f743f4bffd9db1193ab8fcaaf56e0
                                     </View>
                                 </View>
 
@@ -196,50 +196,3 @@ export default class TeledramaScreen extends Component {
         );
     }
 }
-<<<<<<< HEAD
-=======
-const styles = StyleSheet.create({
-    container: {
-        flex: 2,
-    },
-    gridView: {
-
-    },
-    row: {
-        left: 20,
-        padding: 15,
-        backgroundColor: 'white',
-        width: 500,
-        height: 80,
-        borderRadius: 20,
-    },
-    itemContainer: {
-        height: 250,
-        width: 340,
-        elevation: 5,
-        marginTop: 42,
-        borderRadius: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 9,
-        },
-        shadowOpacity: 0.50,
-        shadowRadius: 12.35,
-        elevation: 19,
-    },
-
-    wrapper: {
-        marginTop: 30,
-        flex: 1
-    },
-    spinner: {
-        alignItems:"center",
-        justifyContent:"center",
-        alignContent:"center",
-        marginBottom:350,
-        left:150
-       
-      },
-})
->>>>>>> 36ff1379307f743f4bffd9db1193ab8fcaaf56e0
