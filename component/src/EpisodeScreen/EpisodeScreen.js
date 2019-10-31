@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 
 import {
-    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground,
+    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -15,7 +15,8 @@ import YouTube, { } from 'react-native-youtube';
 import {
     Card,
     Drawer,
-
+    Header,
+    Body, Left, Icon,Right
 } from 'native-base';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -48,6 +49,7 @@ export default class Example extends Component {
             color: "red",
             isVisible: false,
             isFetching: false,
+            searchname: '',
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -111,6 +113,9 @@ export default class Example extends Component {
     componentDidMount() {
         this.getallteledrama()
     }
+    componentwillMount() {
+        this.searchepisode()
+    }
     onRefresh() {
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
     }
@@ -149,6 +154,40 @@ export default class Example extends Component {
             });
     }
 
+    searchepisode() {
+        this.setState({
+            isVisible: true
+        })
+        fetch(baseurl.BASE_URL + '/api/episodess/' + this.state.searchname, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                this.setState({
+                    isVisible: false
+                })
+                this.setState({
+                    isFetching: false
+                })
+                console.log("Getall :" + JSON.stringify(responseJson))
+
+                this.setState({
+                    getall: responseJson.reverse()
+
+                })
+            })
+
+            .catch((error) => {
+                this.setState({
+                    isVisible: false
+                })
+                console.error(error);
+            });
+    }
 
     render() {
         // var new_play=this.state.getall[0].ep_videoID
@@ -167,7 +206,45 @@ export default class Example extends Component {
                 })}>
 
 
-                <View>
+                <View style={{  marginTop: 30,}}>
+                <Header style={{
+                        backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                        shadowRadius: 11.14,
+                        elevation: 17,
+                    }}>
+
+                        <Left>
+                            <TouchableOpacity onPress={() => this.openDrawer()}>
+                                <Icon name='menu' style={{ color: 'gray' }} />
+                            </TouchableOpacity>
+                        </Left>
+                        <Body>
+                            <TextInput
+                                style={{
+                                    height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
+                                }}
+                                placeholder='                      Search here' 
+                                onChangeText={
+                                    data =>
+                                        this.setState({
+                                            searchname: data
+                                        })
+
+                                }
+                                value={this.state.searchname}
+/>
+
+                        </Body>
+                        <Right>
+                            <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                                <Icon name='search' />
+                            </TouchableOpacity>
+
+                           
+                        </Right>
+
+                    </Header>
+                    
                     <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
                         {this.state.something &&
@@ -208,12 +285,14 @@ export default class Example extends Component {
 
 
                         }
-<View style={{alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        top:130}}>
-                    <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color}/>
-                    </View>
+                        <View style={{
+                            alignItems: "center",
+                            justifyContent: "center",
+                            alignContent: "center",
+                            top: 130
+                        }}>
+                            <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                        </View>
                         <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
                             left: 300,
                             top: 190,
@@ -254,7 +333,7 @@ export default class Example extends Component {
 
                                 <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: hp('14.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
+                                        <Image style={{ height: hp('16.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
                                         <Text style={styles.itemName} >{item.ep_Title}</Text>
                                         {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
                                     </View>
@@ -265,7 +344,7 @@ export default class Example extends Component {
                         />
 
                     </Card>
-                  
+
                 </View>
 
 

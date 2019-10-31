@@ -43,7 +43,7 @@ export default StyleSheet.create({
         shadowRadius: 5,
         elevation: 10,
         width: wp('95%'),
-        height: hp('14.7%'),
+        height: hp('16.7%'),
         marginTop: 20,
         marginLeft: 6,
         borderRadius: 20,
@@ -57,9 +57,9 @@ export default StyleSheet.create({
     itemName: {
         fontSize: 14,
         left: 170,
-        height: 100,
-        width: 120,
-        bottom: 100,
+        height: 120,
+        width: 140,
+        bottom: 130,
         color: 'black',
         fontWeight: 'bold',
 

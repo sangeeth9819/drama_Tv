@@ -30,7 +30,7 @@ export default class Channel extends Component {
             <View
                 style={styles.item}
             >
-                
+
                 <Text style={styles.itemText}>{item.key}</Text>
             </View>
         );
@@ -60,6 +60,8 @@ export default class Channel extends Component {
             color: "red",
             isFetching: false,
             isVisible: false,
+            searchname:'',
+          
         };
 
     }
@@ -69,14 +71,17 @@ export default class Channel extends Component {
     componentDidMount() {
         this.getAll()
     }
-  
+    componentwillMount() {
+        this.searchChannel()
+    }
+
 
     getAll() {
         this.setState({
             isVisible: true
         })
         console.log('text');
-        fetch(baseurl.BASE_URL + '/api/channels', {
+        fetch('https://dramatv.commercialtp.com/api/channels', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -99,26 +104,76 @@ export default class Channel extends Component {
                     .then((resp) => resp.json())
                     .then((responseJson) => {
                         this.setState({
-                            isVisible:false
+                            isVisible: false
                         })
                         console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                         this.setState({
                             getall: responseJson
                         })
-        
+
                     })
                     .catch((error) => {
                         this.setState({
-                            isVisible:false
+                            isVisible: false
                         })
                         console.error(error);
                     });
-        
-        
+
+
             }
-            )}
-        
- 
+            )
+    }
+
+    searchChannel() {
+        this.setState({
+            isVisible: true
+        })
+        console.log('text');
+        fetch('https://dramatv.commercialtp.com/api/channels/'+this.state.searchname, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                this.setState({
+                    isVisible: false
+                })
+                this.setState({
+                    isFetching: false
+                })
+                console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                this.setState({
+                    getall: responseJson
+                })
+                    .then((resp) => resp.json())
+                    .then((responseJson) => {
+                        this.setState({
+                            isVisible: false
+                        })
+                        console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                        this.setState({
+                            getall: responseJson
+                        })
+
+                    })
+                    .catch((error) => {
+                        this.setState({
+                            isVisible: false
+                        })
+                        console.error(error);
+                    });
+
+
+            }
+            )
+    }
+
+
+
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -141,13 +196,14 @@ export default class Channel extends Component {
     Test() {
         Alert.alert("Alert Is Working...")
     }
-    navigateToTeledrama(id,ch_videoID) {
+    navigateToTeledrama(id, ch_videoID) {
         this.props.navigation.navigate('TeledramaScreen', {
 
             id: id,
-            ch_videoID:ch_videoID
+            ch_videoID: ch_videoID
         });
     }
+  
 
     render() {
         return (
@@ -179,11 +235,20 @@ export default class Channel extends Component {
 
                             <TextInput
                                 style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
-                                placeholder='Search here' />
+                                placeholder='Search here'
+                                onChangeText={
+                                    data =>
+                                        this.setState({
+                                            searchname: data
+                                        })
+
+                                }
+                                value={this.state.searchname}
+                            />
 
                         </Body>
                         <Right>
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")}>
+                            <TouchableOpacity onPress={() => this.searchChannel(this.setState.searchname)}>
                                 <Icon name='search' style={{ color: 'gray' }} />
                             </TouchableOpacity>
 
@@ -191,26 +256,27 @@ export default class Channel extends Component {
                     </Header>
 
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    <View style={{ alignItems: "center",
-        justifyContent: "center",
-        alignContent: "center",
-        top:250
-        
-       }}>
-                         <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
-                </View>
+                    <View style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        alignContent: "center",
+                        top: 250
+
+                    }}>
+                        <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                    </View>
                     <FlatGrid
-                        itemDimension={130}                      
-                        items={this.state.getall}  
-                        onRefresh={() => this.onRefresh()} 
-                        refreshing={this.state.isFetching}                  
+                        itemDimension={130}
+                        items={this.state.getall}
+                        onRefresh={() => this.onRefresh()}
+                        refreshing={this.state.isFetching}
                         style={styles.gridView}
 
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id,item.ch_videoID)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.ch_videoID)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image}} />
+                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
                                     <Text style={styles.itemName}>{item.ch_Name}</Text>
 
                                 </View>
@@ -218,7 +284,7 @@ export default class Channel extends Component {
                             </TouchableOpacity>
                         )}
                     />
-                   
+
                 </View>
             </Drawer>
 

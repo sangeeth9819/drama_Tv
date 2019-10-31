@@ -6,6 +6,8 @@ import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import YouTube, { } from 'react-native-youtube';
+
 import { FlatGrid } from 'react-native-super-grid';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -43,6 +45,7 @@ export default class TeledramaScreen extends Component {
             color: "red",
             isVisible: false,
             isFetching: false,
+            searchname: '',
             playerWidth: Dimensions.get('window').width,
 
         };
@@ -53,6 +56,11 @@ export default class TeledramaScreen extends Component {
 
     componentDidMount() {
         this.getallteledrama()
+      
+    }
+    componentwillMount() {
+        this.searchteledrama()
+      
     }
 
 
@@ -60,7 +68,7 @@ export default class TeledramaScreen extends Component {
         this.setState({
             isVisible: true
         })
-        fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId, {
+        fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId,{
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -89,6 +97,42 @@ export default class TeledramaScreen extends Component {
                 console.error(error);
             });
     }
+
+    searchteledrama() {
+        this.setState({
+            isVisible: true
+        })
+        fetch(baseurl.BASE_URL + '/api/teledramass/' + this.state.searchname,{
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((responseJson) => {
+                this.setState({
+                    isVisible: false
+                })
+                this.setState({
+                    isFetching: false
+                })
+                console.log("Getall :" + JSON.stringify(responseJson))
+
+                this.setState({
+                    getall: responseJson
+                })
+            })
+
+            .catch((error) => {
+                this.setState({
+                    isVisible: false
+                })
+                console.error(error);
+            });
+    }
+
+
 
 
 
@@ -130,7 +174,8 @@ export default class TeledramaScreen extends Component {
     navigateToTeledrama(id, imagepath) {
         this.props.navigation.navigate('EpisodeScreen', {
             id: id,
-            imagepath: imagepath
+            imagepath: imagepath,
+          
         });
 
     }
@@ -144,7 +189,7 @@ export default class TeledramaScreen extends Component {
 
         }
     }
-
+    
     render() {
         return (
 
@@ -175,11 +220,20 @@ export default class TeledramaScreen extends Component {
                                 style={{
                                     height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
                                 }}
-                                placeholder='                      Search here' />
+                                placeholder='                      Search here' 
+                                onChangeText={
+                                    data =>
+                                        this.setState({
+                                            searchname: data
+                                        })
+
+                                }
+                                value={this.state.searchname}
+/>
 
                         </Body>
                         <Right>
-                            <TouchableOpacity onPress={() => Alert.alert("search workinng")} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                            <TouchableOpacity onPress={() => this.searchteledrama(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
                                 <Icon name='search' />
                             </TouchableOpacity>
 
@@ -191,6 +245,7 @@ export default class TeledramaScreen extends Component {
                         </Right>
 
                     </Header>
+                    
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                     <View style={{alignItems: "center",
         justifyContent: "center",
@@ -235,6 +290,7 @@ export default class TeledramaScreen extends Component {
                         />
                     }
                     {/* Body Content */}
+                   
                     <FlatGrid
                         itemDimension={270}
                         items={this.state.getall}
@@ -242,12 +298,15 @@ export default class TeledramaScreen extends Component {
                         refreshing={this.state.isFetching}                    
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image)} activeOpacity={0.8}>
-                                <View style={{ borderRadius: 50 }}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image,item.te_Name)} activeOpacity={0.8}>
+                                <View style={{ borderRadius: 50,alignItems: "center", justifyContent: "center",alignContent: "center",top:20, }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-
                                         <Image style={{
-                                            height: hp('20%'),
+                                            flex:1,
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            alignContent: "center",
+                                            height: hp('60%'),
                                             width: wp('95%'),
                                             borderRadius: 20
                                         }} source={{ uri: baseurl.BASE_URL + '/images/' + item.te_Image }} >
@@ -261,9 +320,9 @@ export default class TeledramaScreen extends Component {
                             </TouchableOpacity>
                         )}
                     />
-                   
+               
                       
-                </View>
+               </View>
             </Drawer>
 
         );

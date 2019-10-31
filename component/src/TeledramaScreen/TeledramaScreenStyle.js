@@ -7,19 +7,14 @@ export default StyleSheet.create({
         flex: 2,
     },
    
-    row: {
-        left: 20,
-        padding: 15,
-        backgroundColor: 'white',
-        width: 500,
-        height: 80,
-        borderRadius: 20,
-    },
     itemContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
         height: hp('20%'),
         width: wp('95%'),
         elevation: 5,
-        marginTop: 20,
+        marginTop: 10,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
