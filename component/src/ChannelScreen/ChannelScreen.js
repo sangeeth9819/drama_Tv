@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-    Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput
+    Text, View, Image, TouchableOpacity, Alert, StatusBar, Dimensions, TextInput, ImageBackground,
 } from 'react-native';
 
 import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
@@ -60,8 +60,8 @@ export default class Channel extends Component {
             color: "red",
             isFetching: false,
             isVisible: false,
-            searchname:'',
-          
+            searchname: '',
+
         };
 
     }
@@ -129,7 +129,7 @@ export default class Channel extends Component {
             isVisible: true
         })
         console.log('text');
-        fetch('https://dramatv.commercialtp.com/api/channels/'+this.state.searchname, {
+        fetch('https://dramatv.commercialtp.com/api/channels/' + this.state.searchname, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -203,7 +203,7 @@ export default class Channel extends Component {
             ch_videoID: ch_videoID
         });
     }
-  
+
 
     render() {
         return (
@@ -276,9 +276,12 @@ export default class Channel extends Component {
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.ch_videoID)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ width: 100, height: 100, top: 15, borderRadius: 10, left: 10 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                    <ImageBackground style={{ width: 130, height: 150, justifyContent: "center", alignItems: "center",top:20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
                                     <Text style={styles.itemName}>{item.ch_Name}</Text>
-
+                                    <View style={styles.status}>
+                                        <View style={this.state.status === "Live" ? styles.online : styles.offline} />
+                                        <Text style={styles.statusText}>Live</Text>
+                                    </View>
                                 </View>
 
                             </TouchableOpacity>

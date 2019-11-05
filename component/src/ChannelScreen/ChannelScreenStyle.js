@@ -2,7 +2,22 @@ import { StyleSheet } from 'react-native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+const PRIMARY_COLOR = "#7444C0";
+const SECONDARY_COLOR = "#5636B8";
+const WHITE = "#FFFFFF";
+const GRAY = "#757E90";
+const DARK_GRAY = "#363636";
+const BLACK = "#000000";
 
+const ONLINE_STATUS = "#46A575";
+const OFFLINE_STATUS = "#D04949";
+
+const STAR_ACTIONS = "#FFA200";
+const LIKE_ACTIONS = "#B644B2";
+const DISLIKE_ACTIONS = "#363636";
+const FLASH_ACTIONS = "#5028D7";
+
+const ICON_FONT = "tinderclone";
 export default StyleSheet.create({
         gridView: {
         flex: 1,
@@ -10,7 +25,7 @@ export default StyleSheet.create({
     itemContainer: {
         justifyContent: 'flex-end',
         padding: 10,
-        height: 130,
+        height: 200,
         width: 145,
         marginTop: 20,
         marginLeft: 10,
@@ -26,16 +41,18 @@ export default StyleSheet.create({
         elevation: 6,
     },
     wrapper: {
+        
         marginTop: 30,
-        flex: 1
+        flex: 1,
+    
     },
     itemName: {
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        top: 10,
+        top: 20,
         fontSize: 16,
-        color: '#6b6b47',
+        color: '#363636',
         fontWeight: '600',
         fontWeight: 'bold',
     },
@@ -53,5 +70,29 @@ export default StyleSheet.create({
     spinnerTextStyle: {
         color: '#FFF',
     },
+    status: {
+		paddingBottom: 10,
+		flexDirection: "row",
+        alignItems: "center",
+        top:15
+	},
+	statusText: {
+		color: GRAY,
+		fontSize: 12
+	},
+	online: {
+		width: 6,
+		height: 6,
+		backgroundColor: ONLINE_STATUS,
+		borderRadius: 3,
+		marginRight: 4
+	},
+	offline: {
+		width: 6,
+		height: 6,
+		backgroundColor: OFFLINE_STATUS,
+		borderRadius: 3,
+		marginRight: 4
+	},
 
 });

@@ -41,7 +41,7 @@ export default class Example extends Component {
             isLooping: true,
             duration: 0,
             currentTime: 0,
-            fullscreen: true,
+            fullscreen: false,
             getall: [],
             imagepath: '',
             types: ['CircleFlip', 'Bounce', 'Wave', 'WanderingCubes', 'Pulse', 'ChasingDots', 'ThreeBounce', 'Circle', '9CubeGrid', 'WordPress', 'FadingCircle', 'FadingCircleAlt', 'Arc', 'ArcAlt'],
@@ -95,7 +95,7 @@ export default class Example extends Component {
 
     onClose = () => {
         this.setState({
-            showTheThing: true
+            showTheThing: false
         })
     }
 
@@ -104,7 +104,8 @@ export default class Example extends Component {
         if (e.isFullscreen === true) {
         } else {
             this.setState({
-                something: false
+                something: false,
+                
             })
 
         }
@@ -253,7 +254,7 @@ export default class Example extends Component {
                                 ref={this._youTubeRef}
                                 apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
                                 videoId={this.state.videoId}
-
+                                autoPlay
                                 play={this.state.isPlaying}
                                 loop={this.state.isLooping}
                                 fullscreen={this.state.fullscreen}
