@@ -16,7 +16,7 @@ import {
     Card,
     Drawer,
     Header,
-    Body, Left, Icon,Right
+    Body, Left, Icon, Right
 } from 'native-base';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -105,7 +105,7 @@ export default class Example extends Component {
         } else {
             this.setState({
                 something: false,
-                
+
             })
 
         }
@@ -207,8 +207,8 @@ export default class Example extends Component {
                 })}>
 
 
-                <View style={{  marginTop: 30,}}>
-                <Header style={{
+                <View style={{ marginTop: 30, }}>
+                    <Header style={{
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
                         elevation: 17,
@@ -224,7 +224,7 @@ export default class Example extends Component {
                                 style={{
                                     height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
                                 }}
-                                placeholder='                      Search here' 
+                                placeholder='                      Search here'
                                 onChangeText={
                                     data =>
                                         this.setState({
@@ -233,7 +233,7 @@ export default class Example extends Component {
 
                                 }
                                 value={this.state.searchname}
-/>
+                            />
 
                         </Body>
                         <Right>
@@ -241,12 +241,19 @@ export default class Example extends Component {
                                 <Icon name='search' />
                             </TouchableOpacity>
 
-                           
+
                         </Right>
 
                     </Header>
-                    
+
                     <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
+                        <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{}}>
+                            <View>
+                                <Image style={{
+                                    width: 30, height: 30,
+                                }} source={require('../../assest/iconBack.png')} />
+                            </View>
+                        </TouchableOpacity>
 
                         {this.state.something &&
                             <YouTube
@@ -309,44 +316,40 @@ export default class Example extends Component {
                             </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{}}>
-                            <Image style={{
-                                width: 30, height: 30, bottom: 12, left: 10
-                            }} source={require('../../assest/iconBack.png')} />
-                        </TouchableOpacity>
+
 
                     </ImageBackground>
 
                 </View>
 
-                <View>
 
-                    <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
 
-                        <FlatList
-                            itemDimension={130}
-                            data={this.state.getall}
-                            onRefresh={() => this.onRefresh()}
-                            refreshing={this.state.isFetching}
-                            style={styles.gridView}
+                <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
 
-                            renderItem={({ item, index }) => (
+                    <FlatList
+                        itemDimension={130}
+                        data={this.state.getall}
+                        onRefresh={() => this.onRefresh()}
+                        refreshing={this.state.isFetching}
+                        style={styles.gridView}
 
-                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
-                                    <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                        <Image style={{ height: hp('16.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
-                                        <Text style={styles.itemName} >{item.ep_Title}</Text>
-                                        {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
-                                    </View>
-                                </TouchableOpacity>
+                        renderItem={({ item, index }) => (
 
-                            )}
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
+                                <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
+                                    <Image style={{ height: hp('16.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
+                                    <Text style={styles.itemName} >{item.ep_Title}</Text>
+                                    {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
+                                </View>
+                            </TouchableOpacity>
 
-                        />
+                        )}
 
-                    </Card>
+                    />
 
-                </View>
+                </Card>
+
+
 
 
             </Drawer>

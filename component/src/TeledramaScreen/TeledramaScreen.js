@@ -299,7 +299,7 @@ export default class TeledramaScreen extends Component {
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image,item.te_Name)} activeOpacity={0.8}>
-                                <View style={{ borderRadius: 50,alignItems: "center", justifyContent: "center",alignContent: "center",top:20, }}>
+                                <View style={{ borderRadius: 50,alignItems: "center", justifyContent: "center",alignContent: "center",top:10,marginBottom:5 }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{
                                             flex:1,

@@ -234,8 +234,8 @@ export default class Channel extends Component {
                         <Body>
 
                             <TextInput
-                                style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
-                                placeholder='Search here'
+                                style={{  height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5}}
+                                placeholder='                  Search here                  '
                                 onChangeText={
                                     data =>
                                         this.setState({
