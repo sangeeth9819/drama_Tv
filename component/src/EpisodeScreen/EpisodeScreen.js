@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 
 import {
-    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput
+    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput,StatusBar
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -49,7 +49,7 @@ export default class Example extends Component {
             color: "red",
             isVisible: false,
             isFetching: false,
-            searchname: '',
+            searchname:'',
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -155,11 +155,11 @@ export default class Example extends Component {
             });
     }
 
-    searchepisode() {
+    searchepisode(text) {
         this.setState({
             isVisible: true
         })
-        fetch(baseurl.BASE_URL + '/api/episodess/' + this.state.searchname, {
+        fetch(baseurl.BASE_URL + '/api/episodess/' + text, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -220,20 +220,18 @@ export default class Example extends Component {
                             </TouchableOpacity>
                         </Left>
                         <Body>
-                            <TextInput
-                                style={{
-                                    height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
-                                }}
-                                placeholder='                      Search here' 
+                        <TextInput
+                                style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
+                                placeholder='Search here'
                                 onChangeText={
-                                    data =>
-                                        this.setState({
-                                            searchname: data
-                                        })
+                                    text =>
+                                    this.searchepisode(text)
 
                                 }
-                                value={this.state.searchname}
-/>
+                               
+                               
+                               
+                            />
 
                         </Body>
                         <Right>
@@ -245,7 +243,7 @@ export default class Example extends Component {
                         </Right>
 
                     </Header>
-                    
+                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                     <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
                         {this.state.something &&

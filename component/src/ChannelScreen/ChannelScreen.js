@@ -43,7 +43,7 @@ export default class Channel extends Component {
             swipeToClose: true,
             videoId: '',
             isReady: false,
-            status: null,
+            status: '',
             quality: null,
             error: null,
             isPlaying: true,
@@ -60,8 +60,9 @@ export default class Channel extends Component {
             color: "red",
             isFetching: false,
             isVisible: false,
-            searchname: '',
-
+            searchname:'',
+           
+        
         };
 
     }
@@ -97,7 +98,7 @@ export default class Channel extends Component {
                 this.setState({
                     isFetching: false
                 })
-                console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                console.log("getAll :" + JSON.stringify(responseJson))
                 this.setState({
                     getall: responseJson
                 })
@@ -106,7 +107,7 @@ export default class Channel extends Component {
                         this.setState({
                             isVisible: false
                         })
-                        console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
+                        console.log("getAll :" + JSON.stringify(responseJson))
                         this.setState({
                             getall: responseJson
                         })
@@ -124,12 +125,12 @@ export default class Channel extends Component {
             )
     }
 
-    searchChannel() {
+    searchChannel(text) {
         this.setState({
             isVisible: true
         })
         console.log('text');
-        fetch('https://dramatv.commercialtp.com/api/channels/' + this.state.searchname, {
+        fetch('https://dramatv.commercialtp.com/api/channels/' + text, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -140,11 +141,16 @@ export default class Channel extends Component {
             .then((resp) => resp.json())
             .then((responseJson) => {
                 this.setState({
-                    isVisible: false
+                    isVisible: false,
+                    dataSource:responseJson
                 })
                 this.setState({
                     isFetching: false
-                })
+                },
+                function() {
+                    this.getall = responseJson;
+                  }
+                )
                 console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                 this.setState({
                     getall: responseJson
@@ -167,13 +173,13 @@ export default class Channel extends Component {
                         console.error(error);
                     });
 
-
+                    searchname = text => {
+                        console.log(text);
+                      };
             }
             )
     }
-
-
-
+    
     navigatechannel() {
         this.props.navigation.navigate('TeledramaScreen')
     };
@@ -237,13 +243,13 @@ export default class Channel extends Component {
                                 style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
                                 placeholder='Search here'
                                 onChangeText={
-                                    data =>
-                                        this.setState({
-                                            searchname: data
-                                        })
+                                    text =>
+                                    this.searchChannel(text)
 
                                 }
-                                value={this.state.searchname}
+                               
+                               
+                               
                             />
 
                         </Body>
@@ -279,7 +285,7 @@ export default class Channel extends Component {
                                     <ImageBackground style={{ width: 130, height: 150, justifyContent: "center", alignItems: "center",top:20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
                                     <Text style={styles.itemName}>{item.ch_Name}</Text>
                                     <View style={styles.status}>
-                                        <View style={this.state.status === "Live" ? styles.online : styles.offline} />
+                                        <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
                                         <Text style={styles.statusText}>Live</Text>
                                     </View>
                                 </View>
