@@ -10,7 +10,7 @@ import {
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-spinkit'
 
-import YouTube, { } from 'react-native-youtube';
+import YouTube, { YouTubeStandaloneAndroid } from 'react-native-youtube';
 
 import {
     Card,
@@ -95,7 +95,7 @@ export default class Example extends Component {
 
     onClose = () => {
         this.setState({
-            showTheThing: false
+            showTheThing: true
         })
     }
 
@@ -353,5 +353,4 @@ export default class Example extends Component {
         );
     }
 }
-
 

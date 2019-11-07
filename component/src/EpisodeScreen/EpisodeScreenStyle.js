@@ -27,7 +27,7 @@ export default StyleSheet.create({
         borderRadius: 20,
     },
     itemContainer: {
-        height: 130,
+        height: 170,
         marginLeft: 10,
         width: 340,
         borderRadius: 20,
@@ -68,5 +68,5 @@ export default StyleSheet.create({
         
 
     },
-
+    
 });

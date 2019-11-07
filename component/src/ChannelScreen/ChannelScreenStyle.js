@@ -83,14 +83,14 @@ export default StyleSheet.create({
 	online: {
 		width: 6,
 		height: 6,
-		backgroundColor: ONLINE_STATUS,
+		backgroundColor: OFFLINE_STATUS,
 		borderRadius: 3,
 		marginRight: 4
 	},
 	offline: {
 		width: 6,
 		height: 6,
-		backgroundColor: OFFLINE_STATUS,
+		backgroundColor: ONLINE_STATUS,
 		borderRadius: 3,
 		marginRight: 4
 	},
