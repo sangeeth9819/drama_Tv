@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 
 import {
-    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput,StatusBar
+    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-spinkit'
 
-import YouTube, { YouTubeStandaloneAndroid } from 'react-native-youtube';
+import YouTube, { } from 'react-native-youtube';
 
 import {
     Card,
@@ -50,7 +50,7 @@ export default class Example extends Component {
             color: "red",
             isVisible: false,
             isFetching: false,
-            searchname:'',
+            searchname: '',
             playerWidth: Dimensions.get('window').width,
         };
         this.state.videoId = this.props.navigation.state.params.id
@@ -76,8 +76,8 @@ export default class Example extends Component {
     }
 
     navigateToTeleScreen() {
-        // Orientation.lockToLandscape();
-        this.onRefresh();
+       
+        
         this.props.navigation.navigate('TeledramaScreen')
         
     }
@@ -92,7 +92,7 @@ export default class Example extends Component {
   
 
     closeDrawer = () => {
-        // this.drawer._root.close()
+        this.drawer._root.close()
     };
 
     openDrawer = () => {
@@ -102,7 +102,7 @@ export default class Example extends Component {
 
     onClose = () => {
         this.setState({
-            showTheThing: true
+            showTheThing: false
         })
     }
  
@@ -110,8 +110,7 @@ export default class Example extends Component {
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         if (e.isFullscreen == true) {
-            Orientation.lockToLandscapeLeft();
-         Orientation.lockToLandscapeLeft();
+            Orientation.unlockAllOrientations();
         } else {
             this.setState({
                 something: false,
@@ -126,7 +125,7 @@ export default class Example extends Component {
         this.getallteledrama()
     }
     componentwillMount() {
-       
+        Orientation.unlockAllOrientations();
         this.searchepisode()
     
     }
@@ -170,11 +169,11 @@ export default class Example extends Component {
             });
     }
 
-    searchepisode(text) {
+    searchepisode() {
         this.setState({
             isVisible: true
         })
-        fetch(baseurl.BASE_URL + '/api/episodess/' + text, {
+        fetch(baseurl.BASE_URL + '/api/episodess/' + this.state.searchname, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -209,7 +208,6 @@ export default class Example extends Component {
     render() {
         // var new_play=this.state.getall[0].ep_videoID
         var title;
-       // Orientation.unlockAllOrientations();
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -222,6 +220,8 @@ export default class Example extends Component {
                 tweenHandler={(ratio) => ({
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
+
+
 
                 <Header style={{
                     backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
@@ -250,72 +250,12 @@ export default class Example extends Component {
                             value={this.state.searchname}
                         />
 
-                        <Left>
-                            <TouchableOpacity onPress={() => this.openDrawer()}>
-                                <Icon name='menu' style={{ color: 'gray' }} />
-                            </TouchableOpacity>
-                        </Left>
-                        <Body>
-                        <TextInput
-                                style={{ height: 40, borderColor: 'white', borderWidth: 1, borderRadius: 10, }}
-                                placeholder='Search here'
-                                onChangeText={
-                                    text =>
-                                    this.searchepisode(text)
+                    </Body>
+                    <Right>
+                        <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                            <Icon name='search' />
+                        </TouchableOpacity>
 
-                                }
-
-                               
-                            />
-
-                        </Body>
-                        <Right>
-                            <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
-                                <Icon name='search' />
-                            </TouchableOpacity>
-
-                           
-                        </Right>
-                    
-                   
-                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
-
-                        {this.state.something &&
-                            <YouTube
-
-                                ref={this._youTubeRef}
-                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                                videoId={this.state.videoId}
-                                autoPlay
-                                play={this.state.isPlaying}
-                                loop={this.state.isLooping}
-                                fullscreen={this.state.fullscreen}
-                                controls={1}
-                                style={[
-                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                    styles.player,
-                                ]}
-                                onError={e => {
-                                    this.setState({ error: e.error });
-                                }}
-                                onReady={e => {
-                                    this.setState({ isReady: true });
-                                }}
-                                onChangeState={e => {
-                                    this.setState({ status: e.state });
-                                }}
-                                onChangeQuality={e => {
-                                    this.setState({ quality: e.quality });
-                                }}
-                                onChangeFullscreen={e => {
-                                    this.changeScreenRotate(e)
-                                }}
-                                onProgress={e => {
-                                    this.setState({ currentTime: e.currentTime });
-                                }}
-
-                            />
 
                     </Right>
 
@@ -380,7 +320,7 @@ export default class Example extends Component {
                                 this.changeScreenRotate(e)
                                
                 
-                           
+                            Orientation.lockToLandscapeLeft()
                             
                         }
                     }
@@ -434,4 +374,5 @@ export default class Example extends Component {
         );
     }
 }
+
 

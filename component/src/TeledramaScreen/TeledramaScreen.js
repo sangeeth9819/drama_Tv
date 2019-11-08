@@ -210,7 +210,7 @@ export default class TeledramaScreen extends Component {
     }
     
     render() {
-        Orientation.unlockAllOrientations();
+      
         return (
 
             <Drawer
@@ -225,7 +225,8 @@ export default class TeledramaScreen extends Component {
 
                 <View style={styles.wrapper}>
                     <Header style={{
-                        backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                        backgroundColor: 'white', borderRadius: 10,
+                         shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
                         elevation: 17,
                     }}>
