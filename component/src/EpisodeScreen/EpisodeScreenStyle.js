@@ -28,8 +28,7 @@ export default StyleSheet.create({
         
     },
     itemContainer: {
-        borderRadius:20,
-        height: 150,
+        height: 170,
         marginLeft: 10,
         width: 340,
         shadowColor: "#000",
@@ -68,5 +67,5 @@ export default StyleSheet.create({
         
 
     },
-
+    
 });

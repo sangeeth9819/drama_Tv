@@ -52,7 +52,7 @@ export default StyleSheet.create({
         flex: 1,
         alignContent: "center",
         textAlign: "center",
-        right: 12,
+        right: 5,
         top: 29
     },
 

@@ -15,6 +15,7 @@ import Channel from './component/src/ChannelScreen/ChannelScreen';
 import Episode from './component/src/EpisodeScreen/EpisodeScreen';
 import Teledrama from './component/src/TeledramaScreen/TeledramaScreen';
 import firebase from 'react-native-firebase';
+import Request from './component/src/SideMenuscreen/RequesScreen'
  
 const RootStack = createStackNavigator({
     AuthScreen: {
@@ -35,6 +36,10 @@ const RootStack = createStackNavigator({
  
   TeledramaScreen: {
     screen: Teledrama,
+    navigationOptions: { header: null }
+  },
+  RequesScreen: {
+    screen: Request,
     navigationOptions: { header: null }
   },
   

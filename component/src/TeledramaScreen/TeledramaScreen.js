@@ -109,11 +109,11 @@ export default class TeledramaScreen extends Component {
             });
     }
 
-    searchteledrama() {
+    searchteledrama(text) {
         this.setState({
             isVisible: true
         })
-        fetch(baseurl.BASE_URL + '/api/teledramass/' + this.state.searchname,{
+        fetch(baseurl.BASE_URL + '/api/teledramass/' + text,{
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -242,13 +242,10 @@ export default class TeledramaScreen extends Component {
                                 }}
                                 placeholder='                      Search here' 
                                 onChangeText={
-                                    data =>
-                                        this.setState({
-                                            searchname: data
-                                        })
-
+                                    text =>
+                                    this.searchteledrama(text)
                                 }
-                                value={this.state.searchname}
+                               
 />
 
                         </Body>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Image, View, TouchableOpacity } from "react-native";
+import { Image, View, TouchableOpacity ,Linking,Button} from "react-native";
 
 import {
     Text,
@@ -10,8 +10,11 @@ import {
 
 import styles from './SideMenuScreemStyle'
 
+   
+  
 
 export default class SideBar extends React.Component {
+    
     navigatechannel() {
         this.props.navigation.navigate('ChannelScreen')
     };
@@ -21,10 +24,19 @@ export default class SideBar extends React.Component {
     navigateTele() {
         this.props.navigation.navigate('TeledramaScreen')
     };
-
+    playstore(){
+        Linking.openURL('https://play.google.com/store/apps/details?id=com.dramatv')
+    }
+aboutus(){
+    Linking.openURL('https://commercialtp.com/about.php')
+}
+navigateRequest() {
+    this.props.navigation.navigate('RequesScreen')
+};
     render() {
         return (
-            <Container>
+            
+            <Container >
                 <Content >
                     <View style={styles.AllView}>
                     </View>
@@ -78,11 +90,13 @@ export default class SideBar extends React.Component {
                             </View>
 
                         </TouchableOpacity >
-                        <TouchableOpacity>
+                        <TouchableOpacity 
+                        onPress={()=>this.navigateRequest()}
+                        >
                             <View>
                                 <View>
                                     <Text style={styles.txtLatest}>
-                                        Latest
+                                        Request
                                 </Text >
                                     <Image
                                         style={styles.imagectegory}
@@ -117,25 +131,7 @@ export default class SideBar extends React.Component {
                             </View>
 
                         </TouchableOpacity >
-                        <TouchableOpacity onPress={() => this.navigatechannel()}>
-                            <View>
-                                <View>
-                                    <Text style={styles.txtRequestdrama}>
-                                        Live TV
-                                </Text>
-                                    <Image
-                                        style={styles.imagectegory}
-                                        source={require
-                                            (
-                                                '../../assest/icons8-video-camera-48.png'
-                                            )}
-                                    >
-
-                                    </Image>
-                                </View>
-                            </View>
-
-                        </TouchableOpacity >
+                       
                     </View>
                     <View style={styles.SecondView}>
 
@@ -147,7 +143,7 @@ export default class SideBar extends React.Component {
                                 Contact Us
                             </Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.aboutus()}>
                             <View>
                                 <View>
                                     <Text style={styles.AboutUs}>
@@ -167,7 +163,7 @@ export default class SideBar extends React.Component {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.playstore()}>
                             <View>
                                 <View>
                                     <Text style={styles.rateApp}>
@@ -207,7 +203,7 @@ export default class SideBar extends React.Component {
 
                         </TouchableOpacity >
                     </View>
-                </Content>
+                </Content>               
             </Container>
 
         );
