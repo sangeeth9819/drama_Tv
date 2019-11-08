@@ -264,8 +264,7 @@ export default class Example extends Component {
                                     this.searchepisode(text)
 
                                 }
-                               
-                               
+
                                
                             />
 
@@ -277,8 +276,8 @@ export default class Example extends Component {
 
                            
                         </Right>
-
-                    </Header>
+                    
+                   
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
                     <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
