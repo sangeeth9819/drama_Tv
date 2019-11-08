@@ -1,4 +1,5 @@
 {
   "name": "dramaTv",
-  "displayName": "dramaTv"
+  "displayName": "dramaTv",
+  "orientation": "portrait"
 }

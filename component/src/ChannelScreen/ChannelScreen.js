@@ -18,6 +18,7 @@ import Spinner from 'react-native-spinkit'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import styles from './ChannelScreenStyle';
+import Orientation from 'react-native-orientation-locker';
 
 
 export default class Channel extends Component {
@@ -69,14 +70,18 @@ export default class Channel extends Component {
         this.setState({ isFetching: true }, function () { this.getAll() });
     }
     componentDidMount() {
+        this.onRefresh();
+        Orientation.unlockAllOrientations();
         this.getAll()
     }
     componentwillMount() {
+        Orientation.unlockAllOrientations();
         this.searchChannel()
     }
 
 
     getAll() {
+        Orientation.unlockAllOrientations();
         this.setState({
             isVisible: true
         })
@@ -175,6 +180,7 @@ export default class Channel extends Component {
 
 
     navigatechannel() {
+        Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen')
     };
 
@@ -197,6 +203,7 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id, ch_videoID) {
+       
         this.props.navigation.navigate('TeledramaScreen', {
 
             id: id,
@@ -206,6 +213,7 @@ export default class Channel extends Component {
 
 
     render() {
+      
         return (
 
             <Drawer
@@ -213,6 +221,7 @@ export default class Channel extends Component {
                 side="left" ref={(ref) => { this.drawer = ref; }}
                 acceptPan={true}
                 panOpenMask={1}
+                onFullScreenEnter={() => Orientation.unlockAllOrientations()}
                 content={<SideBar navigation={this.props.navigation} />}
                 onClose={() => this.closeDrawer()}
                 tweenHandler={(ratio) => ({

@@ -25,12 +25,13 @@ export default StyleSheet.create({
         left: 20,
         backgroundColor: 'white',
         borderRadius: 20,
+        
     },
     itemContainer: {
-        height: 130,
+        borderRadius:20,
+        height: 150,
         marginLeft: 10,
         width: 340,
-        borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -38,21 +39,20 @@ export default StyleSheet.create({
             borderRadius: 4,
             borderWidth: 0.5,
             borderColor: '#d6d7da',
-        },
+       },
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 10,
         width: wp('95%'),
         height: hp('16.7%'),
-        marginTop: 20,
+        marginTop:20,
         marginLeft: 6,
-        borderRadius: 20,
         padding: 20,
        
     },
     wrapper: {
         marginTop: 50,
-        flex: 1
+        flex: 5
     },
     itemName: {
         fontSize: 14,

@@ -18,9 +18,11 @@ import baseurl from '../../resource/strings'
 
 import styles from './TeledramaScreenStyle';
 
-
+import Orientation from 'react-native-orientation-locker';
 
 export default class TeledramaScreen extends Component {
+
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -55,18 +57,27 @@ export default class TeledramaScreen extends Component {
     }
 
     componentDidMount() {
+       
         this.getallteledrama()
+      
       
     }
     componentwillMount() {
+      
         this.searchteledrama()
+       
       
     }
 
 
     getallteledrama() {
+ 
+        Orientation.unlockAllOrientations();
+        this.onRefresh();
+
         this.setState({
             isVisible: true
+            
         })
         fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId,{
             method: 'GET',
@@ -118,7 +129,7 @@ export default class TeledramaScreen extends Component {
                     isFetching: false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
-
+            
                 this.setState({
                     getall: responseJson
                 })
@@ -137,6 +148,7 @@ export default class TeledramaScreen extends Component {
 
 
     renderItem = ({ item }) => {
+        
         return (
             <Text style={styles.row}>
                 {item.text}
@@ -144,7 +156,9 @@ export default class TeledramaScreen extends Component {
         )
     }
     navigateTo_Episode() {
+        onRefresh() ;
         this.props.navigation.navigate('EpisodeScreen')
+        
     };
     closeDrawer = () => {
         this.drawer._root.close()
@@ -157,6 +171,7 @@ export default class TeledramaScreen extends Component {
     };
     onRefresh() {
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
+      
     }
 
     onClose = () => {
@@ -165,23 +180,27 @@ export default class TeledramaScreen extends Component {
         })
     }
     navigateToplay(ch_videoID) {
+        Orientation.unlockAllOrientations();
         this.setState({
             fullscreen: true,
             liveid: ch_videoID,
             something: true
+            
         })
     }
     navigateToTeledrama(id, imagepath) {
+    
         this.props.navigation.navigate('EpisodeScreen', {
             id: id,
             imagepath: imagepath,
           
         });
-
+       
     }
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         if (e.isFullscreen === true) {
+        
         } else {
             this.setState({
                 something: false
@@ -191,6 +210,7 @@ export default class TeledramaScreen extends Component {
     }
     
     render() {
+        Orientation.unlockAllOrientations();
         return (
 
             <Drawer
@@ -282,6 +302,7 @@ export default class TeledramaScreen extends Component {
                             }}
                             onChangeFullscreen={e => {
                                 this.changeScreenRotate(e)
+                                Orientation.unlockAllOrientations();
                             }}
                             onProgress={e => {
                                 this.setState({ currentTime: e.currentTime });

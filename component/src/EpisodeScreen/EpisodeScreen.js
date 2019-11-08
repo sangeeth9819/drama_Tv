@@ -21,6 +21,7 @@ import {
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import Orientation from 'react-native-orientation-locker';
 
 import styles from './EpisodeScreenStyle';
 
@@ -70,22 +71,28 @@ export default class Example extends Component {
             fullscreen: true,
             videoId: id,
             something: true
+            
         })
     }
 
     navigateToTeleScreen() {
+        // Orientation.lockToLandscape();
+        this.onRefresh();
         this.props.navigation.navigate('TeledramaScreen')
+        
     }
-    onRe5fresh() {
+    onRefresh() {
+        
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
     }
     onClosingState(state) {
         console.log('the open/close of the swipeToClose just changed');
     }
     _youTubeRef = React.createRef();
+  
 
     closeDrawer = () => {
-        this.drawer._root.close()
+        // this.drawer._root.close()
     };
 
     openDrawer = () => {
@@ -98,29 +105,37 @@ export default class Example extends Component {
             showTheThing: false
         })
     }
+ 
 
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
-        if (e.isFullscreen === true) {
+        if (e.isFullscreen == true) {
+            Orientation.lockToLandscapeLeft();
+         Orientation.lockToLandscapeLeft();
         } else {
             this.setState({
                 something: false,
-
+               
             })
 
         }
     }
 
     componentDidMount() {
+       Orientation.unlockAllOrientations();
         this.getallteledrama()
     }
     componentwillMount() {
+       
         this.searchepisode()
+    
     }
     onRefresh() {
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
     }
     getallteledrama() {
+        
+        Orientation.unlockAllOrientations();
         this.setState({
             isVisible: true
         })
@@ -188,11 +203,13 @@ export default class Example extends Component {
                 })
                 console.error(error);
             });
+            
     }
 
     render() {
         // var new_play=this.state.getall[0].ep_videoID
         var title;
+       // Orientation.unlockAllOrientations();
         return (
             <Drawer
                 side="left" ref={(ref) => { this.drawer = ref; }}
@@ -206,152 +223,151 @@ export default class Example extends Component {
                     main: { opacity: (1 - ratio) / 1 }
                 })}>
 
+                <Header style={{
+                    backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                    shadowRadius: 11.14,
+                    elevation: 17, marginTop: 30,
+                }}>
 
-                <View style={{ marginTop: 30, }}>
-                    <Header style={{
-                        backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
-                        shadowRadius: 11.14,
-                        elevation: 17,
+                    <Left>
+                        <TouchableOpacity onPress={() => this.openDrawer()}>
+                            <Icon name='menu' style={{ color: 'gray' }} />
+                        </TouchableOpacity>
+                    </Left>
+                    <Body>
+                        <TextInput
+                            style={{
+                                height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
+                            }}
+                            placeholder='                      Search here'
+                            onChangeText={
+                                data =>
+                                    this.setState({
+                                        searchname: data
+                                    })
+
+                            }
+                            value={this.state.searchname}
+                        />
+
+                    </Body>
+                    <Right>
+                        <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                            <Icon name='search' />
+                        </TouchableOpacity>
+
+
+                    </Right>
+
+                </Header>
+
+                <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
+
+                    <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{ width: 50, height: 50, marginTop: 30, marginLeft: 15, }}>
+                        <View>
+                            <Image style={{
+                                width: 35, height: 35,
+
+                            }} source={require('../../assest/iconBack.png')} />
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
+                        left: 300,
+                        top: 100,
                     }}>
 
-                        <Left>
-                            <TouchableOpacity onPress={() => this.openDrawer()}>
-                                <Icon name='menu' style={{ color: 'gray' }} />
-                            </TouchableOpacity>
-                        </Left>
-                        <Body>
-                            <TextInput
-                                style={{
-                                    height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
-                                }}
-                                placeholder='                      Search here'
-                                onChangeText={
-                                    data =>
-                                        this.setState({
-                                            searchname: data
-                                        })
+                        <View style={styles.imagebutton}>
 
-                                }
-                                value={this.state.searchname}
-                            />
-
-                        </Body>
-                        <Right>
-                            <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
-                                <Icon name='search' />
-                            </TouchableOpacity>
+                            <Image style={{
+                                width: 33, height: 33, top: 8, left: 10,
+                            }} source={require('../../assest/play.png')} />
 
 
-                        </Right>
-
-                    </Header>
-
-                    <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
-                        <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{}}>
-                            <View>
-                                <Image style={{
-                                    width: 30, height: 30,
-                                }} source={require('../../assest/iconBack.png')} />
-                            </View>
-                        </TouchableOpacity>
-
-                        {this.state.something &&
-                            <YouTube
-
-                                ref={this._youTubeRef}
-                                apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
-                                videoId={this.state.videoId}
-                                autoPlay
-                                play={this.state.isPlaying}
-                                loop={this.state.isLooping}
-                                fullscreen={this.state.fullscreen}
-                                controls={1}
-                                style={[
-                                    { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
-                                    styles.player,
-                                ]}
-                                onError={e => {
-                                    this.setState({ error: e.error });
-                                }}
-                                onReady={e => {
-                                    this.setState({ isReady: true });
-                                }}
-                                onChangeState={e => {
-                                    this.setState({ status: e.state });
-                                }}
-                                onChangeQuality={e => {
-                                    this.setState({ quality: e.quality });
-                                }}
-                                onChangeFullscreen={e => {
-                                    this.changeScreenRotate(e)
-                                }}
-                                onProgress={e => {
-                                    this.setState({ currentTime: e.currentTime });
-                                }}
-
-                            />
-
-
-                        }
-                        <View style={{
-                            alignItems: "center",
-                            justifyContent: "center",
-                            alignContent: "center",
-                            top: 130
-                        }}>
-                            <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
                         </View>
-                        <TouchableOpacity onPress={() => this.navigateToplaybutton(this.state.getall[0].ep_videoID)} style={{
-                            left: 300,
-                            top: 190,
-                        }}>
+                    </TouchableOpacity>
 
-                            <View style={styles.imagebutton}>
+                    {this.state.something &&
+                        <YouTube
+                            ref={this._youTubeRef}
+                            apiKey="AIzaSyAuASbwwg1f7s8XvH_sh2OP-Vapsaoqy5k"
+                            videoId={this.state.videoId}
+                            autoPlay
+                            play={this.state.isPlaying}
+                            loop={this.state.isLooping}
+                            fullscreen={this.state.fullscreen}
+                         
+                            controls={1}
+                            style={[
+                                { height: PixelRatio.roundToNearestPixel(this.state.playerWidth / (16 / 9)) },
+                                styles.player,
+                            ]}
+                           
+                            onError={e => {
+                                this.setState({ error: e.error });
+                            }}
+                            onReady={e => {
+                                this.setState({ isReady: true });
+                            }}
+                            onChangeState={e => {
+                                this.setState({ status: e.state });
+                               
+                            }}
+                            onChangeQuality={e => {
+                                this.setState({ quality: e.quality });
+                            }}
+                            onChangeFullscreen={e => {
+                                this.changeScreenRotate(e)
+                               
+                
+                           
+                            
+                        }
+                    }
+                            onProgress={e => {
+                                this.setState({ currentTime: e.currentTime });
+                                
+                            }}
+                            onFullScreenExit={() => Orientation.unlockAllOrientations()}
+                        />
 
-                                <Image style={{
-                                    width: 33, height: 33, top: 8, left: 10,
-                                }} source={require('../../assest/play.png')} />
 
-
-                            </View>
-                        </TouchableOpacity>
-
-
-
-                    </ImageBackground>
-
-                </View>
+                    }
+                    <View style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        alignContent: "center",
+                        top: 130
+                    }}>
+                        <Spinner style={styles.spinner} isVisible={this.state.isVisible} size={this.state.size} type={this.state.types[7]} color={this.state.color} />
+                    </View>
 
 
 
-                <Card style={{ height: '100%', borderRadius: 35, bottom: 50, }}>
 
-                    <FlatList
-                        itemDimension={130}
-                        data={this.state.getall}
-                        onRefresh={() => this.onRefresh()}
-                        refreshing={this.state.isFetching}
-                        style={styles.gridView}
+                </ImageBackground>
 
-                        renderItem={({ item, index }) => (
+                <Card style={{ height: '90%', borderRadius: 35, bottom: 50, }}>
+                    <View style={{marginTop:15}}>
+                        <FlatList
+                            itemDimension={230}
+                            data={this.state.getall}
+                            onRefresh={() => this.onRefresh()}
+                            refreshing={this.state.isFetching}
+                            style={styles.gridView}
 
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8}>
-                                <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <Image style={{ height: hp('16.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 }} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
-                                    <Text style={styles.itemName} >{item.ep_Title}</Text>
-                                    {/* <Text style={styles.itemName} >{item.ep_DateTime}</Text> */}
-                                </View>
-                            </TouchableOpacity>
+                            renderItem={({ item, index }) => (
 
-                        )}
-
-                    />
-
+                                <TouchableOpacity onPress={() => this.navigateToTeledrama(item.ep_videoID)} activeOpacity={0.8} style={[styles.itemContainer, { backgroundColor: 'white', }]}  >
+                                    <View>
+                                        <Image style={{ height: hp('16.7%'), width: wp('47%'), bottom: 20, right: 20, borderRadius: 20 ,}} source={{ uri: 'https://img.youtube.com/vi/' + item.ep_videoID + '/0.jpg' }} />
+                                        <Text style={styles.itemName} >{item.ep_Title}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </View>
                 </Card>
-
-
-
-
             </Drawer>
 
 
