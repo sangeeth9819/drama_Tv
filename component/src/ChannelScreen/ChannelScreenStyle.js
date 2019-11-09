@@ -74,8 +74,8 @@ export default StyleSheet.create({
 		paddingBottom: 10,
 		flexDirection: "row",
         alignItems: "center",
-        top:15,
-        marginLeft:20,
+      justifyContent:"center",
+        marginTop:25,
 	},
 	statusText: {
 		color: GRAY,

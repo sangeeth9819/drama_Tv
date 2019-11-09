@@ -190,7 +190,7 @@ export default class TeledramaScreen extends Component {
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         if (e.isFullscreen === true) {
-       Orientation.unlockAllOrientations();
+      
         } else {
             this.setState({
                 something: false
@@ -288,14 +288,12 @@ export default class TeledramaScreen extends Component {
                             }}
                             onChangeFullscreen={e => {
                                 this.changeScreenRotate(e)
-                                this.onRefresh();
-                            
-                              
+                                Orientation.lockToLandscapeLeft();
                             }}
                             onProgress={e => {
                                 this.setState({ currentTime: e.currentTime });
                             }}
-
+                            onFullScreenExit={() => Orientation.unlockAllOrientations()}
                         />
                     }
                     {/* Body Content */}

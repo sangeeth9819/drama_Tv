@@ -192,7 +192,7 @@ export default class Channel extends Component {
     };
 
     closeDrawer = () => {
-        this.drawer._root.close()
+      //  this.drawer._root.close()
     };
 
     openDrawer = () => {
