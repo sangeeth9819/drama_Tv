@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import baseurl from '../../resource/strings'
 
 import {
-    View, Text, TouchableOpacity, FlatList, Image, PixelRatio, Dimensions, ImageBackground, TextInput
+    View, Text, TouchableOpacity, FlatList,StatusBar, Image, PixelRatio, Dimensions, ImageBackground, TextInput
 } from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
@@ -76,7 +76,8 @@ export default class Example extends Component {
     }
 
     navigateToTeleScreen() {
-       
+       this.onRefresh();
+       Orientation.unlockAllOrientations();
         
         this.props.navigation.navigate('TeledramaScreen')
         
@@ -92,12 +93,12 @@ export default class Example extends Component {
   
 
     closeDrawer = () => {
-        this.drawer._root.close()
+       // this.drawer._root.close()
     };
 
     openDrawer = () => {
 
-        this.drawer._root.open()
+         this.drawer._root.open()
     };
 
     onClose = () => {
@@ -110,7 +111,7 @@ export default class Example extends Component {
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         if (e.isFullscreen == true) {
-            Orientation.unlockAllOrientations();
+      
         } else {
             this.setState({
                 something: false,
@@ -260,6 +261,7 @@ export default class Example extends Component {
                     </Right>
 
                 </Header>
+                <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
 
                 <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
@@ -318,9 +320,10 @@ export default class Example extends Component {
                             }}
                             onChangeFullscreen={e => {
                                 this.changeScreenRotate(e)
+                                Orientation.lockToLandscapeLeft();
                                
                 
-                            Orientation.lockToLandscapeLeft()
+                      
                             
                         }
                     }

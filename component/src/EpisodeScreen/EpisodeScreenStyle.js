@@ -47,6 +47,7 @@ export default StyleSheet.create({
         marginTop:20,
         marginLeft: 6,
         padding: 20,
+       borderRadius:20,
        
     },
     wrapper: {

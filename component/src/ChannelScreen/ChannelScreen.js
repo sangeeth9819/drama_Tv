@@ -68,6 +68,7 @@ export default class Channel extends Component {
 
     }
     onRefresh() {
+        Orientation.unlockAllOrientations();
         this.setState({ isFetching: true }, function () { this.getAll() });
     }
     componentDidMount() {
@@ -82,7 +83,7 @@ export default class Channel extends Component {
 
 
     getAll() {
-        Orientation.unlockAllOrientations();
+       
         this.setState({
             isVisible: true
         })
@@ -209,7 +210,8 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id, ch_videoID) {
-       
+        this.onRefresh();
+       Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen', {
 
             id: id,

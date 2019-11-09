@@ -20,9 +20,9 @@ import styles from './TeledramaScreenStyle';
 
 import Orientation from 'react-native-orientation-locker';
 
-export default class TeledramaScreen extends Component {
 
-    
+
+export default class TeledramaScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,33 +51,28 @@ export default class TeledramaScreen extends Component {
             playerWidth: Dimensions.get('window').width,
 
         };
+        this.onRefresh();
+       //y this.changeScreenRotate();
         this.state.videoId = this.props.navigation.state.params.id
         this.state.liveid = this.props.navigation.state.params.ch_videoID
 
     }
 
     componentDidMount() {
-       
+        Orientation.lockToPortrait(); 
         this.getallteledrama()
-      
       
     }
     componentwillMount() {
-      
+        Orientation.unlockAllOrientations();
         this.searchteledrama()
-       
       
     }
 
 
     getallteledrama() {
- 
-        Orientation.unlockAllOrientations();
-        this.onRefresh();
-
         this.setState({
             isVisible: true
-            
         })
         fetch(baseurl.BASE_URL + '/api/teledramas/' + this.state.videoId,{
             method: 'GET',
@@ -129,7 +124,7 @@ export default class TeledramaScreen extends Component {
                     isFetching: false
                 })
                 console.log("Getall :" + JSON.stringify(responseJson))
-            
+
                 this.setState({
                     getall: responseJson
                 })
@@ -148,7 +143,6 @@ export default class TeledramaScreen extends Component {
 
 
     renderItem = ({ item }) => {
-        
         return (
             <Text style={styles.row}>
                 {item.text}
@@ -156,9 +150,8 @@ export default class TeledramaScreen extends Component {
         )
     }
     navigateTo_Episode() {
-        onRefresh() ;
+      
         this.props.navigation.navigate('EpisodeScreen')
-        
     };
     closeDrawer = () => {
         this.drawer._root.close()
@@ -171,7 +164,6 @@ export default class TeledramaScreen extends Component {
     };
     onRefresh() {
         this.setState({ isFetching: true }, function () { this.getallteledrama() });
-      
     }
 
     onClose = () => {
@@ -180,27 +172,25 @@ export default class TeledramaScreen extends Component {
         })
     }
     navigateToplay(ch_videoID) {
-        Orientation.unlockAllOrientations();
         this.setState({
             fullscreen: true,
             liveid: ch_videoID,
             something: true
-            
         })
     }
     navigateToTeledrama(id, imagepath) {
-    
+       
         this.props.navigation.navigate('EpisodeScreen', {
             id: id,
             imagepath: imagepath,
           
         });
-       
+
     }
     changeScreenRotate(e) {
         this.setState({ fullscreen: e.isFullscreen });
         if (e.isFullscreen === true) {
-        
+       Orientation.unlockAllOrientations();
         } else {
             this.setState({
                 something: false
@@ -210,7 +200,6 @@ export default class TeledramaScreen extends Component {
     }
     
     render() {
-      
         return (
 
             <Drawer
@@ -225,8 +214,7 @@ export default class TeledramaScreen extends Component {
 
                 <View style={styles.wrapper}>
                     <Header style={{
-                        backgroundColor: 'white', borderRadius: 10,
-                         shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                        backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
                         elevation: 17,
                     }}>
@@ -300,7 +288,9 @@ export default class TeledramaScreen extends Component {
                             }}
                             onChangeFullscreen={e => {
                                 this.changeScreenRotate(e)
-                                Orientation.unlockAllOrientations();
+                                this.onRefresh();
+                            
+                              
                             }}
                             onProgress={e => {
                                 this.setState({ currentTime: e.currentTime });
@@ -318,7 +308,7 @@ export default class TeledramaScreen extends Component {
                         style={styles.gridView}
                         renderItem={({ item, index }) => (
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.te_Image,item.te_Name)} activeOpacity={0.8}>
-                                <View style={{ borderRadius: 50,alignItems: "center", justifyContent: "center",alignContent: "center",top:10,marginBottom:5 }}>
+                                <View style={{ borderRadius: 50,alignItems: "center", justifyContent: "center",alignContent: "center",top:20, }}>
                                     <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                         <Image style={{
                                             flex:1,

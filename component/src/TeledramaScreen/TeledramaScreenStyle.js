@@ -13,8 +13,6 @@ export default StyleSheet.create({
         alignContent: "center",
         height: hp('20%'),
         width: wp('95%'),
-        elevation: 5,
-        marginTop: 10,
         borderRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
@@ -24,10 +22,11 @@ export default StyleSheet.create({
         shadowOpacity: 0.50,
         shadowRadius: 12.35,
         elevation: 19,
+        marginBottom:10,
     },
 
     wrapper: {
-        marginTop: 30,
+        marginTop: 20,
         flex: 1
     },
     spinner: {
