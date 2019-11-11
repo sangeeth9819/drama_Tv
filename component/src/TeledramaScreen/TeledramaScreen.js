@@ -213,7 +213,7 @@ export default class TeledramaScreen extends Component {
                 })}>
 
                 <View style={styles.wrapper}>
-                    <Header style={{
+                    <Header style={{marginTop:10,
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
                         elevation: 17,
@@ -227,9 +227,9 @@ export default class TeledramaScreen extends Component {
                         <Body>
                             <TextInput
                                 style={{
-                                    height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
+                                    height: 40, width: 220, borderRadius: 10, borderRadius: 20, marginTop: 10,marginLeft:2,backgroundColor:'#f5f5f0'
                                 }}
-                                placeholder='                      Search here' 
+                                placeholder='                     Search here' 
                                 onChangeText={
                                     text =>
                                     this.searchteledrama(text)
@@ -238,17 +238,17 @@ export default class TeledramaScreen extends Component {
 />
 
                         </Body>
-                        <Right>
-                            <TouchableOpacity onPress={() => this.searchteledrama(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                         <Right>
+                            {/* <TouchableOpacity onPress={() => this.searchteledrama(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
                                 <Icon name='search' />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
 
                             <TouchableOpacity style={{}} onPress={() => this.navigateToplay(this.state.liveid)}>
                                 <Icon name='ios-disc' style={{ color: '#00cc44', }} >
                                     <Text style={{ fontSize: 14, color: 'black', }} >Live</Text>
                                 </Icon>
                             </TouchableOpacity>
-                        </Right>
+                        </Right> 
 
                     </Header>
                     

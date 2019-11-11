@@ -239,9 +239,11 @@ export default class Channel extends Component {
 
                 <View style={styles.wrapper}>
 
-                    <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10 }}>
+                    <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10,shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                        shadowRadius: 11.14,
+                        elevation: 17, }}>
                         <Left>
-                            <TouchableOpacity onPress={() => this.openDrawer()}>
+                            <TouchableOpacity  style={{width:100}} onPress={() => this.openDrawer()}>
 
                                 <Icon name='menu' style={{ color: 'gray' }} />
 
@@ -251,16 +253,12 @@ export default class Channel extends Component {
                         <Body>
 
                             <TextInput
-                                style={{ height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5 }}
-                                placeholder='                  Search here                  '
+                                style={{ height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5,backgroundColor:'#f5f5f0', }}
+                                placeholder='                         Search here                  '
                                 onChangeText={
                                     text =>
                                         this.searchChannel(text)
-
                                 }
-
-
-
                             />
 
                         </Body>

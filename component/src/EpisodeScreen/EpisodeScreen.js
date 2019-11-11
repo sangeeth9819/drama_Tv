@@ -238,7 +238,7 @@ export default class Example extends Component {
                     <Body>
                         <TextInput
                             style={{
-                                height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5
+                                height: 40, width: 230, borderRadius: 10, borderRadius: 20, marginTop: 5,backgroundColor:'#f5f5f0'
                             }}
                             placeholder='                      Search here'
                             onChangeText={
@@ -253,7 +253,7 @@ export default class Example extends Component {
 
                     </Body>
                     <Right>
-                        <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black' }} >
+                        <TouchableOpacity onPress={() => this.searchepisode(this.setState.searchname)} style={{ marginRight: 10, backgroundColor: 'Black', }} >
                             <Icon name='search' />
                         </TouchableOpacity>
 
