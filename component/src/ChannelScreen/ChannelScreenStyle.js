@@ -50,7 +50,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        top: 40,
+        top: 30,
         fontSize: 16,
         color: '#363636',
         fontWeight: '600',
@@ -86,7 +86,7 @@ export default StyleSheet.create({
 		height: 6,
 		backgroundColor: OFFLINE_STATUS,
 		borderRadius: 3,
-		marginRight: 4
+		marginRight: 4,
 	},
 	offline: {
 		width: 6,

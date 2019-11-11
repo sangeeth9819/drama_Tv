@@ -294,7 +294,7 @@ export default class Channel extends Component {
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
                                     
-                                        <ImageBackground style={{ width: 130, height: 150,top:40}} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                        <ImageBackground style={{ width: 130, height: 130,top:30}} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
                                         <Text style={styles.itemName} >{item.ch_Name}</Text>
                                         <View style={styles.status}>
                                             <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
