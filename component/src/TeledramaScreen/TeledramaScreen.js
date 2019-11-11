@@ -154,7 +154,7 @@ export default class TeledramaScreen extends Component {
         this.props.navigation.navigate('EpisodeScreen')
     };
     closeDrawer = () => {
-        this.drawer._root.close()
+       this.drawer._root.close()
     };
     _youTubeRef = React.createRef();
 

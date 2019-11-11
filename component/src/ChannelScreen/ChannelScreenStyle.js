@@ -50,7 +50,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        top: 20,
+        top: 40,
         fontSize: 16,
         color: '#363636',
         fontWeight: '600',
@@ -71,11 +71,11 @@ export default StyleSheet.create({
         color: '#FFF',
     },
     status: {
-		paddingBottom: 10,
+	
 		flexDirection: "row",
         alignItems: "center",
       justifyContent:"center",
-        marginTop:25,
+        marginTop:35,
 	},
 	statusText: {
 		color: GRAY,

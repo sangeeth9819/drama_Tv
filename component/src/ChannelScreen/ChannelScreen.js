@@ -61,9 +61,9 @@ export default class Channel extends Component {
             color: "red",
             isFetching: false,
             isVisible: false,
-            searchname:'',
-           
-        
+            searchname: '',
+
+
         };
 
     }
@@ -83,7 +83,7 @@ export default class Channel extends Component {
 
 
     getAll() {
-       
+
         this.setState({
             isVisible: true
         })
@@ -148,14 +148,14 @@ export default class Channel extends Component {
             .then((responseJson) => {
                 this.setState({
                     isVisible: false,
-                    dataSource:responseJson
+                    dataSource: responseJson
                 })
                 this.setState({
                     isFetching: false
                 },
-                function() {
-                    this.getall = responseJson;
-                  }
+                    function () {
+                        this.getall = responseJson;
+                    }
                 )
                 console.log("getAll :" + JSON.stringify(responseJson[0].ch_Image))
                 this.setState({
@@ -179,20 +179,20 @@ export default class Channel extends Component {
                         console.error(error);
                     });
 
-                    searchname = text => {
-                        console.log(text);
-                      };
+                searchname = text => {
+                    console.log(text);
+                };
             }
             )
     }
-    
+
     navigatechannel() {
         Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen')
     };
 
     closeDrawer = () => {
-      //  this.drawer._root.close()
+        //  this.drawer._root.close()
     };
 
     openDrawer = () => {
@@ -211,7 +211,7 @@ export default class Channel extends Component {
     }
     navigateToTeledrama(id, ch_videoID) {
         this.onRefresh();
-       Orientation.unlockAllOrientations();
+        Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen', {
 
             id: id,
@@ -221,7 +221,7 @@ export default class Channel extends Component {
 
 
     render() {
-      
+
         return (
 
             <Drawer
@@ -251,16 +251,16 @@ export default class Channel extends Component {
                         <Body>
 
                             <TextInput
-                                style={{  height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5}}
+                                style={{ height: 40, width: 200, borderRadius: 10, borderRadius: 20, marginTop: 5 }}
                                 placeholder='                  Search here                  '
                                 onChangeText={
                                     text =>
-                                    this.searchChannel(text)
+                                        this.searchChannel(text)
 
                                 }
-                               
-                               
-                               
+
+
+
                             />
 
                         </Body>
@@ -293,10 +293,13 @@ export default class Channel extends Component {
                             <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.ch_videoID)} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    <ImageBackground style={{ width: 130, height: 150, justifyContent: "center", alignItems: "center",top:20 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
-                                    <Text style={styles.itemName}>{item.ch_Name}</Text>
-                                    <View style={styles.status}>
-                                        <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
+                                    
+                                        <ImageBackground style={{ width: 130, height: 150,top:40}} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                        <Text style={styles.itemName} >{item.ch_Name}</Text>
+                                        <View style={styles.status}>
+                                            <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
+
+                                      
                                         <Text style={styles.statusText}>Live</Text>
                                     </View>
                                 </View>

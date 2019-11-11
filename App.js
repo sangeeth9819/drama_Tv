@@ -90,6 +90,8 @@ export default class App extends Component {
     }
   }
  
+/////////////////////
+
   //3
   async getToken() {
     let fcmToken = await AsyncStorage.getItem('fcmToken');
