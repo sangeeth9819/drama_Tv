@@ -19,7 +19,14 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import styles from './ChannelScreenStyle';
 import Orientation from 'react-native-orientation-locker';
+import { TabBar } from "react-native-animated-nav-tab-bar";
+// import Icon from 'react-native-vector-icons/Feather';
 
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+let tracker = new GoogleAnalyticsTracker("UA-12345-1");
+ 
+tracker.trackScreenView("Home");
+tracker.trackEvent("testcategory", "testaction");
 
 export default class Channel extends Component {
 
@@ -72,8 +79,6 @@ export default class Channel extends Component {
         this.setState({ isFetching: true }, function () { this.getAll() });
     }
     componentDidMount() {
-        this.onRefresh();
-        Orientation.unlockAllOrientations();
         this.getAll()
     }
     componentwillMount() {
@@ -210,7 +215,7 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id, ch_videoID) {
-        this.onRefresh();
+        
         Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen', {
 
@@ -220,6 +225,10 @@ export default class Channel extends Component {
     }
 
 
+   
+     
+    
+    
     render() {
 
         return (
@@ -305,6 +314,8 @@ export default class Channel extends Component {
                             </TouchableOpacity>
                         )}
                     />
+
+
 
                 </View>
             </Drawer>

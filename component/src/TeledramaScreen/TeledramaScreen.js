@@ -51,15 +51,13 @@ export default class TeledramaScreen extends Component {
             playerWidth: Dimensions.get('window').width,
 
         };
-        this.onRefresh();
-       //y this.changeScreenRotate();
         this.state.videoId = this.props.navigation.state.params.id
         this.state.liveid = this.props.navigation.state.params.ch_videoID
 
     }
 
     componentDidMount() {
-        Orientation.lockToPortrait(); 
+    
         this.getallteledrama()
       
     }
@@ -231,8 +229,7 @@ export default class TeledramaScreen extends Component {
                                 }}
                                 placeholder='                     Search here' 
                                 onChangeText={
-                                    text =>
-                                    this.searchteledrama(text)
+                                    text => this.searchteledrama(text)
                                 }
                                
 />

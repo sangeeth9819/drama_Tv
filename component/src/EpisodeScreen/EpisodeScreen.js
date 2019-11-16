@@ -5,7 +5,7 @@ import baseurl from '../../resource/strings'
 
 import {
     View, Text, TouchableOpacity, FlatList,StatusBar, Image, PixelRatio, Dimensions, ImageBackground, TextInput
-} from 'react-native';
+,Alert} from 'react-native';
 
 import SideBar from '../SideMenuscreen/SideMenuScreen';
 import Spinner from 'react-native-spinkit'
@@ -122,11 +122,12 @@ export default class Example extends Component {
     }
 
     componentDidMount() {
-       Orientation.unlockAllOrientations();
+    
         this.getallteledrama()
+        
     }
     componentwillMount() {
-        Orientation.unlockAllOrientations();
+        
         this.searchepisode()
     
     }
@@ -170,11 +171,12 @@ export default class Example extends Component {
             });
     }
 
-    searchepisode() {
+    searchepisode(text) {
+        if(this.setState){
         this.setState({
             isVisible: true
         })
-        fetch(baseurl.BASE_URL + '/api/episodess/' + this.state.searchname, {
+        fetch(baseurl.BASE_URL + '/api/episodess/' + text, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -195,6 +197,9 @@ export default class Example extends Component {
                     getall: responseJson.reverse()
 
                 })
+                if(this.state.getall.length === 0){
+                 this.noData()
+                }
             })
 
             .catch((error) => {
@@ -203,7 +208,20 @@ export default class Example extends Component {
                 })
                 console.error(error);
             });
-            
+        }   else{
+            MessageBarManager.showAlert({
+                title: 'Your alert title goes here',
+                message: 'Your alert message goes here',
+                alertType: 'success',
+                
+              });
+        }
+    }
+    noData(){
+        if(this.state.noData){}
+        return(
+            <Text style={{position:"absolute",top:0,bottom:0,left:0,right:0,justifyContent:"center"}}>No Data found</Text>
+        );
     }
 
     render() {
@@ -241,14 +259,11 @@ export default class Example extends Component {
                                 height: 40, width: 230, borderRadius: 10, borderRadius: 20, marginTop: 5,backgroundColor:'#f5f5f0'
                             }}
                             placeholder='                      Search here'
-                            onChangeText={
-                                data =>
-                                    this.setState({
-                                        searchname: data
-                                    })
-
-                            }
-                            value={this.state.searchname}
+                                onChangeText={
+                                    text => this.searchepisode(text)
+                                }
+                               
+                          
                         />
 
                     </Body>
@@ -261,8 +276,9 @@ export default class Example extends Component {
                     </Right>
 
                 </Header>
+                {this.noData()}
                 <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
-
+                  
                 <ImageBackground style={{ height: 300 }} source={{ uri: baseurl.BASE_URL + '/images/' + this.state.imagepath }} >
 
                     <TouchableOpacity onPress={() => this.navigateToTeleScreen()} style={{ width: 50, height: 50, marginTop: 30, marginLeft: 15, }}>
@@ -350,8 +366,10 @@ export default class Example extends Component {
 
                 </ImageBackground>
 
-                <Card style={{ height: '90%', borderRadius: 35, bottom: 50, }}>
+                <View style={{ height: 400, borderRadius: 35, bottom: 50, marginBottom:100 ,backgroundColor:'white'}}>
+              
                     <View style={{marginTop:15}}>
+                   
                         <FlatList
                             itemDimension={230}
                             data={this.state.getall}
@@ -369,8 +387,10 @@ export default class Example extends Component {
                                 </TouchableOpacity>
                             )}
                         />
+                        
                     </View>
-                </Card>
+                  
+                </View>
             </Drawer>
 
 

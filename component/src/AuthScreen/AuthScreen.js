@@ -12,18 +12,18 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      animating: false,
+      // animating: false,
       align: 'center',
-      alignsecond: false,
+      // alignsecond: false,
     };
     setTimeout(
       () =>
         this.setState({ align: 'flex-start' }, function () {
           this.setState({
-            alignsecond: true,
+            // alignsecond: true,
           });
         }),
-      2000
+      1000
     );
   }
   componentDidMount() {
@@ -41,7 +41,7 @@ export default class App extends Component {
       });
       this.props.navigation.dispatch(resetAction);
  
-    }, 3000);
+    }, 2000);
   }
   render() {
     return (
@@ -51,9 +51,11 @@ export default class App extends Component {
           flex: 1,
           alignItems: 'center',
           flexDirection: 'row',
-          justifyContent: this.state.align,
-          marginHorizontal: 40,
-        }}>
+          justifyContent: "center",
+          alignContent:"center",
+          marginHorizontal: 110,
+        }}
+      >
         <Image
           source={require
             (
@@ -65,14 +67,7 @@ export default class App extends Component {
           }}
         />
         
-        {!this.state.alignsecond ? null : (
-          <View style={{ margin: 10 }}>
-            <Text 
-              style={{ color: 'black', fontSize: 30, fontWeight: 'bold' }}>
-              Drama TV
-            </Text>
-          </View>
-        )}
+       
       </View>
 
 
