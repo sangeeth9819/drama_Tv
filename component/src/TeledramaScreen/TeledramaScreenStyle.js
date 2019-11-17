@@ -22,7 +22,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.50,
         shadowRadius: 12.35,
         elevation: 19,
-        marginBottom:10,
+        marginBottom:15,
     },
 
     wrapper: {

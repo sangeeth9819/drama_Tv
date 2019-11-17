@@ -25,6 +25,90 @@ import Orientation from 'react-native-orientation-locker';
 
 import styles from './EpisodeScreenStyle';
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/*Google analitic Data*/
+/////////////////////////////////////////////////////////////////////////////////////////////
+import {
+    GoogleAnalyticsTracker,
+    GoogleTagManager,
+    GoogleAnalyticsSettings
+  } from "react-native-google-analytics-bridge";
+   
+  // The tracker must be constructed, and you can have multiple:
+  let tracker1 = new GoogleAnalyticsTracker("UA-12345-1");
+  let tracker2 = new GoogleAnalyticsTracker("UA-12345-2");
+   
+  tracker1.trackScreenView("Episode Screen");
+  tracker1.trackEvent("Episode Screen", "New");
+  
+  GoogleTagManager.openContainerWithId("GT-NZT48")
+    .then(() => GoogleTagManager.stringForKey("pack"))
+    .then(str => console.log("Pack: ", str));
+  
+  // The GoogleAnalyticsSettings is static, and settings are applied across all trackers:
+  GoogleAnalyticsSettings.setDispatchInterval(30);
+  // Setting `dryRun` to `true` lets you test tracking without sending data to GA
+  GoogleAnalyticsSettings.setDryRun(true);
+   
+  // GoogleTagManager is also static, and works only with one container. All functions here are Promises:
+  GoogleTagManager.openContainerWithId("GT-NZT48")
+    .then(() => {
+      return GoogleTagManager.stringForKey("pack");
+    })
+    .then(pack => {
+      console.log("Pack: ", pack);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+   
+  // You can also register Function Call tag handlers when the container is open.
+  GoogleTagManager.registerFunctionCallTagHandler(
+    "some_function", // Must be equal to Function Name field when the tag was configured.
+    (functionName, tagArguments) => {
+      // functionName is passed for convenience. In this example it will be equal to "some_function".
+      // tagArguments is an object and is populated based on Tag configuration in TagManager interface.
+      console.log("Handling Function Call tag:", functionName);
+    }
+  )
+  
+  export const setAppName = (Dramatv) => {
+    tracker.setAppName(Dramatv);
+   };
+   export const Event = (Event) => {
+    tracker.trackEvent("TouchableOpacity", "onPress");
+   tracker.setAnonymizeIp(true);
+   };
+   export const setAppVersion = (setAppVersion) => {
+    tracker.setAppVersion("1.4.2");
+   };
+  
+   GoogleAnalyticsSettings.setDryRun(true);
+  /**
+  setDispatchInterval allows you to configure how often (in seconds) the batches are sent to your tracker.
+  */
+  //GoogleAnalyticsSettings.setDispatchInterval(parseInt(Config.GA_TRACKER_INTERVAL));
+  /**
+  Initialise the tracker based on the environment based tracker ID
+  */
+  //export const tracker = new GoogleAnalyticsTracker(Config.GA_TRACKER_ID,{CD_A: 1, CD_B: 2});
+   
+  GoogleTagManager.openContainerWithId("GT-NZT48")
+  .then(() => GoogleTagManager.stringForKey("pack"))
+  .then(str => console.log("Pack: ", str));
+
+  GoogleTagManager.pushDataLayerEvent({
+    event: "Episode",
+    pageId: "/ Episode Screen"
+  }).then(success => console.log(success));
+
+  const dataLayerEvent = {
+    event: "Episode ",
+    pageId: "/Episode screen"
+  };
+  GoogleTagManager.pushDataLayerEvent(dataLayerEvent);
+  ////////////////////////////////////////////////////////////////////////////////
+
 export default class Example extends Component {
 
     constructor(props) {
@@ -366,7 +450,7 @@ export default class Example extends Component {
 
                 </ImageBackground>
 
-                <View style={{ height: 400, borderRadius: 35, bottom: 50, marginBottom:100 ,backgroundColor:'white'}}>
+                <View style={{ height: 400, borderRadius: 35, bottom: 50, marginBottom:100 ,backgroundColor:'white',}}>
               
                     <View style={{marginTop:15}}>
                    
