@@ -294,7 +294,7 @@ export default class TeledramaScreen extends Component {
                         marginTop: 10,
                         backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
-                        elevation: 17,
+                        elevation: 17,marginTop:hp('0%'),
                     }}>
                         <Left>
                             <TouchableOpacity onPress={() => this.openDrawer()}>

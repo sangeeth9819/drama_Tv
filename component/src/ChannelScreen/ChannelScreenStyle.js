@@ -20,6 +20,7 @@ const FLASH_ACTIONS = "#5028D7";
 const ICON_FONT = "tinderclone";
 export default StyleSheet.create({
         gridView: {
+           
         flex: 1,
     },
     itemContainer: {

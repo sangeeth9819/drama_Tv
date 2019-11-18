@@ -4,6 +4,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 export default StyleSheet.create({
 
+
+    
     imagebutton: {
         backgroundColor: '#f44336',
         width: 50,
@@ -44,7 +46,8 @@ export default StyleSheet.create({
         elevation: 10,
         width: wp('95%'),
         height: hp('16.7%'),
-        marginBottom:wp('8%'),
+        marginBottom:hp('4%'),
+
         
         marginLeft: 6,
         padding: 20,
@@ -57,10 +60,10 @@ export default StyleSheet.create({
     },
     itemName: {
         fontSize: 14,
-        left: 170,
-        height: 120,
-        width: 140,
-        bottom: 110,
+        left: wp('45%'),
+        height: 100,
+        width: 150,
+        bottom:  hp('16%'),
         color: 'black',
         fontWeight: 'bold',
 
@@ -69,5 +72,7 @@ export default StyleSheet.create({
         
 
     },
-    
+
+
+
 });

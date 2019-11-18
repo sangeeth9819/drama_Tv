@@ -31,85 +31,85 @@ import {
     GoogleAnalyticsTracker,
     GoogleTagManager,
     GoogleAnalyticsSettings
-  } from "react-native-google-analytics-bridge";
-   
-  // The tracker must be constructed, and you can have multiple:
-  let tracker1 = new GoogleAnalyticsTracker("UA-12345-1");
-  let tracker2 = new GoogleAnalyticsTracker("UA-12345-2");
-   
-  tracker1.trackScreenView("Channel Screen");
-  tracker1.trackEvent("Channel Screen", "New");
-  
-  GoogleTagManager.openContainerWithId("GT-NZT48")
+} from "react-native-google-analytics-bridge";
+
+// The tracker must be constructed, and you can have multiple:
+let tracker1 = new GoogleAnalyticsTracker("UA-12345-1");
+let tracker2 = new GoogleAnalyticsTracker("UA-12345-2");
+
+tracker1.trackScreenView("Channel Screen");
+tracker1.trackEvent("Channel Screen", "New");
+
+GoogleTagManager.openContainerWithId("GT-NZT48")
     .then(() => GoogleTagManager.stringForKey("pack"))
     .then(str => console.log("Pack: ", str));
-  
-  // The GoogleAnalyticsSettings is static, and settings are applied across all trackers:
-  GoogleAnalyticsSettings.setDispatchInterval(30);
-  // Setting `dryRun` to `true` lets you test tracking without sending data to GA
-  GoogleAnalyticsSettings.setDryRun(true);
-   
-  // GoogleTagManager is also static, and works only with one container. All functions here are Promises:
-  GoogleTagManager.openContainerWithId("GT-NZT48")
+
+// The GoogleAnalyticsSettings is static, and settings are applied across all trackers:
+GoogleAnalyticsSettings.setDispatchInterval(30);
+// Setting `dryRun` to `true` lets you test tracking without sending data to GA
+GoogleAnalyticsSettings.setDryRun(true);
+
+// GoogleTagManager is also static, and works only with one container. All functions here are Promises:
+GoogleTagManager.openContainerWithId("GT-NZT48")
     .then(() => {
-      return GoogleTagManager.stringForKey("pack");
+        return GoogleTagManager.stringForKey("pack");
     })
     .then(pack => {
-      console.log("Pack: ", pack);
+        console.log("Pack: ", pack);
     })
     .catch(err => {
-      console.log(err);
+        console.log(err);
     });
-   
-  // You can also register Function Call tag handlers when the container is open.
-  GoogleTagManager.registerFunctionCallTagHandler(
+
+// You can also register Function Call tag handlers when the container is open.
+GoogleTagManager.registerFunctionCallTagHandler(
     "some_function", // Must be equal to Function Name field when the tag was configured.
     (functionName, tagArguments) => {
-      // functionName is passed for convenience. In this example it will be equal to "some_function".
-      // tagArguments is an object and is populated based on Tag configuration in TagManager interface.
-      console.log("Handling Function Call tag:", functionName);
+        // functionName is passed for convenience. In this example it will be equal to "some_function".
+        // tagArguments is an object and is populated based on Tag configuration in TagManager interface.
+        console.log("Handling Function Call tag:", functionName);
     }
-  )
-  
-  export const setAppName = (Dramatv) => {
-    tracker.setAppName(Dramatv);
-   };
-   export const Event = (Event) => {
-    tracker.trackEvent("TouchableOpacity", "onPress");
-   tracker.setAnonymizeIp(true);
-   };
-   export const setAppVersion = (setAppVersion) => {
-    tracker.setAppVersion("1.3.2");
-   };
-  
-   GoogleAnalyticsSettings.setDryRun(true);
-  /**
-  setDispatchInterval allows you to configure how often (in seconds) the batches are sent to your tracker.
-  */
-  //GoogleAnalyticsSettings.setDispatchInterval(parseInt(Config.GA_TRACKER_INTERVAL));
-  /**
-  Initialise the tracker based on the environment based tracker ID
-  */
-  //export const tracker = new GoogleAnalyticsTracker(Config.GA_TRACKER_ID,{CD_A: 1, CD_B: 2});
-   
-  
-  GoogleTagManager.openContainerWithId("GT-NZT48")
-  .then(() => GoogleTagManager.stringForKey("pack"))
-  .then(str => console.log("Pack: ", str));
+)
 
-  GoogleTagManager.pushDataLayerEvent({
+export const setAppName = (Dramatv) => {
+    tracker.setAppName(Dramatv);
+};
+export const Event = (Event) => {
+    tracker.trackEvent("TouchableOpacity", "onPress");
+    tracker.setAnonymizeIp(true);
+};
+export const setAppVersion = (setAppVersion) => {
+    tracker.setAppVersion("1.3.2");
+};
+
+GoogleAnalyticsSettings.setDryRun(true);
+/**
+setDispatchInterval allows you to configure how often (in seconds) the batches are sent to your tracker.
+*/
+//GoogleAnalyticsSettings.setDispatchInterval(parseInt(Config.GA_TRACKER_INTERVAL));
+/**
+Initialise the tracker based on the environment based tracker ID
+*/
+//export const tracker = new GoogleAnalyticsTracker(Config.GA_TRACKER_ID,{CD_A: 1, CD_B: 2});
+
+
+GoogleTagManager.openContainerWithId("GT-NZT48")
+    .then(() => GoogleTagManager.stringForKey("pack"))
+    .then(str => console.log("Pack: ", str));
+
+GoogleTagManager.pushDataLayerEvent({
     event: "Channel",
     pageId: "/ Channel Screen"
-  }).then(success => console.log(success));
+}).then(success => console.log(success));
 
-  const dataLayerEvent = {
+const dataLayerEvent = {
     event: "channel ",
     pageId: "/channel screen"
-  };
-  GoogleTagManager.pushDataLayerEvent(dataLayerEvent);
+};
+GoogleTagManager.pushDataLayerEvent(dataLayerEvent);
 
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  
+///////////////////////////////////////////////////////////////////////////////////////////
+
 export default class Channel extends Component {
 
     renderItem = ({ item, index }) => {
@@ -297,7 +297,7 @@ export default class Channel extends Component {
         Alert.alert("Alert Is Working...")
     }
     navigateToTeledrama(id, ch_videoID) {
-        
+
         Orientation.unlockAllOrientations();
         this.props.navigation.navigate('TeledramaScreen', {
 
@@ -307,10 +307,10 @@ export default class Channel extends Component {
     }
 
 
-   
-     
-    
-    
+
+
+
+
     render() {
 
         return (
@@ -330,11 +330,13 @@ export default class Channel extends Component {
 
                 <View style={styles.wrapper}>
 
-                    <Header style={{ marginTop: 5, backgroundColor: 'white', borderRadius: 10,shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
+                    <Header style={{
+                        marginTop: 5, backgroundColor: 'white', borderRadius: 10, shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
-                        elevation: 17, }}>
+                        elevation: 17,marginTop:hp('0%'),
+                    }}>
                         <Left>
-                            <TouchableOpacity  style={{width:100}} onPress={() => this.openDrawer()}>
+                            <TouchableOpacity style={{ width: 100 }} onPress={() => this.openDrawer()}>
 
                                 <Icon name='menu' style={{ color: 'gray' }} />
 
@@ -344,7 +346,7 @@ export default class Channel extends Component {
                         <Body>
 
                             <TextInput
-                                style={{ height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5,backgroundColor:'#f5f5f0', }}
+                                style={{ height: 40, width: 250, borderRadius: 10, borderRadius: 20, marginTop: 5, backgroundColor: '#f5f5f0', }}
                                 placeholder='                         Search here                  '
                                 onChangeText={
                                     text =>
@@ -379,16 +381,21 @@ export default class Channel extends Component {
                         style={styles.gridView}
 
                         renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.ch_videoID)} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={() => this.navigateToTeledrama(item.id, item.ch_videoID)} style={{
+                                justifyContent: "center",
+                                alignContent: "center",
+                                alignSelf: 'center',
+                                alignItems: 'center',
+                            }} activeOpacity={0.8}>
 
                                 <View style={[styles.itemContainer, { backgroundColor: 'white' }]}>
-                                    
-                                        <ImageBackground style={{ width: 130, height: 130,top:30}} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
-                                        <Text style={styles.itemName} >{item.ch_Name}</Text>
-                                        <View style={styles.status}>
-                                            <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
 
-                                      
+                                    <ImageBackground style={{ width: 130, height: 130, top: 30 }} source={{ uri: baseurl.BASE_URL + '/images/' + item.ch_Image }} />
+                                    <Text style={styles.itemName} >{item.ch_Name}</Text>
+                                    <View style={styles.status}>
+                                        <View style={this.state.status === item.ch_videoID ? styles.online : styles.offline} />
+
+
                                         <Text style={styles.statusText}>Live</Text>
                                     </View>
                                 </View>
