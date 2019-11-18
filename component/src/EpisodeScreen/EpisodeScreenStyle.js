@@ -44,15 +44,15 @@ export default StyleSheet.create({
         elevation: 10,
         width: wp('95%'),
         height: hp('16.7%'),
-        marginTop:5,
-        marginBottom:15,
+        marginBottom:wp('5%'),
+        
         marginLeft: 6,
         padding: 20,
        borderRadius:20,
        
     },
     wrapper: {
-        marginTop: 0,
+        marginTop: 10,
         flex: 5
     },
     itemName: {

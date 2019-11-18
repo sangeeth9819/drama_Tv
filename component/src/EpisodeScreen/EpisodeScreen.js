@@ -23,6 +23,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import Orientation from 'react-native-orientation-locker';
 
+
+
 import styles from './EpisodeScreenStyle';
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -301,11 +303,12 @@ export default class Example extends Component {
               });
         }
     }
-    noData(){
-        if(this.state.noData){}
-        return(
-            <Text style={{position:"absolute",top:0,bottom:0,left:0,right:0,justifyContent:"center"}}>No Data found</Text>
-        );
+     noData(){
+    //     if(this.state.noData){}
+    //     return(
+    //         <Text></Text>
+    //         // <Text style={{position:"absolute",top:0,bottom:0,left:0,right:0,justifyContent:"center"}}></Text>
+    //     );
     }
 
     render() {
