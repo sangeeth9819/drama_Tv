@@ -67,7 +67,7 @@ export const setAppName = (Dramatv) => {
  tracker.setAnonymizeIp(true);
  };
  export const setAppVersion = (setAppVersion) => {
-  tracker.setAppVersion("1.3.2");
+  tracker.setAppVersion("1.4.5");
  };
 
  GoogleAnalyticsSettings.setDryRun(true);

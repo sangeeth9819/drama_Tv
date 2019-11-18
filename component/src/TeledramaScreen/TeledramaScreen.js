@@ -76,7 +76,7 @@ export const Event = (Event) => {
     tracker.setAnonymizeIp(true);
 };
 export const setAppVersion = (setAppVersion) => {
-    tracker.setAppVersion("1.4.2");
+    tracker.setAppVersion("1.4.5");
 };
 
 GoogleAnalyticsSettings.setDryRun(true);
