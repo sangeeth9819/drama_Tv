@@ -44,7 +44,7 @@ export default StyleSheet.create({
         elevation: 10,
         width: wp('95%'),
         height: hp('16.7%'),
-        marginBottom:wp('5%'),
+        marginBottom:wp('8%'),
         
         marginLeft: 6,
         padding: 20,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
         left: 170,
         height: 120,
         width: 140,
-        bottom: 130,
+        bottom: 110,
         color: 'black',
         fontWeight: 'bold',
 
