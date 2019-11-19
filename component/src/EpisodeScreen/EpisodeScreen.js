@@ -333,7 +333,7 @@ export default class Example extends Component {
                 <Header style={{
                     backgroundColor: 'white', borderRadius: 10, shadowColor: "#000", shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                     shadowRadius: 11.14,
-                    elevation: 17, marginTop:hp('5%'),
+                    elevation: 17, marginTop:hp('4%'),
                 }}>
 
                     <Left>

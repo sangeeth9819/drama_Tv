@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Drawer, Left, Icon, Body, Right } from 'native-base';
-import { Button, View, Text, StyleSheet,TouchableOpacity,TextInput} from 'react-native';
+import { Button, View, Text, StyleSheet,TouchableOpacity,TextInput,StatusBar} from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import Dialog, {
   DialogTitle,
@@ -179,6 +179,9 @@ export default class App extends Component {
                             </Body>
         
                         </Header>
+                        <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                
+       
                         <View style={styles.container}>
                             <View>
                             <Text style={{ fontSize: 15, color: '#424242', width: 320, bottom: 150 }}>

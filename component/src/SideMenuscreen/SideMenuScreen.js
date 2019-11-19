@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Image, View, TouchableOpacity ,Linking,Button} from "react-native";
+import { Image, View, TouchableOpacity ,Linking,Button,StatusBar} from "react-native";
 
 import {
     Text,
@@ -115,7 +115,7 @@ export default class SideBar extends React.Component {
         Linking.openURL('https://play.google.com/store/apps/details?id=com.dramatv')
     }
 aboutus(){
-    Linking.openURL('https://commercialtp.com/about.php')
+    this.props.navigation.navigate('AboutusScreen')
 }
 navigateRequest() {
     this.props.navigation.navigate('RequesScreen')
@@ -158,7 +158,7 @@ navigateRequest() {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity onPress={() => this.navigatechannel()}>
+                        {/* <TouchableOpacity onPress={() => this.navigatechannel()}>
                             <View>
                                 <View>
                                     <Text style={styles.txtCategory}>
@@ -176,7 +176,7 @@ navigateRequest() {
                                 </View>
                             </View>
 
-                        </TouchableOpacity >
+                        </TouchableOpacity > */}
                         <TouchableOpacity 
                         onPress={()=>this.navigateRequest()}
                         >
@@ -199,7 +199,7 @@ navigateRequest() {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity>
+                        {/* <TouchableOpacity>
                             <View>
                                 <View>
                                     <Text style={styles.txtFavourite}>
@@ -218,8 +218,11 @@ navigateRequest() {
                             </View>
 
                         </TouchableOpacity >
-                       
+                        */}
                     </View>
+                    <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                
+       
                     <View style={styles.SecondView}>
 
                     </View>
@@ -270,7 +273,7 @@ navigateRequest() {
 
                         </TouchableOpacity >
 
-                        <TouchableOpacity>
+                        {/* <TouchableOpacity>
                             <View>
                                 <View>
                                     <Text style={styles.txtHelp}>
@@ -288,7 +291,7 @@ navigateRequest() {
                                 </View>
                             </View>
 
-                        </TouchableOpacity >
+                        </TouchableOpacity > */}
                     </View>
                 </Content>               
             </Container>

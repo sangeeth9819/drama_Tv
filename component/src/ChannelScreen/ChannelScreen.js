@@ -333,7 +333,7 @@ export default class Channel extends Component {
                     <Header style={{
                         marginTop: 5, backgroundColor: 'white', borderRadius: 10, shadowOffset: { width: 0, height: 8, }, shadowOpacity: 0.46,
                         shadowRadius: 11.14,
-                        elevation: 17,marginTop:hp('0%'),
+                        elevation: 17,
                     }}>
                         <Left>
                             <TouchableOpacity style={{ width: 100 }} onPress={() => this.openDrawer()}>
@@ -364,6 +364,7 @@ export default class Channel extends Component {
                     </Header>
 
                     <StatusBar barStyle="dark-content" hidden={false} backgroundColor="white" translucent={true} />
+                   
                     <View style={{
                         alignItems: "center",
                         justifyContent: "center",
